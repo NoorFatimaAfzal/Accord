@@ -1,17 +1,12 @@
-# Connectr - Group Chat App
+# Accord - Ask about Islam
 
-<img src="docs/read-me-images/mock-up.png" ><br>
-
-<!-- ![GitHub last commit](https://img.shields.io/github/last-commit/jamie33O/Code-Innovate-Chat-Hub?color=red)
-![GitHub contributors](https://img.shields.io/github/contributors/jamie33O/Code-Innovate-Chat-Hub?color=orange)
-![GitHub language count](https://img.shields.io/github/languages/count/jamie33O/Code-Innovate-Chat-Hub?color=yellow)
-![GitHub top language](https://img.shields.io/github/languages/top/jamie33O/Code-Innovate-Chat-Hub?color=green) -->
+<!-- <img src="docs/read-me-images/mock-up.png" ><br> -->
 
 <hr>
 
 ## Table of contents
 
-- [Connectr - Group Chat App](#code-innovate-chat-hub---group-chat-app)
+- [Accord - Ask about Islam](#code-innovate-chat-hub---group-chat-app)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
   - [UX](#ux)
@@ -140,18 +135,18 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
 #### Colour Scheme
 
 - The primary colour scheme was used for body, headers and nav elements<br>
-  <img src="docs/read-me-images/color-scheme/clr1.jpg" width="30%">
-  <img src="docs/read-me-images/color-scheme/clr2.png" width="30%">
-  <img src="docs/read-me-images/color-scheme/clr3.jpeg" width="30%">
-  <img src="docs/read-me-images/color-scheme/clr4.png" width="30%">
-  <img src="docs/read-me-images/color-scheme/clr5.png" width="30%">
+  <img src="Accord/color-scheme/clr1.jpg" width="30%">
+  <img src="Accord/color-scheme/clr2.png" width="30%">
+  <img src="Accord/color-scheme/clr3.jpeg" width="30%">
+  <img src="Accord/color-scheme/clr4.png" width="30%">
+  <img src="Accord/color-scheme/clr5.png" width="30%">
   <br>
 
 - The secondary colour scheme was used for buttons, warnings, errors or for highlighting important information.<br>
-  <img src="docs/read-me-images/color-scheme/clr6.png" width="30%">
-  <img src="docs/read-me-images/color-scheme/clr7.png" width="30%">
-  <img src="docs/read-me-images/color-scheme/clr8.png" width="30%">
-  <img src="docs/read-me-images/color-scheme/clr9.png" width="30%">
+  <img src="Accord/color-scheme/clr6.png" width="30%">
+  <img src="Accord/color-scheme/clr7.png" width="30%">
+  <img src="Accord/color-scheme/clr8.png" width="30%">
+  <img src="Accord/color-scheme/clr9.png" width="30%">
 
 #### Fonts
 
