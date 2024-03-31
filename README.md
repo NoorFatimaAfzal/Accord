@@ -34,7 +34,7 @@
 
 "Accord" is a Python-based GUI project designed to facilitate scholarly discussions and knowledge sharing on religious topics. It features user signup and signin modules, channels for different religious topics, private messaging with scholars, Namaz reminders, and prayer timing displays. "Accord" aims to create a user-friendly environment for seekers of knowledge and scholars to engage in meaningful discussions and receive guidance. With its intuitive navigation and engaging interface, "Accord" provides a seamless platform for individuals to deepen their understanding of religion and connect with experts in their field. Through personalized interactions and practical tools, it empowers users to navigate their spiritual journeys effectively while fostering a vibrant community of learning and exchange.
 <br><br>
-The fully deployed project can be accessed here [Connectr](https://ci-chathub-f163e2297a1b.herokuapp.com/).
+The full project can be accessed here [Accord](https://github.com/NoorFatimaAfzal/Accord/tree/main).
 <br><br>
 
 ## UX
