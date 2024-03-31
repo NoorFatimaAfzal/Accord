@@ -135,18 +135,18 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
 #### Colour Scheme
 
 - The primary colour scheme was used for body, headers and nav elements<br>
-  <img src="Accord/color-scheme/clr1.jpg" width="30%">
-  <img src="Accord/color-scheme/clr2.png" width="30%">
-  <img src="Accord/color-scheme/clr3.jpeg" width="30%">
-  <img src="Accord/color-scheme/clr4.png" width="30%">
-  <img src="Accord/color-scheme/clr5.png" width="30%">
+  <img src="color-scheme/clr1.jpg" width="30%">
+  <img src="color-scheme/clr2.png" width="30%">
+  <img src="color-scheme/clr3.jpeg" width="30%">
+  <img src="color-scheme/clr4.png" width="30%">
+  <img src="color-scheme/clr5.png" width="30%">
   <br>
 
 - The secondary colour scheme was used for buttons, warnings, errors or for highlighting important information.<br>
-  <img src="Accord/color-scheme/clr6.png" width="30%">
-  <img src="Accord/color-scheme/clr7.png" width="30%">
-  <img src="Accord/color-scheme/clr8.png" width="30%">
-  <img src="Accord/color-scheme/clr9.png" width="30%">
+  <img src="color-scheme/clr6.png" width="30%">
+  <img src="color-scheme/clr7.png" width="30%">
+  <img src="color-scheme/clr8.png" width="30%">
+  <img src="color-scheme/clr9.png" width="30%">
 
 #### Fonts
 
