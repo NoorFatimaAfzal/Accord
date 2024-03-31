@@ -126,7 +126,7 @@ The wireframes for mobile and desktop were created with [Balsamiq]() tool and ca
 
 **FLOWCHARTS**<br>
 The Flowchart for my program was created using <b>[draw.io](https://app.diagrams.net/)</b> and it visually represents how the system works.<br>
-<img src="Accord\flowchart/flow.png"><br>
+<img src="flowchart/flow.png"><br>
 <br><br>
 
 
