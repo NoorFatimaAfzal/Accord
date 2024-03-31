@@ -39,7 +39,7 @@ The full project can be accessed here [Accord](https://github.com/NoorFatimaAfza
 
 ## UX
 
-This site was created respecting the Five Plans Of Website Design:<br>
+This App is created respecting the Five Plans Of Website Design:<br>
 
 ### Strategy<hr>
 
@@ -48,9 +48,9 @@ Create a website similar to Discord but specifically tailored for Religious puro
 
 **Project Objectives:**<br>
 
-- Develop a real-time messaging platform to facilitate seamless communication among "Accord" community members.
-- Implement a user-friendly interface with channels dedicated to various Religious topics, fostering organized discussions.
-- Enhance user engagement with multimedia support in direct messages and group chat for interactive conversations.
+- Develop a real-time messaging platform to facilitate seamless religious communication among "Accord" community members.
+- Implement a user-friendly interface with religious channels dedicated to various Religious topics, fostering organized discussions.
+- Enhance user engagement in direct messages and group chat for interactive conversations.
 - Establish secure user authentication, authorization, and profile management features to ensure a personalized and protected user experience.
   <br><br>
 
@@ -126,7 +126,7 @@ The wireframes for mobile and desktop were created with [Balsamiq]() tool and ca
 
 **FLOWCHARTS**<br>
 The Flowchart for my program was created using <b>[draw.io](https://app.diagrams.net/)</b> and it visually represents how the system works.<br>
-<!-- <img src="docs/read-me-images/flowchart/flow-chart-ci-chathub.jpg.drawio.png"><br> -->
+<img src="Accord\flowchart/flow.png"><br>
 <br><br>
 
 
