@@ -1,0 +1,17 @@
+						SIGNUP/LOGIN
+					    (Tuesday{2}-Friday{5})
+1. learn csv file (read and write)
+2. make pages
+     @sign up page(Tkinter)
+     if same, "user already exist"
+	1.scholar
+		write data in scholar.csv file
+	2.student
+		write data in student.csv file
+     @login page(Tkinter)
+     search (Read Data) from both files
+		if match (login successfull)
+3. if match in scholar.csv (homepage of scholar)
+4. if match in student.csv (homepage of student)
+
+						HOMEPAGES
