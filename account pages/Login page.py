@@ -21,7 +21,7 @@ def Login_click():
         messagebox.showerror("Invalid Selection", "You can only be a scholar or a student at one time")  # Display a message if they are
     elif scolar.get() == "No" and student_var.get() == "No":
         messagebox.showerror("Invalid Selection", "You must be a scholar or a student")
-    elif scholar.get()=="Yes" and student_var.get()=="No":
+    elif scolar.get()=="Yes" and student_var.get()=="No":  # Use scolar.get() instead of scholar.get()
         Scholar_Home_page()
     elif student_var.get()=="Yes" and scolar.get()=="No":
         Student_Home_page()
@@ -29,7 +29,7 @@ def Login_click():
 def Scholar_Home_page():
     Login_window.withdraw()
     current_dir = os.path.dirname(os.path.realpath(__file__))
-    loginPage_path = os.path.join(current_dir, "Scolar Home page.py")
+    loginPage_path = os.path.join(current_dir, "Scholar Home page.py")
     os.system(f'python "{loginPage_path}"')
     Login_window.destroy()
 
