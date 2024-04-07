@@ -64,59 +64,59 @@ channels_label.pack(pady=20)
 channels_frame = ttk.Frame(student_homepage_window, style="RoundedFrame.TFrame")
 channels_frame.pack(side=RIGHT, padx=20, fill=Y)
 
-def open_namaz(event):
+def open_namaz(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    namazPage_path = os.path.join(current_dir, "namaz.py")
-    os.system(f'python "{namazPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py')
     student_homepage_window.destroy()
-def open_quran(event):
+def open_quran(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    quranPage_path = os.path.join(current_dir, "quran.py")
-    os.system(f'python "{quranPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py')
     student_homepage_window.destroy()
-def open_hadith(event):
+def open_hadith(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    hadithPage_path = os.path.join(current_dir, "hadith.py")
-    os.system(f'python "{hadithPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
     student_homepage_window.destroy()
-def open_fiqh(event):
+def open_fiqh(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    fiqhPage_path = os.path.join(current_dir, "fiqh.py")
-    os.system(f'python "{fiqhPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
     student_homepage_window.destroy()
-def open_seerah(event):
+def open_seerah(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    seerahPage_path = os.path.join(current_dir, "seerah.py")
-    os.system(f'python "{seerahPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
     student_homepage_window.destroy()
-def open_ethics(event):
+def open_ethics(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    ethicsPage_path = os.path.join(current_dir, "ethics.py")
-    os.system(f'python "{ethicsPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py')
     student_homepage_window.destroy()
-def open_zakat(event):
+def open_zakat(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    zakatPage_path = os.path.join(current_dir, "zakat.py")
-    os.system(f'python "{zakatPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
     student_homepage_window.destroy()
-def open_hajj(event):
+def open_hajj(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    hajjPage_path = os.path.join(current_dir, "hajj.py")
-    os.system(f'python "{hajjPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
     student_homepage_window.destroy()
-def open_roza(event):
+def open_roza(event, source):
+    global source_page
+    source_page = source
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    rozaPage_path = os.path.join(current_dir, "roza.py")
-    os.system(f'python "{rozaPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
     student_homepage_window.destroy()
 
 namazChannelLink = Label(student_homepage_window, text="Namaz", bg="white", fg="black", cursor="hand2", font=("Arial", 17)) 

@@ -25,6 +25,12 @@ def send_message():
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
+def go_back():
+    DM_Pages.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\ScholarDM.py"')
+    DM_Pages.destroy()
+
+
 # Frame for namaz times
 DM_frame = ttk.Frame(DM_Pages, style="RoundedFrame.TFrame")
 DM_frame.pack(side=TOP, padx=20)
@@ -79,6 +85,9 @@ def update_scrollregion(event):
 
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
+
+back_button = Button(DM_Pages, text="Back", font=("Arial", 15), bg="sky blue", fg="black", command=go_back)
+back_button.place(x=20, y=20)
 
 # ...
 
