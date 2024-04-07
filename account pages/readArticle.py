@@ -71,9 +71,9 @@ for article, author in zip(articles, authors):
     article_frame.pack(fill=X, padx=5, pady=5)
     author_label = Label(article_frame, text=author, font=("Arial", 15), bg="white", fg="black")
     author_label.pack(side=RIGHT, padx=5, pady=5)
-    article_button = Button(article_frame, text=article, font=("Arial", 15), bg="white", fg="black",
-                            command=lambda article=article: article_button_clicked(article))
+    article_button = Button(article_frame, text=article, font=("Arial", 15), bg="white", fg="black", command=lambda article=article: article_button_clicked(article))
     article_button.pack(side=LEFT, padx=5, pady=5)
+
 
 # Function to update scrollregion after all widgets are added
 def update_scrollregion(event):

@@ -70,4 +70,23 @@ msj_button.place(x=800, y=594)
 msj_entry=Entry(zakatPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
 msj_entry.place(x=179, y=600)
 
+# Canvas for the messages frame and scrollbar
+messages_canvas = Canvas(zakatPage)
+messages_canvas.place(x=179, y=200, width=650, height=375)
+
+# Scrollbar for the messages frame
+messages_scrollbar = Scrollbar(zakatPage, command=messages_canvas.yview)
+messages_scrollbar.place(x=829, y=200, height=375)
+
+# Frame for the messages
+messages_frame = Frame(messages_canvas)
+messages_frame_id = messages_canvas.create_window(0, 0, window=messages_frame, anchor='nw')
+
+# Function to update the scroll region
+def update_scrollregion(event):
+    messages_canvas.configure(scrollregion=messages_canvas.bbox('all'))
+
+messages_frame.bind('<Configure>', update_scrollregion)
+messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
+
 zakatPage.mainloop()

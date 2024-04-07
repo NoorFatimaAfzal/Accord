@@ -21,6 +21,12 @@ def backButton_clicked():
     os.system(f'python "{namazPage_path}"')
     scholarDM.destroy()
 
+def DMperson_button_clicked(DMperson):
+    scholarDM.withdraw()
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    DMpersons_Page_path = os.path.join(current_dir, "DMperson.py")
+    os.system(f'python "{DMpersons_Page_path}" "{DMperson}"')
+    scholarDM.destroy()
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(scholarDM, style="RoundedFrame.TFrame")
@@ -61,7 +67,7 @@ canvas.create_window((0, 0), window=inner_frame, anchor="nw")
 
 # Add a button for each user
 for user in users:
-    user_button = Button(inner_frame, text=user, font=("Arial", 15), bg="white", fg="black")
+    user_button = Button(inner_frame, text=user, font=("Arial", 15), bg="white", fg="black", command=lambda user=user: DMperson_button_clicked(user))
     user_button.pack(fill=X, padx=5, pady=5)
 
 # next button
