@@ -13,6 +13,15 @@ scholarDM.resizable(False, False)
 # List of signed-in users
 users = ["User1", "User2", "User3","User1", "User2", "User3","User1", "User2", "User3"]
 
+# functions
+def backButton_clicked():
+    scholarDM.withdraw()
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    namazPage_path = os.path.join(current_dir, "Scholar Home page.py")
+    os.system(f'python "{namazPage_path}"')
+    scholarDM.destroy()
+
+
 # Frame for the namaz times
 namaz_frame = ttk.Frame(scholarDM, style="RoundedFrame.TFrame")
 namaz_frame.pack(side=TOP, padx=20)
@@ -59,8 +68,8 @@ for user in users:
 next_button=Button(scholarDM,text="Exit",font=("Arial", 15), bg="sky blue", fg="black",command=scholarDM.destroy)
 next_button.place(x=800, y=594)
 
-# previous button
-previous_button=Button(scholarDM,text="Back",font=("Arial", 15), bg="sky blue", fg="black")
+# back button
+previous_button=Button(scholarDM,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=backButton_clicked)
 previous_button.place(x=145, y=594)
 
 
