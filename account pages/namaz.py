@@ -13,6 +13,17 @@ namazPage.resizable(False, False)
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 
+# functions 
+def send_message():
+    message = msj_entry.get()
+    message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
+    message_frame.pack(fill=X, padx=5, pady=5)
+    message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+    message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+    message_text.insert(END, message)
+    message_text.config(state=DISABLED)
+    msj_entry.delete(0, END)
+
 # Frame for the namaz times
 namaz_frame = ttk.Frame(namazPage, style="RoundedFrame.TFrame")
 namaz_frame.pack(side=TOP, padx=20)
@@ -42,5 +53,21 @@ ayat = Label(
         fg="black"
         )
 ayat.pack(padx=10, pady=10)
+
+msj_button=Button(namazPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
+msj_button.place(x=800, y=594)
+
+msj_entry=Entry(namazPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
+msj_entry.place(x=179, y=600)
+
+# Frame for the messages
+messages_frame = Frame(namazPage)
+messages_frame.place(x=179, y=200, width=650, height=375)
+
+msj_button=Button(namazPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
+msj_button.place(x=800, y=594)
+
+msj_entry=Entry(namazPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
+msj_entry.place(x=179, y=600)
 
 namazPage.mainloop()
