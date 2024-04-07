@@ -24,11 +24,10 @@ def send_message():
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
-def back_button_clicked():
+def FAQ_clicked():
     zakatPage.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    Student_home_Page_path = os.path.join(current_dir, "Student Home page.py")
-    os.system(f'python "{Student_home_Page_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(Zakat).py"')
+    zakatPage.destroy()
 
 # Frame for the namaz times
 zakat_frame = ttk.Frame(zakatPage, style="RoundedFrame.TFrame")
@@ -96,7 +95,7 @@ messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
 # FAQs button
-faqs_button=Button(zakatPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black")
+faqs_button=Button(zakatPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
 faqs_button.place(x=900, y=140)
 
 # back button

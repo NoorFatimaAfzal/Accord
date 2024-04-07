@@ -24,6 +24,11 @@ def send_message():
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
+def FAQ_clicked():
+    seerahPage.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(seerah).py"')
+    seerahPage.destroy()
+
 # Frame for the seerah times
 seerah_frame = ttk.Frame(seerahPage, style="RoundedFrame.TFrame")
 seerah_frame.pack(side=TOP, padx=20)
@@ -88,5 +93,13 @@ def update_scrollregion(event):
 
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
+
+# FAQs button
+faqs_button=Button(seerahPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
+faqs_button.place(x=900, y=140)
+
+# back button
+back_button=Button(seerahPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black")
+back_button.place(x=20, y=140)
 
 seerahPage.mainloop()

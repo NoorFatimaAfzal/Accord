@@ -24,6 +24,11 @@ def send_message():
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
+def FAQ_clicked():
+    ethicsPage.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(ethics).py"')
+    ethicsPage.destroy()
+
 # Frame for the namaz times
 ethics_frame = ttk.Frame(ethicsPage, style="RoundedFrame.TFrame")
 ethics_frame.pack(side=TOP, padx=20)
@@ -88,5 +93,13 @@ def update_scrollregion(event):
 
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
+
+# FAQs button
+faqs_button=Button(ethicsPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
+faqs_button.place(x=900, y=140)
+
+# back button
+back_button=Button(ethicsPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black")
+back_button.place(x=20, y=140)
 
 ethicsPage.mainloop()
