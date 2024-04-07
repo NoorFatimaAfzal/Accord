@@ -30,4 +30,17 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text="Ask about ethics", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
+# Frame for ayat of moment
+ayat_frame = ttk.Frame(ethicsPage, style="RoundedFrame.TFrame")
+ayat_frame.pack(side=TOP, padx=20)
+
+ayat = Label(
+        ayat_frame, 
+        text="“Talk straight, to the point, without any ambiguity or deception”\n\t\t\t\t\t\t\t (Quran 33:70)", 
+        font=("Arial", 10, "bold"), 
+        bg="sky blue", 
+        fg="black"
+        )
+ayat.pack(padx=10, pady=10)
+
 ethicsPage.mainloop()

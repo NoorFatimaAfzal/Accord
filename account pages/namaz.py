@@ -30,4 +30,17 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text="Ask about Namaz", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
+# Frame for ayat of moment
+ayat_frame = ttk.Frame(namazPage, style="RoundedFrame.TFrame")
+ayat_frame.pack(side=TOP, padx=20)
+
+ayat = Label(
+        ayat_frame, 
+        text="“And establish Salah and give Zakah, and bow down along with those who bow down”\n\t\t\t\t\t\t\t (Surah Baqarah 2:43)", 
+        font=("Arial", 10, "bold"), 
+        bg="sky blue", 
+        fg="black"
+        )
+ayat.pack(padx=10, pady=10)
+
 namazPage.mainloop()

@@ -30,4 +30,17 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text="Ask about quran", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
+# Frame for ayat of moment
+ayat_frame = ttk.Frame(quranPage, style="RoundedFrame.TFrame")
+ayat_frame.pack(side=TOP, padx=20)
+
+ayat = Label(
+        ayat_frame, 
+        text="“This is the Book (The Quran) about which there is no doubt, a guidance for those conscious of Allah.”\n\t\t\t\t\t\t\t (Quran 2:2)", 
+        font=("Arial", 10, "bold"), 
+        bg="sky blue", 
+        fg="black"
+        )
+ayat.pack(padx=10, pady=10)
+
 quranPage.mainloop()

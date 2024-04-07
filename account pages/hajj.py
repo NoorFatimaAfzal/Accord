@@ -30,4 +30,17 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text="Ask about hajj", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
+# Frame for ayat of moment
+ayat_frame = ttk.Frame(hajjPage, style="RoundedFrame.TFrame")
+ayat_frame.pack(side=TOP, padx=20)
+
+ayat = Label(
+        ayat_frame, 
+        text="“The removal of sins can occur between one Hajj to another. Hajj Mabrur has a significant reward of Paradise.”\n\t\t\t\t\t\t\t (Holy Prophet)", 
+        font=("Arial", 10, "bold"), 
+        bg="sky blue", 
+        fg="black"
+        )
+ayat.pack(padx=10, pady=10)
+
 hajjPage.mainloop()

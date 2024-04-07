@@ -30,4 +30,17 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text="Ask about roza", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
+# Frame for ayat of moment
+ayat_frame = ttk.Frame(rozaPage, style="RoundedFrame.TFrame")
+ayat_frame.pack(side=TOP, padx=20)
+
+ayat = Label(
+        ayat_frame, 
+        text="“O you who have believed, decreed upon you is fasting as it was decreed upon those before you that you may become righteous”\n\t\t\t\t\t\t\t (Quran 2:183)", 
+        font=("Arial", 10, "bold"), 
+        bg="sky blue", 
+        fg="black"
+        )
+ayat.pack(padx=10, pady=10)
+
 rozaPage.mainloop()
