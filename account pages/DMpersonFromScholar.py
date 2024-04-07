@@ -25,6 +25,23 @@ def send_message():
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
+# Frame for namaz times
+DM_frame = ttk.Frame(DM_Pages, style="RoundedFrame.TFrame")
+DM_frame.pack(side=TOP, padx=20)
+
+current_nmaz_time_label=Label(DM_frame,text="Current namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+current_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
+
+upcoming_nmaz_time_label=Label(DM_frame,text="Upcoming namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+upcoming_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
+
+# Frame for the header
+header_frame = ttk.Frame(DM_Pages, style="RoundedFrame.TFrame")
+header_frame.pack(side=TOP, padx=20)
+
+header = Label(header_frame, text="Directly message to students", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
+header.pack(padx=10, pady=10)
+
 
 msj_button=Button(DM_Pages,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
 msj_button.place(x=800, y=594)
@@ -64,8 +81,5 @@ messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
 # ...
-
-DM_Pages.mainloop()
-
 
 DM_Pages.mainloop()

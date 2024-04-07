@@ -24,7 +24,7 @@ def backButton_clicked():
 def DMperson_button_clicked(DMperson):
     scholarDM.withdraw()
     current_dir = os.path.dirname(os.path.realpath(__file__))
-    DMpersons_Page_path = os.path.join(current_dir, "DMperson.py")
+    DMpersons_Page_path = os.path.join(current_dir, "DMpersonFromScholar.py")
     os.system(f'python "{DMpersons_Page_path}" "{DMperson}"')
     scholarDM.destroy()
 
