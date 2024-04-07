@@ -20,6 +20,12 @@ def postArticleButton_clicked():
     PostArticlePage_path = os.path.join(current_dir, "PostArticle.py")
     os.system(f'python "{PostArticlePage_path}"')
     scholar_homepage_window.destroy()
+def DMButton_clicked():
+    scholar_homepage_window.withdraw()
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    DMPage_path = os.path.join(current_dir, "scholarDM.py")
+    os.system(f'python "{DMPage_path}"')
+    scholar_homepage_window.destroy()
 
 
 # Frame for the dashboard
@@ -171,7 +177,7 @@ description.place(x=599, y=450, anchor="center")
 
 
 # direct message button
-DMbutton = Button(scholar_homepage_window, text="Direct Message", font=("Arial", 17), bg="sky blue", fg="black")
+DMbutton = Button(scholar_homepage_window, text="Direct Message", font=("Arial", 17), bg="sky blue", fg="black", command=DMButton_clicked)
 DMbutton.place(x=570, y=530, anchor="center")
 
 # post article button
