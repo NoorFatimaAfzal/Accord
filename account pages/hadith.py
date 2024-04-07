@@ -24,7 +24,7 @@ def send_message():
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
-# Frame for the hadith times
+# Frame for namaz times
 hadith_frame = ttk.Frame(hadithPage, style="RoundedFrame.TFrame")
 hadith_frame.pack(side=TOP, padx=20)
 

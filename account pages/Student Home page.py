@@ -23,7 +23,7 @@ def readArticleButton_clicked():
 def DMButton_clicked():
     student_homepage_window.withdraw()
     current_dir = os.path.dirname(os.path.realpath(__file__))
-    DMPage_path = os.path.join(current_dir, "DM.py")
+    DMPage_path = os.path.join(current_dir, "studentDM.py")
     os.system(f'python "{DMPage_path}"')
     student_homepage_window.destroy()
 
@@ -173,18 +173,12 @@ rozaChannelLink.bind("<Button-1>", open_roza)
 description = Label(student_homepage_window, text="Join the conversation about Roza", bg="white", fg="black", font=("Arial", 17))
 description.place(x=599, y=450, anchor="center")
 
-
-
-
 # direct message button
 DMbutton = Button(student_homepage_window, text="Direct Message", font=("Arial", 17), bg="sky blue", fg="black", command=DMButton_clicked)
 DMbutton.place(x=570, y=530, anchor="center")
 
 # post article button
-postArticleButton = Button(student_homepage_window, text="Post Articles To Help Students", font=("Arial", 17), bg="sky blue", fg="black", command=readArticleButton_clicked)
+postArticleButton = Button(student_homepage_window, text="Read Articles", font=("Arial", 17), bg="sky blue", fg="black", command=readArticleButton_clicked)
 postArticleButton.place(x=570, y=590, anchor="center")
-
-
-
 
 student_homepage_window.mainloop()

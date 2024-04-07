@@ -23,7 +23,7 @@ def postArticleButton_clicked():
 def DMButton_clicked():
     scholar_homepage_window.withdraw()
     current_dir = os.path.dirname(os.path.realpath(__file__))
-    DMPage_path = os.path.join(current_dir, "DM.py")
+    DMPage_path = os.path.join(current_dir, "scholarDM.py")
     os.system(f'python "{DMPage_path}"')
     scholar_homepage_window.destroy()
 

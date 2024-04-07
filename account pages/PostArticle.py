@@ -41,8 +41,17 @@ def back():
     post_article_window.destroy()
 
 backButton = Button(post_article_window, text="Back", font=("Arial", 15), bg="sky blue", fg="black", relief=RAISED, command=back)
-backButton.place(x=799, y=500)
+backButton.place(x=99, y=500)
 
+def post():
+    post_by_name = post_by_name_entry.get()
+    post_title = post_title_entry.get()
+    post_article = post_article_text.get("1.0", END)
+    messagebox.showinfo("Post Article", f"Post by: {post_by_name}\nPost Title: {post_title}\nPost Article: {post_article}")
+    
+
+postButton = Button(post_article_window, text="Post", font=("Arial", 15), bg="sky blue", fg="black", relief=RAISED, command=post)
+postButton.place(x=850, y=500)
 
 
 post_article_window.mainloop()
