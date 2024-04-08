@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+import sys
 
 ethicsPage=Tk()
 ethicsPage.geometry("990x660+50+50")
@@ -12,6 +13,8 @@ ethicsPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
+
+source_page = sys.argv[1]
 
 # functions 
 def send_message():
@@ -31,9 +34,10 @@ def FAQ_clicked():
 
 def go_back():
     ethicsPage.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\Scholar Home page.py"')
-    ethicsPage.destroy()
-
+    if source_page=="Scholar Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    elif source_page=="Student Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
 # Frame for the namaz times
 ethics_frame = ttk.Frame(ethicsPage, style="RoundedFrame.TFrame")

@@ -28,12 +28,12 @@ def Login_click():
 
 def Scholar_Home_page():
     Login_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepages\\Scholar Home page.py"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
     Login_window.destroy()
 
 def Student_Home_page():
     Login_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepages\\Student Home page.py"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
     Login_window.destroy()
 
 # image

@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+import sys
 
 seerahPage=Tk()
 seerahPage.geometry("990x660+50+50")
@@ -12,6 +13,8 @@ seerahPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
+
+source_page = sys.argv[1]
 
 # functions 
 def send_message():
@@ -28,6 +31,13 @@ def FAQ_clicked():
     seerahPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(seerah).py"')
     seerahPage.destroy()
+
+def go_back():
+    seerahPage.withdraw()
+    if source_page=="Scholar Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    elif source_page=="Student Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
 # Frame for the seerah times
 seerah_frame = ttk.Frame(seerahPage, style="RoundedFrame.TFrame")

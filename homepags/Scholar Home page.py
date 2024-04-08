@@ -65,55 +65,55 @@ def open_namaz(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py" {source_page}')
     scholar_homepage_window.destroy()
 def open_quran(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py" "{source_page}"')
     scholar_homepage_window.destroy()
 def open_hadith(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py "{source_page}"')
     scholar_homepage_window.destroy()
 def open_fiqh(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py "{source_page}"')
     scholar_homepage_window.destroy()
 def open_seerah(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py "{source_page}"')
     scholar_homepage_window.destroy()
 def open_ethics(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py "{source_page}"')
     scholar_homepage_window.destroy()
 def open_zakat(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py "{source_page}"')
     scholar_homepage_window.destroy()
 def open_hajj(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py "{source_page}"')
     scholar_homepage_window.destroy()
 def open_roza(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py "{source_page}"')
     scholar_homepage_window.destroy()
 
 namazChannelLink = Label(scholar_homepage_window, text="Namaz", bg="white", fg="black", cursor="hand2", font=("Arial", 17)) 
@@ -124,53 +124,51 @@ description.place(x=610, y=210, anchor="center")
 
 quranChannelLink = Label(scholar_homepage_window, text="Quran", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 quranChannelLink.place(x=335, y=240, anchor="center")
-quranChannelLink.bind("<Button-1>", lambda event: open_namaz(event, "scholar_homepage"))
+quranChannelLink.bind("<Button-1>", lambda event: open_quran(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Quran", bg="white", fg="black", font=("Arial", 17))
 description.place(x=605, y=240, anchor="center")
 
 hadithChannelLink = Label(scholar_homepage_window, text="Hadith", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 hadithChannelLink.place(x=337, y=270, anchor="center")
-hadithChannelLink.bind("<Button-1>", lambda event: open_namaz(event, "scholar_homepage"))
+hadithChannelLink.bind("<Button-1>", lambda event: open_hadith(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Hadith", bg="white", fg="black", font=("Arial", 17))
 description.place(x=608, y=270, anchor="center")
 
 fiqhChannelLink = Label(scholar_homepage_window, text="Fiqh", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 fiqhChannelLink.place(x=326, y=300, anchor="center")
-fiqhChannelLink.bind("<Button-1>", lambda event: open_namaz(event, "scholar_homepage"))
+fiqhChannelLink.bind("<Button-1>", lambda event: open_fiqh(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Fiqh", bg="white", fg="black", font=("Arial", 17))
 description.place(x=596, y=300, anchor="center")
 
 seerahChannelLink = Label(scholar_homepage_window, text="Seerah", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 seerahChannelLink.place(x=341, y=330, anchor="center")
-seerahChannelLink.bind("<Button-1>", lambda event: open_namaz(event, "scholar_homepage"))
+seerahChannelLink.bind("<Button-1>", lambda event: open_seerah(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Seerah", bg="white", fg="black", font=("Arial", 17))
 description.place(x=609, y=330, anchor="center")
 
 EthicsChannelLink = Label(scholar_homepage_window, text="Ethics", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 EthicsChannelLink.place(x=336, y=360, anchor="center")
-EthicsChannelLink.bind("<Button-1>",lambda event: open_namaz(event, "scholar_homepage"))
+EthicsChannelLink.bind("<Button-1>",lambda event: open_ethics(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Ethics", bg="white", fg="black", font=("Arial", 17))
 description.place(x=604, y=360, anchor="center")
 
 zakatChannelLink = Label(scholar_homepage_window, text="Zakat", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 zakatChannelLink.place(x=334, y=390, anchor="center")
-zakatChannelLink.bind("<Button-1>", lambda event: open_namaz(event, "scholar_homepage"))
+zakatChannelLink.bind("<Button-1>", lambda event: open_zakat(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Zakat", bg="white", fg="black", font=("Arial", 17))
 description.place(x=604, y=390, anchor="center")
 
 hajjChannelLink = Label(scholar_homepage_window, text="Hajj", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 hajjChannelLink.place(x=325, y=420, anchor="center")
-hajjChannelLink.bind("<Button-1>", lambda event: open_namaz(event, "scholar_homepage"))
+hajjChannelLink.bind("<Button-1>", lambda event: open_hajj(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Hajj", bg="white", fg="black", font=("Arial", 17))
 description.place(x=595, y=420, anchor="center")
 
 rozaChannelLink = Label(scholar_homepage_window, text="Roza", bg="white", fg="black", cursor="hand2", font=("Arial", 17))
 rozaChannelLink.place(x=332, y=450, anchor="center")
-rozaChannelLink.bind("<Button-1>", lambda event: open_namaz(event, "scholar_homepage"))
+rozaChannelLink.bind("<Button-1>", lambda event: open_roza(event, "scholar_homepage"))
 description = Label(scholar_homepage_window, text="Join the conversation about Roza", bg="white", fg="black", font=("Arial", 17))
 description.place(x=599, y=450, anchor="center")
-
-
 
 
 # direct message button

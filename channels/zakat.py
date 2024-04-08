@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+import sys
 
 zakatPage=Tk()
 zakatPage.geometry("990x660+50+50")
@@ -12,6 +13,9 @@ zakatPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
+
+source_page = sys.argv[1]
+
 
 # functions 
 def send_message():
@@ -28,6 +32,13 @@ def FAQ_clicked():
     zakatPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(Zakat).py"')
     zakatPage.destroy()
+
+def go_back():
+    zakatPage.withdraw()
+    if source_page=="Scholar Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    elif source_page=="Student Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
 # Frame for the namaz times
 zakat_frame = ttk.Frame(zakatPage, style="RoundedFrame.TFrame")

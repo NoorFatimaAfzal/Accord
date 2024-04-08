@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+import sys
 
 fiqhPage=Tk()
 fiqhPage.geometry("990x660+50+50")
@@ -12,6 +13,8 @@ fiqhPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
+
+source_page = sys.argv[1]
 
 # functions 
 def send_message():
@@ -28,6 +31,13 @@ def FAQ_clicked():
     fiqhPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(fiqh).py"')
     fiqhPage.destroy()
+
+def go_back():
+    fiqhPage.withdraw()
+    if source_page=="Scholar Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    elif source_page=="Student Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
 # Frame for the namaz times
 fiqh_frame = ttk.Frame(fiqhPage, style="RoundedFrame.TFrame")
