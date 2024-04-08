@@ -28,18 +28,13 @@ def Login_click():
 
 def Scholar_Home_page():
     Login_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    loginPage_path = os.path.join(current_dir, "Scholar Home page.py")
-    os.system(f'python "{loginPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepages\\Scholar Home page.py"')
     Login_window.destroy()
 
 def Student_Home_page():
     Login_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    loginPage_path = os.path.join(current_dir, "Student Home page.py")
-    os.system(f'python "{loginPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepages\\Student Home page.py"')
     Login_window.destroy()
-    
 
 # image
 current_dir = os.path.dirname(os.path.realpath(__file__))

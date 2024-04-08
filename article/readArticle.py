@@ -17,17 +17,11 @@ authors=["Author1", "Author2", "Author3","Author4", "Author5", "Author6","Author
 # functions
 def backButton_clicked():
     readArticle.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    Student_home_Page_path = os.path.join(current_dir, "Student Home page.py")
-    os.system(f'python "{Student_home_Page_path}"')
-    readArticle.destroy()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
 def article_button_clicked(article):
     readArticle.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    articles_Page_path = os.path.join(current_dir, "articles.py")
-    os.system(f'python "{articles_Page_path}" "{article}"')
-    readArticle.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\articles.py" "{article}"')
 
 # Frame for namaz times
 hadith_frame = ttk.Frame(readArticle, style="RoundedFrame.TFrame")

@@ -29,6 +29,12 @@ def FAQ_clicked():
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(ethics).py"')
     ethicsPage.destroy()
 
+def go_back():
+    ethicsPage.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\Scholar Home page.py"')
+    ethicsPage.destroy()
+
+
 # Frame for the namaz times
 ethics_frame = ttk.Frame(ethicsPage, style="RoundedFrame.TFrame")
 ethics_frame.pack(side=TOP, padx=20)

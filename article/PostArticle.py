@@ -35,9 +35,7 @@ post_article_text.place(x=250, y=200)
 # back button
 def back():
     post_article_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    scholarPage_path = os.path.join(current_dir, "Scholar Home page.py")
-    os.system(f'python "{scholarPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
     post_article_window.destroy()
 
 backButton = Button(post_article_window, text="Back", font=("Arial", 15), bg="sky blue", fg="black", relief=RAISED, command=back)

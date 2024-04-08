@@ -23,9 +23,7 @@ def backButton_clicked():
 
 def DMperson_button_clicked(DMperson):
     scholarDM.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    DMpersons_Page_path = os.path.join(current_dir, "DMpersonFromScholar.py")
-    os.system(f'python "{DMpersons_Page_path}" "{DMperson}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DmpersonFromScholar.py"')
     scholarDM.destroy()
 
 # Frame for the namaz times

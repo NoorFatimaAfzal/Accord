@@ -16,15 +16,12 @@ style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 # functions
 def readArticleButton_clicked():
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    PostArticlePage_path = os.path.join(current_dir, "readArticle.py")
-    os.system(f'python "{PostArticlePage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\readArticle.py"')
     student_homepage_window.destroy()
+
 def DMButton_clicked():
     student_homepage_window.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    DMPage_path = os.path.join(current_dir, "studentDM.py")
-    os.system(f'python "{DMPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\studentDM.py"')
     student_homepage_window.destroy()
 
 
