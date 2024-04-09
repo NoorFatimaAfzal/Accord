@@ -53,7 +53,7 @@ frame1 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="
 frame1.pack(padx=10, pady=10, fill=X)
 
 question1 = "Islam places a significant emphasis on ethics and their role in guiding human behavior and interactions within society. Islamic ethics are deeply rooted in the Qur'an and the Sunna, providing moral princip"
-question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947)
+question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947,width=83)
 question_label1.pack(padx=10, pady=10)
 
 answer1 = Label(frame1, text="Answer 1", font=("Arial", 15), bg="sky blue", fg="black")

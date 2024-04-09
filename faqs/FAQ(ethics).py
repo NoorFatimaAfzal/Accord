@@ -19,20 +19,31 @@ def open_help():
     ethicsPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
 
-# Create a canvas and a scrollbar
-canvas = Canvas(ethicsPage)
-scrollbar = Scrollbar(ethicsPage, command=canvas.yview)
-canvas.configure(yscrollcommand=scrollbar.set)
+# Create a frame to hold the canvas and scrollbar
+scroll_frame = Frame(ethicsPage)
+scroll_frame.pack(fill=BOTH, expand=True)
 
+# Create a canvas and a scrollbar
+canvas = Canvas(scroll_frame)
+scrollbar = Scrollbar(scroll_frame, command=canvas.yview)
+canvas.configure(yscrollcommand=scrollbar.set)
 
 # Create a frame to add to the canvas
 main_frame = Frame(canvas, bg="sky blue")
-
-# Add the frame to the canvas
 canvas.create_window((0,0), window=main_frame, anchor="nw")
 
+# Bind the main_frame's configure event to a function that sets the scrollregion
+def on_configure(event):
+    canvas.configure(scrollregion=canvas.bbox('all'))
+
+main_frame.bind('<Configure>', on_configure)
+
+# Pack the canvas and the scrollbar
+canvas.pack(side=LEFT, fill=BOTH, expand=True)
+scrollbar.pack(side=RIGHT, fill=Y)
+
 # Frame for the namaz times
-namaz_frame = ttk.Frame(main_frame, style="RoundedFrame.TFrame")  # Changed ethicsPage to main_frame
+namaz_frame = ttk.Frame(main_frame, style="RoundedFrame.TFrame")
 namaz_frame.pack(side=TOP, padx=20)
 
 current_nmaz_time_label=Label(namaz_frame,text="Current namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
@@ -42,7 +53,7 @@ upcoming_nmaz_time_label=Label(namaz_frame,text="Upcoming namaz: ",font=("Arial"
 upcoming_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
 
 # Frame for the header
-header_frame = ttk.Frame(main_frame, style="RoundedFrame.TFrame")  # Changed ethicsPage to main_frame
+header_frame = ttk.Frame(main_frame, style="RoundedFrame.TFrame")
 header_frame.pack(side=TOP, padx=20)
 
 header = Label(header_frame, text="FAQs about Ethics", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
@@ -52,8 +63,8 @@ header.pack(padx=10, pady=10)
 frame1 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame1.pack(padx=10, pady=10, fill=X)
 
-question1 = "Islam places a significant emphasis on ethics and their role in guiding human behavior and interactions within society. Islamic ethics are deeply rooted in the Qur'an and the Sunna, providing moral princip"
-question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947)
+question1 = "Which is the Surah (Chapter) that does not start with Bismillah?"
+question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black",width=83)
 question_label1.pack(padx=10, pady=10)
 
 answer1 = Label(frame1, text="Answer 1", font=("Arial", 15), bg="sky blue", fg="black")
@@ -119,18 +130,6 @@ like_button4.pack(side=LEFT, padx=2, pady=10)
 
 dislike_button4 = Button(button_frame4, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button4.pack(side=LEFT, padx=2, pady=10)
-
-# Pack the canvas and the scrollbar
-canvas.pack(side=LEFT, fill=BOTH, expand=True)
-scrollbar.pack(side=RIGHT, fill=Y)
-
-# Update the scrollregion of the canvas
-ethicsPage.update()
-canvas.configure(scrollregion=canvas.bbox("all"))
-
-back_button_frame=Frame(ethicsPage,background="sky blue")
-back_button_frame.place(x=20, y=140)
-
 
 # back button
 back_button=Button(main_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)

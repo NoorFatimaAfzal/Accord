@@ -61,48 +61,50 @@ channels_label.pack(pady=20)
 channels_frame = ttk.Frame(student_homepage_window, style="RoundedFrame.TFrame")
 channels_frame.pack(side=RIGHT, padx=20, fill=Y)
 
+# fnctions
+def go_back():
+    student_homepage_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\login page.py"')
+    student_homepage_window.destroy()
+
+def open_help():
+    student_homepage_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    student_homepage_window.destroy()
+
 def open_namaz(event):
-    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py')
     
 def open_quran(event):
-    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py')
     
 def open_hadith(event):
-    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
     
 def open_fiqh(event):
-    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
     
-def open_seerah(event):
-    
+def open_seerah(event):   
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
     
-def open_ethics(event):
-    
+def open_ethics(event):  
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py')
     
 def open_zakat(event):
-    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
     
-def open_hajj(event):
-    
+def open_hajj(event):    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
     
-def open_roza(event):
-    
+def open_roza(event):    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
     
@@ -168,5 +170,13 @@ DMbutton.place(x=570, y=530, anchor="center")
 # post article button
 postArticleButton = Button(student_homepage_window, text="Read Articles", font=("Arial", 17), bg="sky blue", fg="black", command=readArticleButton_clicked)
 postArticleButton.place(x=570, y=590, anchor="center")
+
+# back button
+back_button=Button(student_homepage_window,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.place(x=218, y=10, anchor='nw')
+
+# help button
+help_button=Button(student_homepage_window,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.place(relx=1, rely=0, anchor='ne')
 
 student_homepage_window.mainloop()

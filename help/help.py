@@ -34,10 +34,8 @@ header.pack(padx=10, pady=10)
 features_frame = ttk.Frame(help, style="RoundedFrame.TFrame")
 features_frame.pack(side=TOP, padx=20,pady=20)
 
-features_label = Label(features_frame, text="Features of the App ae as follows: 👇", font=("Arial", 12, "bold"), bg="sky blue", fg="black")
+features_label = Label(features_frame, text="Features of the App are as follows: 👇", font=("Arial", 12, "bold"), bg="sky blue", fg="black")
 features_label.pack(padx=10, pady=10)
-
-
 
 #frame for the features
 features_frame = Frame(help, bd=2, relief=SUNKEN)
@@ -60,8 +58,8 @@ canvas.create_window((0, 0), window=inner_frame, anchor="nw")
 
 # List of features
 features = [
-    "Feature 1: ...",
-    "Feature 2: ...",
+    "Feature 1: ",
+    "Feature 2: .............................",
     "Feature 3: ...",
     "Feature 1: ...",
     "Feature 2: ...",
@@ -77,7 +75,7 @@ features = [
 
 # Add each feature as a label to the inner_frame
 for feature in features:
-    feature_label = Label(inner_frame, text=feature, font=("Arial", 15), bg="sky blue", fg="black")
+    feature_label = Label(inner_frame, text=feature, font=("Arial", 15), bg="sky blue", fg="black", wraplength=600, justify="left",width=55)
     feature_label.pack(padx=10, pady=10)
 
 # Update the scrollregion of the canvas

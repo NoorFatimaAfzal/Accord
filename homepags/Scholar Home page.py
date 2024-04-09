@@ -61,6 +61,15 @@ channels_label.pack(pady=20)
 channels_frame = ttk.Frame(scholar_homepage_window, style="RoundedFrame.TFrame")
 channels_frame.pack(side=RIGHT, padx=20, fill=Y)
 
+# fnctions
+def go_back():
+    scholar_homepage_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\login page.py"')
+
+def open_help():
+    scholar_homepage_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+
 def open_namaz(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py"')
@@ -152,7 +161,13 @@ DMbutton.place(x=570, y=530, anchor="center")
 postArticleButton = Button(scholar_homepage_window, text="Post Articles To Help Students", font=("Arial", 17), bg="sky blue", fg="black", command=postArticleButton_clicked)
 postArticleButton.place(x=570, y=590, anchor="center")
 
+# back button
+back_button=Button(scholar_homepage_window,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.place(x=218, y=10, anchor='nw')
 
+# help button
+help_button=Button(scholar_homepage_window,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.place(relx=1, rely=0, anchor='ne')
 
 
 scholar_homepage_window.mainloop()
