@@ -10,6 +10,15 @@ hadithPage.geometry("990x660+50+50")
 hadithPage.configure(bg="white")
 hadithPage.resizable(False, False)
 
+# fnctions
+def go_back():
+    hadithPage.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py"')
+
+def open_help():
+    hadithPage.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+
 # Create a canvas and a scrollbar
 canvas = Canvas(hadithPage)
 scrollbar = Scrollbar(hadithPage, command=canvas.yview)
@@ -118,5 +127,13 @@ scrollbar.pack(side=RIGHT, fill=Y)
 # Update the scrollregion of the canvas
 hadithPage.update()
 canvas.configure(scrollregion=canvas.bbox("all"))
+
+# back button
+back_button=Button(main_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.place(relx=0, rely=0, anchor='nw')
+
+# help button
+help_button=Button(main_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.place(relx=1, rely=0, anchor='ne')
 
 hadithPage.mainloop()

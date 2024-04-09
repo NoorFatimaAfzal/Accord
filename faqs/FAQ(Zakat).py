@@ -10,6 +10,15 @@ zakatPage.geometry("990x660+50+50")
 zakatPage.configure(bg="white")
 zakatPage.resizable(False, False)
 
+# fnctions
+def go_back():
+    zakatPage.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py"')
+
+def open_help():
+    zakatPage.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+
 # Create a canvas and a scrollbar
 canvas = Canvas(zakatPage)
 scrollbar = Scrollbar(zakatPage, command=canvas.yview)
@@ -118,5 +127,13 @@ scrollbar.pack(side=RIGHT, fill=Y)
 # Update the scrollregion of the canvas
 zakatPage.update()
 canvas.configure(scrollregion=canvas.bbox("all"))
+
+# back button
+back_button=Button(main_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.place(relx=0, rely=0, anchor='nw')
+
+# help button
+help_button=Button(main_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.place(relx=1, rely=0, anchor='ne')
 
 zakatPage.mainloop()

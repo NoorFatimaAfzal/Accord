@@ -17,12 +17,12 @@ style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 def readArticleButton_clicked():
     student_homepage_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\readArticle.py"')
-    student_homepage_window.destroy()
+    
 
 def DMButton_clicked():
     student_homepage_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\studentDM.py"')
-    student_homepage_window.destroy()
+    
 
 
 # Frame for the dashboard
@@ -61,60 +61,51 @@ channels_label.pack(pady=20)
 channels_frame = ttk.Frame(student_homepage_window, style="RoundedFrame.TFrame")
 channels_frame.pack(side=RIGHT, padx=20, fill=Y)
 
-def open_namaz(event, source):
-    global source_page
-    source_page = source
+def open_namaz(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py')
-    student_homepage_window.destroy()
-def open_quran(event, source):
-    global source_page
-    source_page = source
+    
+def open_quran(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py')
-    student_homepage_window.destroy()
-def open_hadith(event, source):
-    global source_page
-    source_page = source
+    
+def open_hadith(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
-    student_homepage_window.destroy()
-def open_fiqh(event, source):
-    global source_page
-    source_page = source
+    
+def open_fiqh(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
-    student_homepage_window.destroy()
-def open_seerah(event, source):
-    global source_page
-    source_page = source
+    
+def open_seerah(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
-    student_homepage_window.destroy()
-def open_ethics(event, source):
-    global source_page
-    source_page = source
+    
+def open_ethics(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py')
-    student_homepage_window.destroy()
-def open_zakat(event, source):
-    global source_page
-    source_page = source
+    
+def open_zakat(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
-    student_homepage_window.destroy()
-def open_hajj(event, source):
-    global source_page
-    source_page = source
+    
+def open_hajj(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
-    student_homepage_window.destroy()
-def open_roza(event, source):
-    global source_page
-    source_page = source
+    
+def open_roza(event):
+    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
-    student_homepage_window.destroy()
+    
 
 namazChannelLink = Label(student_homepage_window, text="Namaz", bg="white", fg="black", cursor="hand2", font=("Arial", 17)) 
 namazChannelLink.place(x=341, y=210, anchor="center")

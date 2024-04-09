@@ -61,49 +61,31 @@ channels_label.pack(pady=20)
 channels_frame = ttk.Frame(scholar_homepage_window, style="RoundedFrame.TFrame")
 channels_frame.pack(side=RIGHT, padx=20, fill=Y)
 
-def open_namaz(event, source):
-    global source_page
-    source_page = source
+def open_namaz(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py"')
-def open_quran(event, source):
-    global source_page
-    source_page = source
+def open_quran(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py"')
-def open_hadith(event, source):
-    global source_page
-    source_page = source
+def open_hadith(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
-def open_fiqh(event, source):
-    global source_page
-    source_page = source
+def open_fiqh(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
-def open_seerah(event, source):
-    global source_page
-    source_page = source
+def open_seerah(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
-def open_ethics(event, source):
-    global source_page
-    source_page = source
+def open_ethics(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py "')
-def open_zakat(event, source):
-    global source_page
-    source_page = source
+def open_zakat(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
-def open_hajj(event, source):
-    global source_page
-    source_page = source
+def open_hajj(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
-def open_roza(event, source):
-    global source_page
-    source_page = source
+def open_roza(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
 
