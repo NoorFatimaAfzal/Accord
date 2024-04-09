@@ -5,6 +5,8 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import sys
+import pickle
+from user import User
 
 ethicsPage=Tk()
 ethicsPage.geometry("990x660+50+50")
@@ -14,7 +16,13 @@ ethicsPage.resizable(False, False)
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 
-source_page = sys.argv[1]
+with open('user_data.pkl', 'rb') as input:
+    user = pickle.load(input)
+
+if user.get_user_type() == "scholar":
+    print("The user is a scholar")
+elif user.get_user_type() == "student":
+    print("The user is a student")
 
 # functions 
 def send_message():

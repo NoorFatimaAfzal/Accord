@@ -16,9 +16,7 @@ users = ["User1", "User2", "User3","User1", "User2", "User3","User1", "User2", "
 # functions
 def backButton_clicked():
     scholarDM.withdraw()
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    namazPage_path = os.path.join(current_dir, "Scholar Home page.py")
-    os.system(f'python "{namazPage_path}"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DmpersonFromScholar.py"')
     scholarDM.destroy()
 
 def DMperson_button_clicked(DMperson):

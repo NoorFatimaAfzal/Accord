@@ -4,6 +4,8 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+import pickle
+from user import User
 
 Login_window=Tk()
 Login_window.geometry("990x660+50+50")
@@ -15,15 +17,28 @@ def user_enter(event):
     if usernameEntry.get() == "Username":
         usernameEntry.delete(0, END)
 
+class User:
+    def __init__(self, user_type):
+        self.user_type = user_type
+
+    def get_user_type(self):
+        return self.user_type
+
 # Login Button
 def Login_click():
-    if scolar.get() == "Yes" and student_var.get() == "Yes":  # Check if both checkboxes are checked
-        messagebox.showerror("Invalid Selection", "You can only be a scholar or a student at one time")  # Display a message if they are
+    if scolar.get() == "Yes" and student_var.get() == "Yes":
+        messagebox.showerror("Invalid Selection", "You can only be a scholar or a student at one time")
     elif scolar.get() == "No" and student_var.get() == "No":
         messagebox.showerror("Invalid Selection", "You must be a scholar or a student")
-    elif scolar.get()=="Yes" and student_var.get()=="No":  # Use scolar.get() instead of scholar.get()
+    elif scolar.get()=="Yes" and student_var.get()=="No":
+        user = User("scholar")
+        with open('user_data.pkl', 'wb') as output:
+            pickle.dump(user, output, pickle.HIGHEST_PROTOCOL)
         Scholar_Home_page()
     elif student_var.get()=="Yes" and scolar.get()=="No":
+        user = User("student")
+        with open('user_data.pkl', 'wb') as output:
+            pickle.dump(user, output, pickle.HIGHEST_PROTOCOL)
         Student_Home_page()
 
 def Scholar_Home_page():

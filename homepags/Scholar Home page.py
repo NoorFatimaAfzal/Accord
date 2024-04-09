@@ -95,7 +95,7 @@ def open_ethics(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py "{source_page}"')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py "')
     scholar_homepage_window.destroy()
 def open_zakat(event, source):
     global source_page
