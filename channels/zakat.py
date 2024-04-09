@@ -34,10 +34,13 @@ def FAQ_clicked():
     zakatPage.destroy()
 
 def go_back():
+    with open('user_data.txt', 'r') as input:
+        user_type = input.read().strip()
+
     zakatPage.withdraw()
-    if source_page=="Scholar Home page":
+    if user_type=="scholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
-    elif source_page=="Student Home page":
+    elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
 # Frame for the namaz times
@@ -110,7 +113,7 @@ faqs_button=Button(zakatPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="
 faqs_button.place(x=900, y=140)
 
 # back button
-back_button=Button(zakatPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black")
+back_button=Button(zakatPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
 back_button.place(x=20, y=140)
 
 zakatPage.mainloop()

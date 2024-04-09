@@ -4,9 +4,6 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
-import sys
-import pickle
-from user import User
 
 ethicsPage=Tk()
 ethicsPage.geometry("990x660+50+50")
@@ -15,14 +12,6 @@ ethicsPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
-
-with open('user_data.pkl', 'rb') as input:
-    user = pickle.load(input)
-
-if user.get_user_type() == "scholar":
-    print("The user is a scholar")
-elif user.get_user_type() == "student":
-    print("The user is a student")
 
 # functions 
 def send_message():
@@ -40,11 +29,15 @@ def FAQ_clicked():
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(ethics).py"')
     ethicsPage.destroy()
 
+
 def go_back():
+    with open('user_data.txt', 'r') as input:
+        user_type = input.read().strip()
+
     ethicsPage.withdraw()
-    if source_page=="Scholar Home page":
+    if user_type=="scholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
-    elif source_page=="Student Home page":
+    elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
 # Frame for the namaz times
@@ -117,7 +110,7 @@ faqs_button=Button(ethicsPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg=
 faqs_button.place(x=900, y=140)
 
 # back button
-back_button=Button(ethicsPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black")
+back_button=Button(ethicsPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
 back_button.place(x=20, y=140)
 
 ethicsPage.mainloop()
