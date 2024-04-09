@@ -26,6 +26,13 @@ def DMperson_button_clicked(DMperson):
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DmpersonFromStudent.py"')
     studentDM.destroy()
 
+def go_back():
+    studentDM.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+
+def open_help():
+    studentDM.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(studentDM, style="RoundedFrame.TFrame")
@@ -66,12 +73,15 @@ canvas.create_window((0, 0), window=inner_frame, anchor="nw")
 
 # Add a button for each user
 for user in users:
-    user_button = Button(inner_frame, text=user, font=("Arial", 15), bg="white", fg="black", command=lambda user=user: DMperson_button_clicked(user))
+    user_button = Button(inner_frame, text=user, font=("Arial", 15), bg="white", fg="black",width=55, command=lambda user=user: DMperson_button_clicked(user))
     user_button.pack(fill=X, padx=5, pady=5)
 
-# back button
-back_button=Button(studentDM,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=backButton_clicked)
-back_button.place(x=800, y=594)
+# help button
+help_button=Button(studentDM,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.place(x=800, y=94)
 
+# back button
+previous_button=Button(studentDM,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+previous_button.place(x=145, y=94)
 
 studentDM.mainloop()
