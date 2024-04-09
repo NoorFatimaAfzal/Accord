@@ -65,56 +65,47 @@ def open_namaz(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py" {source_page}')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py"')
 def open_quran(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py" "{source_page}"')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py"')
 def open_hadith(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py "{source_page}"')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
 def open_fiqh(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py "{source_page}"')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
 def open_seerah(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py "{source_page}"')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
 def open_ethics(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py "')
-    scholar_homepage_window.destroy()
 def open_zakat(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py "{source_page}"')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
 def open_hajj(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py "{source_page}"')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
 def open_roza(event, source):
     global source_page
     source_page = source
     scholar_homepage_window.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py "{source_page}"')
-    scholar_homepage_window.destroy()
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
 
 namazChannelLink = Label(scholar_homepage_window, text="Namaz", bg="white", fg="black", cursor="hand2", font=("Arial", 17)) 
 namazChannelLink.place(x=341, y=210, anchor="center")

@@ -14,8 +14,6 @@ hajjPage.resizable(False, False)
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 
-source_page = sys.argv[1]
-
 # functions 
 def send_message():
     message = msj_entry.get()

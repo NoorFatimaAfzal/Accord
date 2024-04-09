@@ -4,7 +4,6 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
-import sys
 
 zakatPage=Tk()
 zakatPage.geometry("990x660+50+50")
@@ -13,9 +12,6 @@ zakatPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
-
-source_page = sys.argv[1]
-
 
 # functions 
 def send_message():
