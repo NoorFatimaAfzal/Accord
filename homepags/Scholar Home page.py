@@ -95,9 +95,12 @@ def go_back():
     scholar_homepage_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\login page.py"')
 
-def open_help():
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
     scholar_homepage_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    scholar_homepage_window.destroy()
 
 def postArticleButton_clicked():
     scholar_homepage_window.withdraw()
@@ -204,7 +207,7 @@ back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg=
 back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
 
 # help button
-help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("Scholar Home page"))
 help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
 # Configure the columns to adjust their sizes

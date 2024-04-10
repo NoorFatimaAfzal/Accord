@@ -4,24 +4,119 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+import time
 
 help=Tk()
 help.geometry("990x660+50+50")
 help.configure(bg="white")
 help.resizable(False, False)
 
+# List of conatcts
+accounts = ["Cell no. 0327-8734825","Email: noorfatimaafzalbutt@gmail.com", "LinkedIn: https://www.linkedin.com/in/noor-fatima-afzal", "GitHub: https://github.com/NoorFatimaAfzal","HackerRank: https://www.hackerrank.com/profile/noorfatimaafzal1",]
+
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
+
+def go_back():
+    with open('previous_page.txt', 'r') as f:
+        previous_page = f.read().strip()
+    if previous_page == "ethics_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(ethics).py"')
+    elif previous_page == "fiqh_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(fiqh).py"')
+    elif previous_page == "hadith_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(hadith).py"')
+    elif previous_page == "hajj_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(hajj).py"')
+    elif previous_page == "quran_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(quran).py"')
+    elif previous_page == "namaz_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(namaz).py"')
+    elif previous_page == "roza_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(roza).py"')
+    elif previous_page == "seerah_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(seerah).py"')
+    elif previous_page == "zakat_faq_page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(zakat).py"')
+    elif previous_page == "DMpersonFromScholar":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DMpersonFromScholar.py"')
+    elif previous_page == "DMpersonFromStudent":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DMpersonFromStudent.py"')
+    elif previous_page == "scholarDM":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\scholarDM.py"')
+    elif previous_page == "studentDM":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\studentDM.py"')
+    elif previous_page == "articles":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\articles.py"')
+    elif previous_page == "PostArticle":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\PostArticle.py"')
+    elif previous_page == "readArticle":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\readArticle.py"')
+    elif previous_page == "Student Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+    elif previous_page == "Scholar Home page":
+        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    help.destroy()
+
+def open_help():
+    help.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+
+
+# Frame for time
+time_frame = Frame(help, bg="sky blue")
+time_frame.pack(side=TOP, fill=X)
+
+# Create a label for the time
+time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
+time_label.grid(row=0, column=1, padx=20, pady=5)
+
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(help, style="RoundedFrame.TFrame")
 namaz_frame.pack(side=TOP, padx=20)
 
-current_nmaz_time_label=Label(namaz_frame,text="Current Namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+current_namaz = ""
+upcoming_namaz = ""
+
+current_nmaz_time_label=Label(namaz_frame,text=f"Current namaz: {current_namaz}",font=("Arial", 17), bg="sky blue", fg="black")
 current_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
 
-upcoming_nmaz_time_label=Label(namaz_frame,text="Upcoming Namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+upcoming_nmaz_time_label=Label(namaz_frame,text=f"Upcoming namaz: {upcoming_namaz}",font=("Arial", 17), bg="sky blue", fg="black")
 upcoming_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
+
+# Clock
+def update():
+    global time_label, time_string, current_nmaz_time_label, upcoming_nmaz_time_label, current_namaz, upcoming_namaz
+    time_string = time.strftime("%H:%M:%S")
+    time_label.config(text=time_string)
+
+    if time_string>="05:18:00" and time_string<"06:26:00":
+        current_namaz="Fajr"
+        upcoming_namaz="Sunrise"
+    elif time_string>="06:26:00" and time_string<"12:50:00":
+        current_namaz="Sunrise"
+        upcoming_namaz="Dhuhr"
+    elif time_string>="12:50:00" and time_string<"16:25:00":
+        current_namaz="Dhuhr"
+        upcoming_namaz="Asr"
+    elif time_string>="16:25:00" and time_string<"19:15:00":
+        current_namaz="Asr"
+        upcoming_namaz="Maghrib"
+    elif time_string>="19:15:00" and time_string<"20:22:00":
+        current_namaz="Maghrib"
+        upcoming_namaz="Isha"
+    elif time_string>="20:22:00" or time_string<"05:18:00":
+        current_namaz="Isha"
+        upcoming_namaz="Fajr"
+
+    current_nmaz_time_label.config(text=f"Current namaz: {current_namaz}")
+    upcoming_nmaz_time_label.config(text=f"Upcoming namaz: {upcoming_namaz}")
+
+    time_label.after(1000, update)
+
+# Call update function to start the clock and set the namaz times
+update()
 
 # Frame for the header
 header_frame = ttk.Frame(help, style="RoundedFrame.TFrame")
@@ -34,12 +129,12 @@ header.pack(padx=10, pady=10)
 features_frame = ttk.Frame(help, style="RoundedFrame.TFrame")
 features_frame.pack(side=TOP, padx=20,pady=20)
 
-features_label = Label(features_frame, text="Features of the App are as follows: 👇", font=("Arial", 12, "bold"), bg="sky blue", fg="black")
+features_label = Label(features_frame, text="Contact us through following: 👇", font=("Arial", 12, "bold"), bg="sky blue", fg="black")
 features_label.pack(padx=10, pady=10)
 
 #frame for the features
 features_frame = Frame(help, bd=2, relief=SUNKEN)
-features_frame.place(x=179, y=200, width=650, height=375)
+features_frame.place(x=179, y=240, width=650, height=375)
 
 # Create a canvas inside the frame  
 canvas = Canvas(features_frame)
@@ -56,27 +151,6 @@ canvas.configure(yscrollcommand=scrollbar.set)
 inner_frame = Frame(canvas, bg="sky blue")
 canvas.create_window((0, 0), window=inner_frame, anchor="nw")
 
-# List of features
-features = [
-    "Feature 1: ",
-    "Feature 2: .............................",
-    "Feature 3: ...",
-    "Feature 1: ...",
-    "Feature 2: ...",
-    "Feature 3: ...",
-    "Feature 1: ...",
-    "Feature 2: ...",
-    "Feature 3: ...",
-    "Feature 1: ...",
-    "Feature 2: ...",
-    "Feature 3: ...",
-    # Add more features as needed
-]
-
-# Add each feature as a label to the inner_frame
-for feature in features:
-    feature_label = Label(inner_frame, text=feature, font=("Arial", 15), bg="sky blue", fg="black", wraplength=600, justify="left",width=55)
-    feature_label.pack(padx=10, pady=10)
 
 # Update the scrollregion of the canvas
 def update_scrollregion(event):
@@ -84,21 +158,22 @@ def update_scrollregion(event):
 
 canvas.bind("<Configure>", update_scrollregion)
 
-# Add a contact label at the end of the application
-contact_frame = ttk.Frame(help, style="RoundedFrame.TFrame")
-contact_frame.pack(side=BOTTOM, padx=20, pady=20)
+# Add a button for each user
+for account in accounts:
+    user_button = Button(inner_frame, text=account, font=("Arial", 15), bg="white", fg="black",width=55)
+    user_button.pack(fill=X, padx=5, pady=5)
 
-contact_label = Label(contact_frame, text="Contact me at: ", font=("Arial", 15), bg="sky blue", fg="black")
-contact_label.pack(side=LEFT, padx=10, pady=10)
+# back button
+back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
 
-email_label = Label(contact_frame, text="noorfatimaafzalbutt@gmail.com", font=("Arial", 15), bg="sky blue", fg="black")
-email_label.pack(side=LEFT, padx=10, pady=10)
+# help button
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
-# Add an email symbol
-email_image = PhotoImage(file="C:/Users/InfoBay/OneDrive/Desktop/Accord/help/email.png")
-# Reduce the size of the image by a factor of 2
-email_image = email_image.subsample(7, 7)
-email_icon = Label(contact_frame, image=email_image, bg="sky blue")
-email_icon.pack(side=LEFT, padx=10, pady=10)
+# Configure the columns to adjust their sizes
+time_frame.grid_columnconfigure(0, weight=1)
+time_frame.grid_columnconfigure(1, weight=1)
+time_frame.grid_columnconfigure(2, weight=1)
 
 help.mainloop()

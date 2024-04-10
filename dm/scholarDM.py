@@ -29,9 +29,12 @@ def go_back():
     scholarDM.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
 
-def open_help():
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
     scholarDM.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    scholarDM.destroy()
     
 # Frame for time
 time_frame = Frame(scholarDM, bg="sky blue")
@@ -121,7 +124,7 @@ for user in users:
     user_button.pack(fill=X, padx=5, pady=5)
 
 # help button
-help_button=Button(scholarDM,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=scholarDM.destroy)
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("scholarDM"))
 help_button.place(x=800, y=94)
 
 # back button

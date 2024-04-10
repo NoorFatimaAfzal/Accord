@@ -20,9 +20,12 @@ def go_back():
     readArticle.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
 
-def open_help():
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
     readArticle.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    readArticle.destroy()
 
 def article_button_clicked(article):
     readArticle.withdraw()
@@ -129,7 +132,7 @@ back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg=
 back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
 
 # help button
-help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("raedArticle"))
 help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
 # Configure the columns to adjust their sizes

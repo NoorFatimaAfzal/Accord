@@ -112,9 +112,4 @@ loginLink = Label(SignUp_window, text="Already a member? Login", bg="white", fg=
 loginLink.place(x=650, y=470, anchor="center")
 loginLink.bind("<Button-1>", open_login)
 
-# loginButton = Button(SignUp_window, text="Already a member? Login", bg="white", fg="black", font=("Arial", 15), command=open_login)
-# loginButton.place(x=650, y=470, anchor="center")
-
-
-
 SignUp_window.mainloop()

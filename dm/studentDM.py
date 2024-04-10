@@ -31,9 +31,12 @@ def go_back():
     studentDM.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
-def open_help():
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
     studentDM.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    studentDM.destroy()
 
 # Frame for time
 time_frame = Frame(studentDM, bg="sky blue")
@@ -123,7 +126,7 @@ for user in users:
     user_button.pack(fill=X, padx=5, pady=5)
 
 # help button
-help_button=Button(studentDM,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("studentDM"))
 help_button.place(x=800, y=94)
 
 # back button

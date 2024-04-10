@@ -15,10 +15,15 @@ seerahPage.resizable(False, False)
 def go_back():
     seerahPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py"')
+    seerahPage.destroy()
 
-def open_help():
+
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
     seerahPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    seerahPage.destroy()
 
 # Frame for time
 time_frame = Frame(seerahPage, bg="sky blue")
@@ -181,7 +186,7 @@ back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg=
 back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
 
 # help button
-help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("seerah_faq_page"))
 help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
 # Configure the columns to adjust their sizes

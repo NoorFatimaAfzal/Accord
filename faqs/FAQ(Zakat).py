@@ -16,9 +16,12 @@ def go_back():
     zakatPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py"')
 
-def open_help():
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
     zakatPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    zakatPage.destroy()
 
 # Frame for time
 time_frame = Frame(zakatPage, bg="sky blue")
@@ -182,7 +185,7 @@ back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg=
 back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
 
 # help button
-help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("zakat_faq_page"))
 help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
 # Configure the columns to adjust their sizes

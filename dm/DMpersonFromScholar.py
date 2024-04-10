@@ -31,9 +31,12 @@ def go_back():
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\ScholarDM.py"')
     DM_Pages.destroy()
 
-def open_help():
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
     DM_Pages.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    DM_Pages.destroy()
 
 # Frame for time
 time_frame = Frame(DM_Pages, bg="sky blue")
@@ -135,7 +138,7 @@ messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
 # help button
-help_button=Button(DM_Pages,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("DMpersonFromScholar"))
 help_button.place(x=800, y=94)
 
 # back button
