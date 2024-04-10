@@ -22,45 +22,63 @@ def go_back():
         previous_page = f.read().strip()
     if previous_page == "ethics_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(ethics).py"')
+        help.destroy()
     elif previous_page == "fiqh_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(fiqh).py"')
+        help.destroy()
     elif previous_page == "hadith_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(hadith).py"')
+        help.destroy()
     elif previous_page == "hajj_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(hajj).py"')
+        help.destroy()
     elif previous_page == "quran_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(quran).py"')
+        help.destroy()
     elif previous_page == "namaz_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(namaz).py"')
+        help.destroy()
     elif previous_page == "roza_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(roza).py"')
+        help.destroy()
     elif previous_page == "seerah_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(seerah).py"')
+        help.destroy()
     elif previous_page == "zakat_faq_page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(zakat).py"')
+        help.destroy()
     elif previous_page == "DMpersonFromScholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DMpersonFromScholar.py"')
+        help.destroy()
     elif previous_page == "DMpersonFromStudent":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DMpersonFromStudent.py"')
+        help.destroy()
     elif previous_page == "scholarDM":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\scholarDM.py"')
+        help.destroy()
     elif previous_page == "studentDM":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\studentDM.py"')
+        help.destroy()
     elif previous_page == "articles":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\articles.py"')
+        help.destroy()
     elif previous_page == "PostArticle":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\PostArticle.py"')
+        help.destroy()
     elif previous_page == "readArticle":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\readArticle.py"')
+        help.destroy()
     elif previous_page == "Student Home page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+        help.destroy()
     elif previous_page == "Scholar Home page":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+        help.destroy()
     help.destroy()
 
-def open_help():
+def exit():
     help.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    help.destroy()
 
 
 # Frame for time
@@ -167,9 +185,9 @@ for account in accounts:
 back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
 back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
 
-# help button
-help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
-help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
+# exit button
+exit_button=Button(time_frame,text="exit",font=("Arial", 15), bg="sky blue", fg="black",command=exit)
+exit_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
 # Configure the columns to adjust their sizes
 time_frame.grid_columnconfigure(0, weight=1)

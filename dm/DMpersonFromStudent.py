@@ -44,8 +44,7 @@ time_frame.pack(side=TOP, fill=X)
 
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
-time_label.pack(padx=20, pady=10)
-
+time_label.grid(row=0, column=1, padx=20, pady=5)
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(DM_Pages, style="RoundedFrame.TFrame")
@@ -138,13 +137,17 @@ def update_scrollregion(event):
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
+# back button
+back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
+
 # help button
 help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("DMpersonFromStudent"))
-help_button.place(x=800, y=94)
+help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
-# back button
-previous_button=Button(DM_Pages,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
-previous_button.place(x=145, y=94)
-
+# Configure the columns to adjust their sizes
+time_frame.grid_columnconfigure(0, weight=1)
+time_frame.grid_columnconfigure(1, weight=1)
+time_frame.grid_columnconfigure(2, weight=1)
 
 DM_Pages.mainloop()

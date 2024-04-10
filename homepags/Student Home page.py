@@ -7,7 +7,6 @@ from tkinter import messagebox
 import time
 from PIL import Image, ImageTk, ImageDraw
 
-
 student_homepage_window=Tk()
 student_homepage_window.geometry("990x660+50+50")
 student_homepage_window.configure(bg="white")
@@ -45,6 +44,21 @@ label = Label(dashboard_frame, image=photo, bd=0, bg='white')
 label.image = photo 
 label.pack()
 
+# Add the labels to the dashboard_frame
+name_label = Label(dashboard_frame, text="Student Name:",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
+name_label.pack(padx=10, pady=10)
+
+name_value_label = Label(dashboard_frame, text="Noor Fatima", font=("Arial", 17, "bold italic"), bg="sky blue",relief="raised",  bd=2, fg="black", anchor="w")
+name_value_label.pack(padx=10, pady=10)
+
+status_label = Label(dashboard_frame, text="Status: Student",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
+status_label.pack(padx=10, pady=10)
+
+notifications_label = Label(dashboard_frame, text="Notifications:",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
+notifications_label.pack(padx=10, pady=10)
+
+notifications_value_label = Label(dashboard_frame, text="", font=("Arial", 17), bg="white",relief="raised", fg="black")
+notifications_value_label.pack(padx=10, pady=10)
 
 # Canvas for the vertical line
 canvas = Canvas(student_homepage_window, width=2, height=660, bg="black")

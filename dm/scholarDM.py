@@ -42,8 +42,7 @@ time_frame.pack(side=TOP, fill=X)
 
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
-time_label.pack(padx=20, pady=10)
-
+time_label.grid(row=0, column=1, padx=20, pady=5)
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(scholarDM, style="RoundedFrame.TFrame")
@@ -123,13 +122,17 @@ for user in users:
     user_button = Button(inner_frame, text=user, font=("Arial", 15), bg="white", fg="black",width=55, command=lambda user=user: DMperson_button_clicked(user))
     user_button.pack(fill=X, padx=5, pady=5)
 
+# back button
+back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
+
 # help button
 help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("scholarDM"))
-help_button.place(x=800, y=94)
+help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
-# back button
-previous_button=Button(scholarDM,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=backButton_clicked)
-previous_button.place(x=145, y=94)
-
+# Configure the columns to adjust their sizes
+time_frame.grid_columnconfigure(0, weight=1)
+time_frame.grid_columnconfigure(1, weight=1)
+time_frame.grid_columnconfigure(2, weight=1)
 
 scholarDM.mainloop()
