@@ -28,7 +28,6 @@ time_frame.pack(side=TOP, fill=X)
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
 time_label.grid(row=0, column=1, padx=20, pady=5)
 
-
 # Frame for the namaz times
 namaz_frame = ttk.Frame(seerahPage, style="RoundedFrame.TFrame")
 namaz_frame.pack(side=TOP, padx=20)

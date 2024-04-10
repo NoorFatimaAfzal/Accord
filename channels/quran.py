@@ -5,6 +5,8 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import sys
+import time
+
 
 quranPage=Tk()
 quranPage.geometry("990x660+50+50")
@@ -40,15 +42,52 @@ def go_back():
     elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
 
-# Frame for the quran times
-quran_frame = ttk.Frame(quranPage, style="RoundedFrame.TFrame")
-quran_frame.pack(side=TOP, padx=20)
+# Frame for the namaz times
+namaz_frame = ttk.Frame(quranPage, style="RoundedFrame.TFrame")
+namaz_frame.pack(side=TOP, padx=20)
 
-current_nmaz_time_label=Label(quran_frame,text="Current namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+current_namaz = ""
+upcoming_namaz = ""
+
+current_nmaz_time_label=Label(namaz_frame,text=f"Current namaz: {current_namaz}",font=("Arial", 17), bg="sky blue", fg="black")
 current_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
 
-upcoming_nmaz_time_label=Label(quran_frame,text="Upcoming namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+upcoming_nmaz_time_label=Label(namaz_frame,text=f"Upcoming namaz: {upcoming_namaz}",font=("Arial", 17), bg="sky blue", fg="black")
 upcoming_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
+
+# Clock
+def update():
+    global time_label, time_string, current_nmaz_time_label, upcoming_nmaz_time_label, current_namaz, upcoming_namaz
+    time_string = time.strftime("%H:%M:%S")
+    time_label.config(text=time_string)
+
+    if time_string>="05:18:00" and time_string<"06:26:00":
+        current_namaz="Fajr"
+        upcoming_namaz="Sunrise"
+    elif time_string>="06:26:00" and time_string<"12:50:00":
+        current_namaz="Sunrise"
+        upcoming_namaz="Dhuhr"
+    elif time_string>="12:50:00" and time_string<"16:25:00":
+        current_namaz="Dhuhr"
+        upcoming_namaz="Asr"
+    elif time_string>="16:25:00" and time_string<"19:15:00":
+        current_namaz="Asr"
+        upcoming_namaz="Maghrib"
+    elif time_string>="19:15:00" and time_string<"20:22:00":
+        current_namaz="Maghrib"
+        upcoming_namaz="Isha"
+    elif time_string>="20:22:00" or time_string<"05:18:00":
+        current_namaz="Isha"
+        upcoming_namaz="Fajr"
+
+    current_nmaz_time_label.config(text=f"Current namaz: {current_namaz}")
+    upcoming_nmaz_time_label.config(text=f"Upcoming namaz: {upcoming_namaz}")
+
+    time_label.after(1000, update)
+
+# Call update function to start the clock and set the namaz times
+update()
+
 
 # Frame for the header
 header_frame = ttk.Frame(quranPage, style="RoundedFrame.TFrame")
