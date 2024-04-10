@@ -12,7 +12,7 @@ help.configure(bg="white")
 help.resizable(False, False)
 
 # List of conatcts
-accounts = ["Cell no. 0327-8734825","Email: noorfatimaafzalbutt@gmail.com", "LinkedIn: https://www.linkedin.com/in/noor-fatima-afzal", "GitHub: https://github.com/NoorFatimaAfzal","HackerRank: https://www.hackerrank.com/profile/noorfatimaafzal1",]
+accounts = ["Cell no. 0327-8734825","Email: noorfatimaafzalbutt@gmail.com", "LinkedIn: https://www.linkedin.com/in/noor-fatima-afzal", "GitHub: https://github.com/NoorFatimaAfzal","HackerRank: https://www.hackerrank.com/profile/noorfatimaafzal1"]
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")

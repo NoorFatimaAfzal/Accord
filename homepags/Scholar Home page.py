@@ -5,6 +5,7 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
+from PIL import Image, ImageTk, ImageDraw
 
 scholar_homepage_window=Tk()
 scholar_homepage_window.geometry("990x660+50+50")
@@ -14,12 +15,25 @@ scholar_homepage_window.resizable(False, False)
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 
+
 # Frame for the dashboard
 dashboard_frame = ttk.Frame(scholar_homepage_window, style="RoundedFrame.TFrame")
 dashboard_frame.pack(side=LEFT, padx=20, fill=Y)
 
 dashboard_label = Label(dashboard_frame, text="Dashboard", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 dashboard_label.pack(anchor=N, padx=10, pady=10)
+
+# Image for the dashboard
+img = Image.open("C:/Users/InfoBay/OneDrive/Desktop/Accord/homepags/A.jpg")
+img = img.resize((100, 107), Image.LANCZOS)
+mask = Image.new('L', (100, 107), 0)
+draw = ImageDraw.Draw(mask)
+draw.ellipse((0, 0, 100, 107), fill=255)
+img = Image.composite(img, Image.new('RGB', img.size, (135, 206, 235)), mask)
+photo = ImageTk.PhotoImage(img)
+label = Label(dashboard_frame, image=photo, bd=0, bg='white')
+label.image = photo 
+label.pack()
 
 # Canvas for the vertical line
 canvas = Canvas(scholar_homepage_window, width=2, height=660, bg="black")
