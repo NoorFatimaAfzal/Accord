@@ -185,4 +185,5 @@ help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 time_frame.grid_columnconfigure(0, weight=1)
 time_frame.grid_columnconfigure(1, weight=1)
 time_frame.grid_columnconfigure(2, weight=1)
+
 fiqhPage.mainloop()

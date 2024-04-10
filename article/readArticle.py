@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+import time
 
 readArticle=Tk()
 readArticle.geometry("990x660+50+50")
@@ -14,30 +15,79 @@ readArticle.resizable(False, False)
 articles = ["Article # 1", "Article # 2", "Article # 3","Article # 4", "Article # 5", "Article # 6","Article # 7", "Article # 8", "Article # 9","Article # 7", "Article # 8", "Article # 9"]
 authors=["Author1", "Author2", "Author3","Author4", "Author5", "Author6","Author7", "Author8", "Author9","Author7", "Author8", "Author9"]
 
-# functions
-def backButton_clicked():
+# fnctions
+def go_back():
     readArticle.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+
+def open_help():
+    readArticle.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
 
 def article_button_clicked(article):
     readArticle.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\articles.py" "{article}"')
 
-# Frame for namaz times
-hadith_frame = ttk.Frame(readArticle, style="RoundedFrame.TFrame")
-hadith_frame.pack(side=TOP, padx=20)
+# Frame for time
+time_frame = Frame(readArticle, bg="sky blue")
+time_frame.pack(side=TOP, fill=X)
 
-current_nmaz_time_label=Label(hadith_frame,text="Current namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+# Create a label for the time
+time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
+time_label.grid(row=0, column=1, padx=20, pady=5)
+
+
+# Frame for the namaz times
+namaz_frame = ttk.Frame(readArticle, style="RoundedFrame.TFrame")
+namaz_frame.pack(side=TOP, padx=20)
+
+current_namaz = ""
+upcoming_namaz = ""
+
+current_nmaz_time_label=Label(namaz_frame,text=f"Current namaz: {current_namaz}",font=("Arial", 17), bg="sky blue", fg="black")
 current_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
 
-upcoming_nmaz_time_label=Label(hadith_frame,text="Upcoming namaz: ",font=("Arial", 17), bg="sky blue", fg="black")
+upcoming_nmaz_time_label=Label(namaz_frame,text=f"Upcoming namaz: {upcoming_namaz}",font=("Arial", 17), bg="sky blue", fg="black")
 upcoming_nmaz_time_label.pack(side=LEFT, padx=10, pady=10)
+
+# Clock
+def update():
+    global time_label, time_string, current_nmaz_time_label, upcoming_nmaz_time_label, current_namaz, upcoming_namaz
+    time_string = time.strftime("%H:%M:%S")
+    time_label.config(text=time_string)
+
+    if time_string>="05:18:00" and time_string<"06:26:00":
+        current_namaz="Fajr"
+        upcoming_namaz="Sunrise"
+    elif time_string>="06:26:00" and time_string<"12:50:00":
+        current_namaz="Sunrise"
+        upcoming_namaz="Dhuhr"
+    elif time_string>="12:50:00" and time_string<"16:25:00":
+        current_namaz="Dhuhr"
+        upcoming_namaz="Asr"
+    elif time_string>="16:25:00" and time_string<"19:15:00":
+        current_namaz="Asr"
+        upcoming_namaz="Maghrib"
+    elif time_string>="19:15:00" and time_string<"20:22:00":
+        current_namaz="Maghrib"
+        upcoming_namaz="Isha"
+    elif time_string>="20:22:00" or time_string<"05:18:00":
+        current_namaz="Isha"
+        upcoming_namaz="Fajr"
+
+    current_nmaz_time_label.config(text=f"Current namaz: {current_namaz}")
+    upcoming_nmaz_time_label.config(text=f"Upcoming namaz: {upcoming_namaz}")
+
+    time_label.after(1000, update)
+
+# Call update function to start the clock and set the namaz times
+update()
 
 # Frame for the header
 header_frame = ttk.Frame(readArticle, style="RoundedFrame.TFrame")
 header_frame.pack(side=TOP, padx=20)
 
-header = Label(header_frame, text="Read Articles", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
+header = Label(header_frame, text="Article", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
 # Frame for list
@@ -59,13 +109,11 @@ canvas.configure(yscrollcommand=scrollbar.set)
 inner_frame = Frame(canvas)
 canvas.create_window((0, 0), window=inner_frame, anchor="nw")
 
-# Add a label and a button for each article
-for article, author in zip(articles, authors):
+# Add a button for each article
+for article in articles:
     article_frame = Frame(inner_frame)
     article_frame.pack(fill=X, padx=5, pady=5)
-    author_label = Label(article_frame, text=author, font=("Arial", 15), bg="white", fg="black")
-    author_label.pack(side=RIGHT, padx=5, pady=5)
-    article_button = Button(article_frame, text=article, font=("Arial", 15), bg="white", fg="black", command=lambda article=article: article_button_clicked(article))
+    article_button = Button(article_frame, text=article, font=("Arial", 15), bg="white", fg="black", command=lambda article=article: article_button_clicked(article),width=55, height=2)
     article_button.pack(side=LEFT, padx=5, pady=5)
 
 
@@ -77,7 +125,16 @@ def update_scrollregion(event):
 inner_frame.bind("<Configure>", update_scrollregion)
 
 # back button
-back_button=Button(readArticle,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=backButton_clicked)
-back_button.place(x=800, y=594)
+back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
+
+# help button
+help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
+
+# Configure the columns to adjust their sizes
+time_frame.grid_columnconfigure(0, weight=1)
+time_frame.grid_columnconfigure(1, weight=1)
+time_frame.grid_columnconfigure(2, weight=1)
 
 readArticle.mainloop()
