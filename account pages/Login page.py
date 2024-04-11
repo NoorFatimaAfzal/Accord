@@ -73,6 +73,18 @@ def email_leave(event):
     if "@" not in email:
         messagebox.showerror("Invalid Email", "Email must contain an @ symbol") 
 
+# Define the toggle_password function
+def toggle_password():
+    if show_password.get():
+        passwordEntry.config(show="")
+    else:
+        passwordEntry.config(show="*")
+
+# Show/Hide Password Checkbutton
+show_password = IntVar()
+show_password_checkbutton = Checkbutton(Login_window, text="Show Password", variable=show_password, bg="white", fg="black", font=("Arial", 12), command=toggle_password)  
+show_password_checkbutton.place(x=670, y=320, anchor="center")
+
 emailEntry.bind("<FocusIn>",email_enter)
 emailEntry.bind("<FocusOut>",email_leave)
 frameEmail=Frame(Login_window, width=260, height=2,background="black") 
@@ -99,6 +111,17 @@ def passward_enter(event):
 passwordEntry.bind("<FocusIn>",passward_enter)
 frame2=Frame(Login_window, width=260, height=2,background="black")
 frame2.place(x=660, y=295, anchor="center")  
+
+# Show/Hide Password Checkbutton
+show_password = IntVar()
+show_password_checkbutton = Checkbutton(Login_window, text="Show Password", variable=show_password, bg="white", fg="black", font=("Arial", 12), command=toggle_password)  
+show_password_checkbutton.place(x=670, y=320, anchor="center")
+
+def toggle_password():
+    if show_password.get():
+        passwordEntry.config(show="")
+    else:
+        passwordEntry.config(show="*")
 
 
 # Scolar Checkbutton
