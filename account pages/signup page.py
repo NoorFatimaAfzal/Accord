@@ -21,6 +21,15 @@ def login():
     loginPage_path = os.path.join(current_dir, "Login page.py")
     os.system(f'python "{loginPage_path}"')
     SignUp_window.destroy()
+
+def sign_up_with_google():
+    pass
+
+def toggle_password_visibility(entry_widget):
+    if entry_widget.cget("show") == "*":
+        entry_widget.config(show="")
+    else:
+        entry_widget.config(show="*")
     
 
 # image
@@ -29,6 +38,16 @@ image_path = os.path.join(current_dir, "vector.png")
 bgImage=ImageTk.PhotoImage(file=image_path)
 bgLabel=Label(SignUp_window,image=bgImage,background="white")
 bgLabel.place(x=0, y=0)
+
+eye_image_path = os.path.join(current_dir, "show_pas.png") 
+eye_image = Image.open(eye_image_path)
+eye_image = eye_image.resize((20, 20), Image.LANCZOS) 
+eye_image = ImageTk.PhotoImage(eye_image)
+
+google_logo_path = os.path.join(current_dir, "g.png")
+google_logo = Image.open(google_logo_path)
+google_logo = google_logo.resize((20, 20), Image.LANCZOS) 
+google_logo = ImageTk.PhotoImage(google_logo) 
 
 # title
 title=Label(SignUp_window,text="Sign Up", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
@@ -48,22 +67,25 @@ def email_leave(event):
     if "@" not in email:
         messagebox.showerror("Invalid Email", "Email must contain an @ symbol") 
 
-emailEntry.bind("<FocusIn>",email_enter)
-emailEntry.bind("<FocusOut>",email_leave)
-frameEmail=Frame(SignUp_window, width=260, height=2,background="black") 
-frameEmail.place(x=660, y=195, anchor="center")
+# Email Frame
+emailFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
+emailFrame.place(x=650, y=170, anchor="center") 
+emailEntry=Entry(emailFrame,width=30, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
+emailEntry.pack()
+emailEntry.insert(0, "Email")
 
-# username
-usernameEntry=Entry(SignUp_window,width=25, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=CENTER)
-usernameEntry.place(x=580, y=220, anchor="center")
+# Username Frame
+usernameFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
+usernameFrame.place(x=650, y=220, anchor="center") 
+usernameEntry=Entry(usernameFrame,width=30, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
+usernameEntry.pack()
 usernameEntry.insert(0, "Username")
-usernameEntry.bind("<FocusIn>",user_enter)
-frame1=Frame(SignUp_window, width=260, height=2,background="black")
-frame1.place(x=660, y=245, anchor="center")
 
-# password 
-passwordEntry=Entry(SignUp_window,width=25, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=CENTER)
-passwordEntry.place(x=580, y=270, anchor="center")
+# Password Frame
+passwordFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
+passwordFrame.place(x=650, y=270, anchor="center")
+passwordEntry = ttk.Entry(passwordFrame, width=30, font=("Arial", 15), show="*")
+passwordEntry.pack()
 passwordEntry.insert(0, "Password")
 
 def passward_enter(event):
@@ -71,13 +93,11 @@ def passward_enter(event):
         passwordEntry.delete(0, END)
         passwordEntry.config(show="*")
 
-passwordEntry.bind("<FocusIn>",passward_enter)
-frame2=Frame(SignUp_window, width=260, height=2,background="black")
-frame2.place(x=660, y=295, anchor="center") 
-
 # confirm password 
-confirmPasswordEntry=Entry(SignUp_window,width=25, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=CENTER)
-confirmPasswordEntry.place(x=615, y=330, anchor="center")
+confirm_passwordFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
+confirm_passwordFrame.place(x=650, y=320, anchor="center")
+confirmPasswordEntry= ttk.Entry(confirm_passwordFrame, width=30, font=("Arial", 15), show="*")
+confirmPasswordEntry.pack()
 confirmPasswordEntry.insert(0, "Confirm Password")
 
 def confirm_passward_enter(event):
@@ -85,9 +105,17 @@ def confirm_passward_enter(event):
         confirmPasswordEntry.delete(0, END)
         confirmPasswordEntry.config(show="*")
 
-confirmPasswordEntry.bind("<FocusIn>",confirm_passward_enter)
-frame3=Frame(SignUp_window, width=260, height=2,background="black")  
-frame3.place(x=660, y=345, anchor="center") 
+# Show/Hide Password Button
+show_password_button = ttk.Button(passwordFrame, image=eye_image, command=lambda: toggle_password_visibility(passwordEntry), style="Toolbutton")
+passwordEntry.configure(show="*", width=30 - 4) 
+passwordEntry.pack(side="left")
+show_password_button.pack(side="right", padx=(0, 10)) 
+
+# Show/Hide Confirm Password Button
+show_confirm_password_button = ttk.Button(confirm_passwordFrame, image=eye_image, command=lambda: toggle_password_visibility(confirmPasswordEntry), style="Toolbutton")
+confirmPasswordEntry.configure(show="*", width=30 - 4) 
+confirmPasswordEntry.pack(side="left")
+show_confirm_password_button.pack(side="right", padx=(0, 10)) 
 
 # Privacy Policy Checkbutton
 privacyPolicyVar = StringVar()
@@ -111,5 +139,20 @@ def open_login(event):
 loginLink = Label(SignUp_window, text="Already a member? Login", bg="white", fg="black", cursor="hand2", font=("Arial", 15)) 
 loginLink.place(x=650, y=470, anchor="center")
 loginLink.bind("<Button-1>", open_login)
+
+
+# Create a frame for the "sign_up with Google" label
+sign_up_with_google_frame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="white")
+sign_up_with_google_frame.place(x=650, y=530, anchor="center") 
+
+sign_up_with_google_label = Label(sign_up_with_google_frame, text="Sign Up with Google", font=("Arial", 15, "bold"), bg="white", fg="black")
+sign_up_with_google_label.pack(side="left", padx=(10, 0), pady=10) 
+
+google_logo_label = Label(sign_up_with_google_frame, image=google_logo, bg="white")
+google_logo_label.image = google_logo
+google_logo_label.pack(side="right", padx=(0, 10)) 
+sign_up_with_google_label.bind("<Button-1>", lambda e: sign_up_with_google())
+
+
 
 SignUp_window.mainloop()
