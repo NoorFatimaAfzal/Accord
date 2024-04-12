@@ -15,6 +15,7 @@ hadithPage.resizable(False, False)
 def go_back():
     hadithPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py"')
+    hadithPage.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

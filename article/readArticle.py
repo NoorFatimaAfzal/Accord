@@ -19,6 +19,7 @@ authors=["Author1", "Author2", "Author3","Author4", "Author5", "Author6","Author
 def go_back():
     readArticle.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    readArticle.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

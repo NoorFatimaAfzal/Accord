@@ -22,6 +22,7 @@ article_content = "Article Content"
 def go_back():
     Articles.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\readArticle.py"')
+    Articles.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

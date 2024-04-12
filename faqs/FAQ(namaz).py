@@ -15,6 +15,7 @@ namazPage.resizable(False, False)
 def go_back():
     namazPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py"')
+    namazPage.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

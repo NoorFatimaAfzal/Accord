@@ -15,6 +15,7 @@ rozaPage.resizable(False, False)
 def go_back():
     rozaPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py"')
+    rozaPage.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

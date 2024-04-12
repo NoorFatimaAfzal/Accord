@@ -38,8 +38,10 @@ def go_back():
     ethicsPage.withdraw()
     if user_type=="scholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+        ethicsPage.destroy()
     elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+        ethicsPage.destroy()
 
 # Frame for time
 time_frame = Frame(ethicsPage, bg="sky blue")

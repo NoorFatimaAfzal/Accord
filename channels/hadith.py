@@ -38,8 +38,10 @@ def go_back():
     hadithPage.withdraw()
     if user_type=="scholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+        hadithPage.destroy()
     elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+        hadithPage.destroy()
 
 # Frame for time
 time_frame = Frame(hadithPage, bg="sky blue")

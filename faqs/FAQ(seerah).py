@@ -17,7 +17,6 @@ def go_back():
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py"')
     seerahPage.destroy()
 
-
 def open_help(page):
     with open('previous_page.txt', 'w') as f:
         f.write(page)

@@ -15,6 +15,7 @@ fiqhPage.resizable(False, False)
 def go_back():
     fiqhPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py"')
+    fiqhPage.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

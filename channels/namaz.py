@@ -39,8 +39,10 @@ def go_back():
     namazPage.withdraw()
     if user_type=="scholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+        namazPage.destroy()
     elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+        namazPage.destroy()
 
 # Frame for time
 time_frame = Frame(namazPage, bg="sky blue")

@@ -15,6 +15,7 @@ quranPage.resizable(False, False)
 def go_back():
     quranPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py"')
+    quranPage.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

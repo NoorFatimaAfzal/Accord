@@ -18,6 +18,7 @@ style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 def go_back():
     post_article_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    post_article_window.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

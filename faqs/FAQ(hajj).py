@@ -15,6 +15,7 @@ hajjPage.resizable(False, False)
 def go_back():
     hajjPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py"')
+    hajjPage.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

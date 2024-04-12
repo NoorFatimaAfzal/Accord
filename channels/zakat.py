@@ -37,8 +37,10 @@ def go_back():
     zakatPage.withdraw()
     if user_type=="scholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+        zakatPage.destroy()
     elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+        zakatPage.destroy()
 
 # Frame for time
 time_frame = Frame(zakatPage, bg="sky blue")

@@ -39,8 +39,10 @@ def go_back():
     seerahPage.withdraw()
     if user_type=="scholar":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+        seerahPage.destroy()
     elif user_type=="student":
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+        seerahPage.destroy()
 
 # Frame for time
 time_frame = Frame(seerahPage, bg="sky blue")
