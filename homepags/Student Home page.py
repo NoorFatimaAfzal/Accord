@@ -115,7 +115,6 @@ def update():
 
     time_label.after(1000, update)
 
-# Call update function to start the clock and set the namaz times
 update()
 
 # Frame for the header
