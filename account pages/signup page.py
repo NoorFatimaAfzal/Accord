@@ -4,11 +4,23 @@ from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
+from pymongo import MongoClient
 
 SignUp_window=Tk()
 SignUp_window.geometry("990x660+50+50")
 SignUp_window.configure(bg="white")
 SignUp_window.resizable(False, False)   
+
+
+# Create a MongoDB client
+client = MongoClient("mongodb://localhost:27017") 
+
+# Connect to your database
+db = client["Accord"] 
+
+# Connect to your collection
+collection = db["users"]
+
 
 #functions
 def user_enter(event):
@@ -30,8 +42,26 @@ def toggle_password_visibility(entry_widget):
         entry_widget.config(show="")
     else:
         entry_widget.config(show="*")
-    
 
+def email_enter(event):
+    if emailEntry.get() == "Email":
+        emailEntry.delete(0, END)
+
+def email_leave(event):
+    email = emailEntry.get()
+    if "@" not in email:
+        messagebox.showerror("Invalid Email", "Email must contain an @ symbol") 
+
+def passward_enter(event):
+    if passwordEntry.get() == "Password":
+        passwordEntry.delete(0, END)
+        passwordEntry.config(show="*")
+
+def confirm_passward_enter(event):
+    if confirmPasswordEntry.get() == "Confirm Password":
+        confirmPasswordEntry.delete(0, END)
+        confirmPasswordEntry.config(show="*")
+    
 # image
 current_dir = os.path.dirname(os.path.realpath(__file__))
 image_path = os.path.join(current_dir, "vector.png")
@@ -53,19 +83,6 @@ google_logo = ImageTk.PhotoImage(google_logo)
 title=Label(SignUp_window,text="Sign Up", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 title.place(x=650, y=120, anchor="center")
 
-# email
-emailEntry=Entry(SignUp_window,width=25, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=CENTER)
-emailEntry.place(x=557, y=170, anchor="center") 
-emailEntry.insert(0, "Email")
-
-def email_enter(event):
-    if emailEntry.get() == "Email":
-        emailEntry.delete(0, END)
-
-def email_leave(event):
-    email = emailEntry.get()
-    if "@" not in email:
-        messagebox.showerror("Invalid Email", "Email must contain an @ symbol") 
 
 # Email Frame
 emailFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
@@ -73,6 +90,7 @@ emailFrame.place(x=650, y=170, anchor="center")
 emailEntry=Entry(emailFrame,width=30, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
 emailEntry.pack()
 emailEntry.insert(0, "Email")
+emailEntry.bind("<FocusIn>", email_enter)
 
 # Username Frame
 usernameFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
@@ -80,6 +98,7 @@ usernameFrame.place(x=650, y=220, anchor="center")
 usernameEntry=Entry(usernameFrame,width=30, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
 usernameEntry.pack()
 usernameEntry.insert(0, "Username")
+usernameEntry.bind("<FocusIn>", user_enter)
 
 # Password Frame
 passwordFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
@@ -87,11 +106,7 @@ passwordFrame.place(x=650, y=270, anchor="center")
 passwordEntry = ttk.Entry(passwordFrame, width=30, font=("Arial", 15), show="*")
 passwordEntry.pack()
 passwordEntry.insert(0, "Password")
-
-def passward_enter(event):
-    if passwordEntry.get() == "Password":
-        passwordEntry.delete(0, END)
-        passwordEntry.config(show="*")
+passwordEntry.bind("<FocusIn>", passward_enter)
 
 # confirm password 
 confirm_passwordFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
@@ -99,11 +114,8 @@ confirm_passwordFrame.place(x=650, y=320, anchor="center")
 confirmPasswordEntry= ttk.Entry(confirm_passwordFrame, width=30, font=("Arial", 15), show="*")
 confirmPasswordEntry.pack()
 confirmPasswordEntry.insert(0, "Confirm Password")
+confirmPasswordEntry.bind("<FocusIn>", confirm_passward_enter)
 
-def confirm_passward_enter(event):
-    if confirmPasswordEntry.get() == "Confirm Password":
-        confirmPasswordEntry.delete(0, END)
-        confirmPasswordEntry.config(show="*")
 
 # Show/Hide Password Button
 show_password_button = ttk.Button(passwordFrame, image=eye_image, command=lambda: toggle_password_visibility(passwordEntry), style="Toolbutton")
@@ -119,6 +131,7 @@ show_confirm_password_button.pack(side="right", padx=(0, 10))
 
 # Privacy Policy Checkbutton
 privacyPolicyVar = StringVar()
+privacyPolicyVar.set("No")  # Set the initial value to "No"
 privacyPolicyCheck = Checkbutton(SignUp_window, text="I agree to the Privacy Policy", variable=privacyPolicyVar, onvalue="Yes", offvalue="No", bg="white", fg="black", font=("Arial", 12))  
 privacyPolicyCheck.place(x=670, y=380, anchor="center")  
 
@@ -127,7 +140,13 @@ def signup_click():
     if privacyPolicyVar.get() != "Yes": 
         messagebox.showerror("Privacy Policy", "You must agree to the Privacy Policy to sign up")
     else:
-        pass
+        user = {
+            "email": emailEntry.get(),
+            "username": usernameEntry.get(),
+            "password": passwordEntry.get(),
+        }
+        collection.insert_one(user)
+        login() 
 
 signupButton = Button(SignUp_window, text="Sign Up", font=("Arial", 15, "bold"), bg="sky blue", fg="black", command=signup_click)
 signupButton.place(x=650, y=429, anchor="center")
