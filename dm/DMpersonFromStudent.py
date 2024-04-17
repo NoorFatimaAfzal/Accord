@@ -1,11 +1,17 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
 import sys
 import time
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
+
+db = client['messages']
+
+# Connect to your 'chats' collection
+chats = db['DM Student from  to Scholar']
 
 DM_Pages=Tk()
 DM_Pages.geometry("990x660+50+50")
@@ -19,6 +25,17 @@ if len(sys.argv) > 1:
 # functions 
 def send_message():
     message = msj_entry.get()
+
+    # Read the logged-in user's ID from the file
+    with open('logged_in_user.txt', 'r') as f:
+        sender_id = f.read().strip()
+
+    receiver_id = selected_DM_Page 
+
+    if sender_id == receiver_id:
+        messagebox.showinfo("Info", "Message yourself")
+        return
+
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
     message_frame.pack(fill=X, padx=5, pady=5)
     message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
@@ -26,6 +43,15 @@ def send_message():
     message_text.insert(END, message)
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
+
+    # Insert the message into the 'chats' collection
+    chats.insert_one({
+        'userID1': sender_id,
+        'userID2': receiver_id,
+        'sender': sender_id,
+        'message': message,
+        'timestamp': time.time()
+    })
 
 def go_back():
     DM_Pages.withdraw()
@@ -117,7 +143,6 @@ msj_button.place(x=800, y=594)
 msj_entry=Entry(DM_Pages,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
 msj_entry.place(x=179, y=600)
 
-# ...
 
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(DM_Pages)
