@@ -12,6 +12,7 @@ DM_Pages.geometry("990x660+50+50")
 DM_Pages.configure(bg="white")
 DM_Pages.resizable(False, False)
 
+selected_DM_Page = "Default"
 if len(sys.argv) > 1:
     selected_DM_Page = sys.argv[1]
 
@@ -28,7 +29,7 @@ def send_message():
 
 def go_back():
     DM_Pages.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\StudentDM.py"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\StudentDM.py"')
     DM_Pages.destroy()
 
 def open_help(page):
@@ -93,12 +94,15 @@ def update():
 update()
 
 # Frame for the header
+if len(sys.argv) > 1:
+    selected_DM_Page = sys.argv[1]
+
+# Frame for the header
 header_frame = ttk.Frame(DM_Pages, style="RoundedFrame.TFrame")
 header_frame.pack(side=TOP, padx=20)
 
-header = Label(header_frame, text="Directly message to scholars", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
+header = Label(header_frame, text=f"Directly message to {selected_DM_Page}", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
-
 
 msj_button=Button(DM_Pages,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
 msj_button.place(x=800, y=594)
