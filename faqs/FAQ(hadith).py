@@ -5,6 +5,28 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
+from pymongo import MongoClient
+
+# Connect to MongoDB
+client = MongoClient('mongodb://localhost:27017/')
+db = client['Accord']
+likes_collection = db['likes/dislikes(hadithFAQ)']
+
+# Initialize likes and dislikes
+likes = likes_collection.find_one({'type': 'likes'})
+if likes is None:
+    likes_collection.insert_one({'type': 'likes', 'count': 0})
+    likes = 0
+else:
+    likes = likes['count']
+
+dislikes = likes_collection.find_one({'type': 'dislikes'})
+if dislikes is None:
+    likes_collection.insert_one({'type': 'dislikes', 'count': 0})
+    dislikes = 0
+else:
+    dislikes = dislikes['count']
+
 
 hadithPage=Tk()
 hadithPage.geometry("990x660+50+50")
@@ -23,6 +45,42 @@ def open_help(page):
     hadithPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
     hadithPage.destroy()
+
+def like(question_id, button):
+    like_doc = likes_collection.find_one({'type': 'likes', 'question_id': question_id})
+    if like_doc is None:
+        likes_collection.insert_one({'type': 'likes', 'question_id': question_id, 'count': 1})
+        likes = 1
+    else:
+        likes = like_doc['count'] + 1
+        likes_collection.update_one({'type': 'likes', 'question_id': question_id}, {'$set': {'count': likes}})
+    button.config(text=f"👍 {likes}")
+
+def dislike(question_id, button):
+    dislike_doc = likes_collection.find_one({'type': 'dislikes', 'question_id': question_id})
+    if dislike_doc is None:
+        likes_collection.insert_one({'type': 'dislikes', 'question_id': question_id, 'count': 1})
+        dislikes = 1
+    else:
+        dislikes = dislike_doc['count'] + 1
+        likes_collection.update_one({'type': 'dislikes', 'question_id': question_id}, {'$set': {'count': dislikes}})
+    button.config(text=f"👎 {dislikes}")
+
+def get_likes(question_id):
+    like_doc = likes_collection.find_one({'type': 'likes', 'question_id': question_id})
+    if like_doc is None:
+        return 0
+    else:
+        return like_doc['count']
+
+def get_dislikes(question_id):
+    dislike_doc = likes_collection.find_one({'type': 'dislikes', 'question_id': question_id})
+    if dislike_doc is None:
+        return 0
+    else:
+        return dislike_doc['count']
+
+
 
 # Frame for time
 time_frame = Frame(hadithPage, bg="sky blue")
@@ -115,10 +173,12 @@ answer1.pack(padx=10, pady=10)
 button_frame1 = Frame(frame1, bg="sky blue")
 button_frame1.pack(side=BOTTOM, padx=10, pady=10)
 
-like_button1 = Button(button_frame1, text="👍", font=("Arial", 15), bg="sky blue", fg="black")
+question_id1 = 1
+likes1 = get_likes(question_id1)
+dislikes1 = get_dislikes(question_id1)
+like_button1 = Button(button_frame1, text=f"👍 {likes1}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: like(question_id1, like_button1))
 like_button1.pack(side=LEFT, padx=2, pady=10)
-
-dislike_button1 = Button(button_frame1, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
+dislike_button1 = Button(button_frame1, text=f"👎 {dislikes1}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: dislike(question_id1, dislike_button1))
 dislike_button1.pack(side=LEFT, padx=2, pady=10)
 
 # Python
@@ -138,13 +198,13 @@ answer2.pack(padx=10, pady=10)
 button_frame2 = Frame(frame2, bg="sky blue")
 button_frame2.pack(side=BOTTOM, padx=10, pady=10)
 
-like_button2 = Button(button_frame2, text="👍", font=("Arial", 15), bg="sky blue", fg="black")
+question_id2 = 2
+likes2 = get_likes(question_id2)
+dislikes2 = get_dislikes(question_id2)
+like_button2 = Button(button_frame2, text=f"👍 {likes2}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: like(question_id2, like_button2))
 like_button2.pack(side=LEFT, padx=2, pady=10)
-
-dislike_button2 = Button(button_frame2, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
+dislike_button2 = Button(button_frame2, text=f"👎 {dislikes2}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: dislike(question_id2, dislike_button2))
 dislike_button2.pack(side=LEFT, padx=2, pady=10)
-
-# Python
 
 # Frame for question 3
 frame3 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
@@ -161,10 +221,12 @@ answer3.pack(padx=10, pady=10)
 button_frame3 = Frame(frame3, bg="sky blue")
 button_frame3.pack(side=BOTTOM, padx=10, pady=10)
 
-like_button3 = Button(button_frame3, text="👍", font=("Arial", 15), bg="sky blue", fg="black")
+question_id3 = 3
+likes3 = get_likes(question_id3)
+dislikes3 = get_dislikes(question_id3)
+like_button3 = Button(button_frame3, text=f"👍 {likes3}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: like(question_id3, like_button3))
 like_button3.pack(side=LEFT, padx=2, pady=10)
-
-dislike_button3 = Button(button_frame3, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
+dislike_button3 = Button(button_frame3, text=f"👎 {dislikes3}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: dislike(question_id3, dislike_button3))
 dislike_button3.pack(side=LEFT, padx=2, pady=10)
 
 # Frame for question 4
@@ -182,12 +244,13 @@ answer4.pack(padx=10, pady=10)
 button_frame4 = Frame(frame4, bg="sky blue")
 button_frame4.pack(side=BOTTOM, padx=10, pady=10)
 
-like_button4 = Button(button_frame4, text="👍", font=("Arial", 15), bg="sky blue", fg="black")
+question_id4 = 4
+likes4 = get_likes(question_id4)
+dislikes4 = get_dislikes(question_id4)
+like_button4 = Button(button_frame4, text=f"👍 {likes4}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: like(question_id4, like_button4))
 like_button4.pack(side=LEFT, padx=2, pady=10)
-
-dislike_button4 = Button(button_frame4, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
+dislike_button4 = Button(button_frame4, text=f"👎 {dislikes4}", font=("Arial", 15), bg="sky blue", fg="black", command=lambda: dislike(question_id4, dislike_button4))
 dislike_button4.pack(side=LEFT, padx=2, pady=10)
-
 
 # Pack the canvas and the scrollbar
 canvas.pack(side=LEFT, fill=BOTH, expand=True)
