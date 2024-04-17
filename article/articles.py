@@ -14,18 +14,25 @@ articles_collection = db['Articles']
 
 if len(sys.argv) > 1:
     selected_article = sys.argv[1]
-    article = articles_collection.find_one({"post_title": selected_article}, {"_id": 0, "post_by": 1, "post_title": 1, "post_article": 1})
+    article = articles_collection.find_one({"post_title": selected_article}, {"_id": 0, "post_by": 1, "post_title": 1, "post_article": 1, "likes": 1, "dislikes": 1})
 
     if article:
         author_name = article['post_by']
         article_content = article['post_article']
+        likes = article.get('likes', 0)
+        dislikes = article.get('dislikes', 0)
     else:
         author_name = "Author Name" 
         article_content = "Article Content" 
+        likes = 0
+        dislikes = 0
 else:
     author_name = "Author Name" 
     article_content = "Article Content" 
+    likes = 0
+    dislikes = 0 
 
+    
 Articles=Tk()
 Articles.geometry("990x660+50+50")
 Articles.configure(bg="white")
@@ -44,6 +51,18 @@ def open_help(page):
     Articles.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
     Articles.destroy()
+
+def like_article():
+    global likes
+    likes += 1
+    articles_collection.update_one({"post_title": selected_article}, {"$set": {"likes": likes}})
+    like_button.config(text=f"👍 Like {likes}")
+
+def dislike_article():
+    global dislikes
+    dislikes += 1
+    articles_collection.update_one({"post_title": selected_article}, {"$set": {"dislikes": dislikes}})
+    dislike_button.config(text=f"👎 Dislike {dislikes}")
 
 
 # Frame for time
@@ -116,12 +135,10 @@ author_label.pack(padx=10, pady=10)
 like_dislike_frame = Frame(Articles)
 like_dislike_frame.pack(padx=10, pady=10)
 
-# Like button
-like_button = Button(like_dislike_frame, text="👍 Like", font=("Arial", 15), bg="white", fg="black")
+like_button = Button(like_dislike_frame, text=f"👍 Like {likes}", font=("Arial", 15), bg="white", fg="black", command=like_article)
 like_button.pack(side=LEFT, padx=10, pady=10)
 
-# Dislike button
-dislike_button = Button(like_dislike_frame, text="👎 Dislike", font=("Arial", 15), bg="white", fg="black")
+dislike_button = Button(like_dislike_frame, text=f"👎 Dislike {dislikes}", font=("Arial", 15), bg="white", fg="black", command=dislike_article)
 dislike_button.pack(side=LEFT, padx=10, pady=10)
 
 # Frame for the text box and scrollbars
