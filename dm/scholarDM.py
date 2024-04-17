@@ -5,6 +5,13 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://localhost:27017/') 
+
+db = client['Accord']
+
+scholars = db.users.find({'status': 'scholar'})
 
 scholarDM=Tk()
 scholarDM.geometry("990x660+50+50")
@@ -12,7 +19,7 @@ scholarDM.configure(bg="white")
 scholarDM.resizable(False, False)
 
 # List of signed-in users
-users = ["User1", "User2", "User3","User1", "User2", "User3","User1", "User2", "User3"]
+users = [scholar['username'] for scholar in scholars]
 
 # functions
 def backButton_clicked():

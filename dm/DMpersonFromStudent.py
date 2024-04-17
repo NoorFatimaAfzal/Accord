@@ -93,9 +93,6 @@ def update():
 # Call update function to start the clock and set the namaz times
 update()
 
-# Frame for the header
-if len(sys.argv) > 1:
-    selected_DM_Page = sys.argv[1]
 
 # Frame for the header
 header_frame = ttk.Frame(DM_Pages, style="RoundedFrame.TFrame")
