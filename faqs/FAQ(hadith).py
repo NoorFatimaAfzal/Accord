@@ -104,11 +104,11 @@ header.pack(padx=10, pady=10)
 frame1 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame1.pack(padx=10, pady=10, fill=X)
 
-question1 = "Islam places a significant emphasis on ethics and their role in guiding human behavior and interactions within society. Islamic ethics are deeply rooted in the Qur'an and the Sunna, providing moral princip"
+question1 = "What is a Hadith?"
 question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947,width=83)
 question_label1.pack(padx=10, pady=10)
 
-answer1 = Label(frame1, text="Answer 1", font=("Arial", 15), bg="sky blue", fg="black")
+answer1 = Label(frame1, text="A Hadith is a recorded saying, action, or approval of Prophet Muhammad. ", font=("Arial", 15), bg="sky blue", fg="black")
 answer1.pack(padx=10, pady=10)
 
 # Buttons for question 1
@@ -121,11 +121,17 @@ like_button1.pack(side=LEFT, padx=2, pady=10)
 dislike_button1 = Button(button_frame1, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button1.pack(side=LEFT, padx=2, pady=10)
 
+# Python
+
 # Frame for question 2
-frame2 = LabelFrame(main_frame, text="Question 2", font=("Arial", 15), bg="sky blue", fg="black")
+frame2 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame2.pack(padx=10, pady=10, fill=X)
 
-answer2 = Label(frame2, text="Answer 2", font=("Arial", 15), bg="sky blue", fg="black")
+question2 = "What are the major collections of Hadith?"
+question_label2 = Label(frame2, text=question2, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
+question_label2.pack(padx=10, pady=10)
+
+answer2 = Label(frame2, text="There are several major collections of Hadith, the most famous of which are Sahih al-Bukhari and Sahih Muslim. ", font=("Arial", 15), bg="sky blue", fg="black")
 answer2.pack(padx=10, pady=10)
 
 # Buttons for question 2
@@ -138,11 +144,17 @@ like_button2.pack(side=LEFT, padx=2, pady=10)
 dislike_button2 = Button(button_frame2, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button2.pack(side=LEFT, padx=2, pady=10)
 
+# Python
+
 # Frame for question 3
-frame3 = LabelFrame(main_frame, text="Question 3", font=("Arial", 15), bg="sky blue", fg="black")
+frame3 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame3.pack(padx=10, pady=10, fill=X)
 
-answer3 = Label(frame3, text="Answer 3", font=("Arial", 15), bg="sky blue", fg="black")
+question3 = "Can Hadiths contradict the Quran?"
+question_label3 = Label(frame3, text=question3, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
+question_label3.pack(padx=10, pady=10)
+
+answer3 = Label(frame3, text="No, authentic Hadiths do not contradict the Quran, as both are considered sources of divine guidance in Islam.", font=("Arial", 15), bg="sky blue", fg="black")
 answer3.pack(padx=10, pady=10)
 
 # Buttons for question 3
@@ -156,10 +168,14 @@ dislike_button3 = Button(button_frame3, text="👎", font=("Arial", 15), bg="sky
 dislike_button3.pack(side=LEFT, padx=2, pady=10)
 
 # Frame for question 4
-frame4 = LabelFrame(main_frame, text="Question 4", font=("Arial", 15), bg="sky blue", fg="black")
+frame4 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame4.pack(padx=10, pady=10, fill=X)
 
-answer4 = Label(frame4, text="Answer 4", font=("Arial", 15), bg="sky blue", fg="black")
+question4 = "How are Hadiths applied in Islamic jurisprudence (fiqh)?"
+question_label4 = Label(frame4, text=question4, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
+question_label4.pack(padx=10, pady=10)
+
+answer4 = Label(frame4, text="They are used alongside the Quran and consensus (ijma) of scholars in the process of legal reasoning.", font=("Arial", 15), bg="sky blue", fg="black")
 answer4.pack(padx=10, pady=10)
 
 # Buttons for question 4
@@ -171,6 +187,7 @@ like_button4.pack(side=LEFT, padx=2, pady=10)
 
 dislike_button4 = Button(button_frame4, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button4.pack(side=LEFT, padx=2, pady=10)
+
 
 # Pack the canvas and the scrollbar
 canvas.pack(side=LEFT, fill=BOTH, expand=True)

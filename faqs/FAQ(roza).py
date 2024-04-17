@@ -104,11 +104,11 @@ header.pack(padx=10, pady=10)
 frame1 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame1.pack(padx=10, pady=10, fill=X)
 
-question1 = "Islam places a significant emphasis on ethics and their role in guiding human behavior and interactions within society. Islamic ethics are deeply rooted in the Qur'an and the Sunna, providing moral princip"
+question1 = "What is fasting in Islam?"
 question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947,width=83)
 question_label1.pack(padx=10, pady=10)
 
-answer1 = Label(frame1, text="Answer 1", font=("Arial", 15), bg="sky blue", fg="black")
+answer1 = Label(frame1, text="Fasting, known as Sawm or Roza in Arabic, is the act of abstaining from food, drink etc.", font=("Arial", 15), bg="sky blue", fg="black")
 answer1.pack(padx=10, pady=10)
 
 # Buttons for question 1
@@ -121,11 +121,17 @@ like_button1.pack(side=LEFT, padx=2, pady=10)
 dislike_button1 = Button(button_frame1, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button1.pack(side=LEFT, padx=2, pady=10)
 
+# Python
+
 # Frame for question 2
-frame2 = LabelFrame(main_frame, text="Question 2", font=("Arial", 15), bg="sky blue", fg="black")
+frame2 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame2.pack(padx=10, pady=10, fill=X)
 
-answer2 = Label(frame2, text="Answer 2", font=("Arial", 15), bg="sky blue", fg="black")
+question2 = "When do Muslims fast?"
+question_label2 = Label(frame2, text=question2, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
+question_label2.pack(padx=10, pady=10)
+
+answer2 = Label(frame2, text="uslims fast during the month of Ramadan, the ninth month of the Islamic lunar calendar. ", font=("Arial", 15), bg="sky blue", fg="black")
 answer2.pack(padx=10, pady=10)
 
 # Buttons for question 2
@@ -139,10 +145,14 @@ dislike_button2 = Button(button_frame2, text="👎", font=("Arial", 15), bg="sky
 dislike_button2.pack(side=LEFT, padx=2, pady=10)
 
 # Frame for question 3
-frame3 = LabelFrame(main_frame, text="Question 3", font=("Arial", 15), bg="sky blue", fg="black")
+frame3 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame3.pack(padx=10, pady=10, fill=X)
 
-answer3 = Label(frame3, text="Answer 3", font=("Arial", 15), bg="sky blue", fg="black")
+question3 = "What is the significance of fasting in Islam?"
+question_label3 = Label(frame3, text=question3, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
+question_label3.pack(padx=10, pady=10)
+
+answer3 = Label(frame3, text="Fasting during Ramadan is one of the Five Pillars of Islam and holds great spiritual significance.", font=("Arial", 15), bg="sky blue", fg="black")
 answer3.pack(padx=10, pady=10)
 
 # Buttons for question 3
@@ -156,10 +166,14 @@ dislike_button3 = Button(button_frame3, text="👎", font=("Arial", 15), bg="sky
 dislike_button3.pack(side=LEFT, padx=2, pady=10)
 
 # Frame for question 4
-frame4 = LabelFrame(main_frame, text="Question 4", font=("Arial", 15), bg="sky blue", fg="black")
+frame4 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame4.pack(padx=10, pady=10, fill=X)
 
-answer4 = Label(frame4, text="Answer 4", font=("Arial", 15), bg="sky blue", fg="black")
+question4 = "What is Suhoor?"
+question_label4 = Label(frame4, text=question4, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
+question_label4.pack(padx=10, pady=10)
+
+answer4 = Label(frame4, text="Suhoor is the pre-dawn meal consumed before the fast begins each day during Ramadan.", font=("Arial", 15), bg="sky blue", fg="black")
 answer4.pack(padx=10, pady=10)
 
 # Buttons for question 4
@@ -171,6 +185,7 @@ like_button4.pack(side=LEFT, padx=2, pady=10)
 
 dislike_button4 = Button(button_frame4, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button4.pack(side=LEFT, padx=2, pady=10)
+
 
 # Pack the canvas and the scrollbar
 canvas.pack(side=LEFT, fill=BOTH, expand=True)

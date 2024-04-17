@@ -115,11 +115,11 @@ header.pack(padx=10, pady=10)
 frame1 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame1.pack(padx=10, pady=10, fill=X)
 
-question1 = "Which is the Surah (Chapter) that does not start with Bismillah?"
+question1 = "What is the ethical foundation of Islam?"
 question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black",width=83)
 question_label1.pack(padx=10, pady=10)
 
-answer1 = Label(frame1, text="Answer 1", font=("Arial", 15), bg="sky blue", fg="black")
+answer1 = Label(frame1, text="Islam is built upon the principles of justice, compassion, mercy, and righteousness.", font=("Arial", 15), bg="sky blue", fg="black")
 answer1.pack(padx=10, pady=10)
 
 # Buttons for question 1
@@ -133,10 +133,14 @@ dislike_button1 = Button(button_frame1, text="👎", font=("Arial", 15), bg="sky
 dislike_button1.pack(side=LEFT, padx=2, pady=10)
 
 # Frame for question 2
-frame2 = LabelFrame(main_frame, text="Question 2", font=("Arial", 15), bg="sky blue", fg="black")
+frame2 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame2.pack(padx=10, pady=10, fill=X)
 
-answer2 = Label(frame2, text="Answer 2", font=("Arial", 15), bg="sky blue", fg="black")
+question2 = "What are the key ethical virtues in Islam?"
+question_label2 = Label(frame2, text=question2, font=("Arial", 15), bg="sky blue", fg="black",width=83)
+question_label2.pack(padx=10, pady=10)
+
+answer2 = Label(frame2, text="Key virtues include sincerity, honesty, patience, gratitude , humility.", font=("Arial", 15), bg="sky blue", fg="black")
 answer2.pack(padx=10, pady=10)
 
 # Buttons for question 2
@@ -150,10 +154,14 @@ dislike_button2 = Button(button_frame2, text="👎", font=("Arial", 15), bg="sky
 dislike_button2.pack(side=LEFT, padx=2, pady=10)
 
 # Frame for question 3
-frame3 = LabelFrame(main_frame, text="Question 3", font=("Arial", 15), bg="sky blue", fg="black")
+frame3 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame3.pack(padx=10, pady=10, fill=X)
 
-answer3 = Label(frame3, text="Answer 3", font=("Arial", 15), bg="sky blue", fg="black")
+question3 = "How does Islam view the concept of justice?"
+question_label3 = Label(frame3, text=question3, font=("Arial", 15), bg="sky blue", fg="black",width=83)
+question_label3.pack(padx=10, pady=10)
+
+answer3 = Label(frame3, text="Justice (Adl) is a central theme in Islam. It requires treating others fairly.", font=("Arial", 15), bg="sky blue", fg="black")
 answer3.pack(padx=10, pady=10)
 
 # Buttons for question 3
@@ -165,12 +173,15 @@ like_button3.pack(side=LEFT, padx=2, pady=10)
 
 dislike_button3 = Button(button_frame3, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button3.pack(side=LEFT, padx=2, pady=10)
-
 # Frame for question 4
-frame4 = LabelFrame(main_frame, text="Question 4", font=("Arial", 15), bg="sky blue", fg="black")
+frame4 = LabelFrame(main_frame, text="", font=("Arial", 15), bg="sky blue", fg="black")
 frame4.pack(padx=10, pady=10, fill=X)
 
-answer4 = Label(frame4, text="Answer 4", font=("Arial", 15), bg="sky blue", fg="black")
+question4 = "What does Islam say about ethical treatment of others?"
+question_label4 = Label(frame4, text=question4, font=("Arial", 15), bg="sky blue", fg="black",width=83)
+question_label4.pack(padx=10, pady=10)
+
+answer4 = Label(frame4, text="Islam emphasizes the importance of treating others with kindness, respect, and compassion. ", font=("Arial", 15), bg="sky blue", fg="black")
 answer4.pack(padx=10, pady=10)
 
 # Buttons for question 4
@@ -182,7 +193,6 @@ like_button4.pack(side=LEFT, padx=2, pady=10)
 
 dislike_button4 = Button(button_frame4, text="👎", font=("Arial", 15), bg="sky blue", fg="black")
 dislike_button4.pack(side=LEFT, padx=2, pady=10)
-
 # back button
 back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
 back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
