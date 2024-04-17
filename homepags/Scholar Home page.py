@@ -5,7 +5,23 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
-from PIL import Image, ImageTk, ImageDraw
+from PIL import Image, ImageDraw
+from pymongo import MongoClient
+
+# Create a MongoDB client
+client = MongoClient("mongodb://localhost:27017") 
+
+# Connect to your database
+db = client["Accord"] 
+
+# Connect to your collection
+collection = db["users"]
+
+with open('logged_in_user.txt', 'r') as f:
+    username = f.read().strip()
+
+# Fetch the user data
+user_data = collection.find_one({"username": username})
 
 scholar_homepage_window=Tk()
 scholar_homepage_window.geometry("990x660+50+50")
@@ -39,7 +55,7 @@ label.pack()
 name_label = Label(dashboard_frame, text="Student Name:",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
 name_label.pack(padx=10, pady=10)
 
-name_value_label = Label(dashboard_frame, text="Noor Fatima", font=("Arial", 17, "bold italic"), bg="sky blue",relief="raised",  bd=2, fg="black", anchor="w")
+name_value_label = Label(dashboard_frame, text=user_data['username'], font=("Arial", 17, "bold italic"), bg="sky blue",relief="raised",  bd=2, fg="black", anchor="w")
 name_value_label.pack(padx=10, pady=10)
 
 status_label = Label(dashboard_frame, text="Status: Student",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")

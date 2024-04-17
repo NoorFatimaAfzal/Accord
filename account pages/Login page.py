@@ -3,28 +3,51 @@ from PIL import Image, ImageTk
 import os
 from tkinter import messagebox
 from tkinter import ttk
+from pymongo import MongoClient
 
+# Create a MongoDB client
+client = MongoClient("mongodb://localhost:27017") 
+
+# Connect to your database
+db = client["Accord"] 
+
+# Connect to your collection
+collection = db["users"]
 
 Login_window=Tk()
 Login_window.geometry("990x660+50+50")
 Login_window.configure(bg="white")
 Login_window.resizable(False, False)   
 
-
-# function
+#functions
 def Login_click():
-    if scolar.get() == "Yes" and student_var.get() == "Yes":
-        messagebox.showerror("Invalid Selection", "You can only be a scholar or a student at one time")
-    elif scolar.get() == "No" and student_var.get() == "No":
-        messagebox.showerror("Invalid Selection", "You must be a scholar or a student")
-    elif scolar.get()=="Yes" and student_var.get()=="No":
-        with open('user_data.txt', 'w') as output:
-            output.write("scholar")
-        Scholar_Home_page()
-    elif student_var.get()=="Yes" and scolar.get()=="No":
-        with open('user_data.txt', 'w') as output:
-            output.write("student")
-        Student_Home_page()
+    entered_username = usernameEntry.get()
+    entered_password = passwordEntry.get()
+
+    # Query the database
+    user = collection.find_one({"username": entered_username, "password": entered_password})
+
+    if user is None:
+        messagebox.showerror("Invalid Login", "The entered username or password is incorrect")
+    else:
+        if scolar.get() == "Yes" and student_var.get() == "Yes":
+            messagebox.showerror("Invalid Selection", "You can only be a scholar or a student at one time")
+        elif scolar.get() == "No" and student_var.get() == "No":
+            messagebox.showerror("Invalid Selection", "You must be a scholar or a student")
+        else:
+            # Update the user's status in the database
+            if scolar.get()=="Yes" and student_var.get()=="No":
+                collection.update_one({"username": entered_username}, {"$set": {"status": "scholar"}})
+                with open('user_data.txt', 'w') as output:
+                    output.write("scholar")
+                Scholar_Home_page()
+            elif student_var.get()=="Yes" and scolar.get()=="No":
+                collection.update_one({"username": entered_username}, {"$set": {"status": "student"}})
+                with open('user_data.txt', 'w') as output:
+                    output.write("student")
+                with open('logged_in_user.txt', 'w') as f:
+                    f.write(entered_username)
+                Student_Home_page()
 
 def Scholar_Home_page():
     Login_window.withdraw()
@@ -82,6 +105,7 @@ usernameEntry=Entry(usernameFrame,width=30, font=("Arial", 15),bd=0, bg="white",
 usernameEntry.pack()
 usernameEntry.insert(0, "Username")
 
+
 # Password Frame
 passwordFrame = Frame(Login_window, bd=2, relief=SUNKEN)
 passwordFrame.place(x=650, y=270, anchor="center")
@@ -93,7 +117,7 @@ passwordEntry.insert(0, "Password")
 show_password_button = ttk.Button(passwordFrame, image=eye_image, command=toggle_password, style="Toolbutton")
 passwordEntry.configure(show="*", width=30 - 4)  # Subtract the width of the button
 passwordEntry.pack(side="left")
-show_password_button.pack(side="right", padx=(0, 10))  # Add some padding to the right of the button
+show_password_button.pack(side="right", padx=(0, 10)) 
 
 def email_enter(event):
     if emailEntry.get() == "Email":
