@@ -5,15 +5,20 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://localhost:27017/')
+db = client['Accord']
+articles_collection = db['Articles']
+
+articles = list(articles_collection.find({}, {"_id": 0, "post_by": 1, "post_title": 1, "post_article": 1}))
+
+articles = list(articles_collection.find({}, {"_id": 0, "post_by": 1, "post_title": 1, "post_article": 1}))
 
 readArticle=Tk()
 readArticle.geometry("990x660+50+50")
 readArticle.configure(bg="white")
 readArticle.resizable(False, False)
-
-# List of signed-in articles
-articles = ["Article # 1", "Article # 2", "Article # 3","Article # 4", "Article # 5", "Article # 6","Article # 7", "Article # 8", "Article # 9","Article # 7", "Article # 8", "Article # 9"]
-authors=["Author1", "Author2", "Author3","Author4", "Author5", "Author6","Author7", "Author8", "Author9","Author7", "Author8", "Author9"]
 
 # fnctions
 def go_back():
@@ -28,9 +33,9 @@ def open_help(page):
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
     readArticle.destroy()
 
-def article_button_clicked(article):
+def article_button_clicked(article_title):
     readArticle.withdraw()
-    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\articles.py" "{article}"')
+    os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\articles.py" "{article_title}"')
 
 # Frame for time
 time_frame = Frame(readArticle, bg="sky blue")
@@ -117,9 +122,8 @@ canvas.create_window((0, 0), window=inner_frame, anchor="nw")
 for article in articles:
     article_frame = Frame(inner_frame)
     article_frame.pack(fill=X, padx=5, pady=5)
-    article_button = Button(article_frame, text=article, font=("Arial", 15), bg="white", fg="black", command=lambda article=article: article_button_clicked(article),width=55, height=2)
+    article_button = Button(article_frame, text=article['post_title'], font=("Arial", 15), bg="white", fg="black", command=lambda article=article['post_title']: article_button_clicked(article),width=55, height=2)
     article_button.pack(side=LEFT, padx=5, pady=5)
-
 
 # Function to update scrollregion after all widgets are added
 def update_scrollregion(event):

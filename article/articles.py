@@ -6,17 +6,31 @@ import os
 from tkinter import messagebox
 import sys
 import time
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://localhost:27017/')
+db = client['Accord']
+articles_collection = db['Articles']
+
+if len(sys.argv) > 1:
+    selected_article = sys.argv[1]
+    article = articles_collection.find_one({"post_title": selected_article}, {"_id": 0, "post_by": 1, "post_title": 1, "post_article": 1})
+
+    if article:
+        author_name = article['post_by']
+        article_content = article['post_article']
+    else:
+        author_name = "Author Name" 
+        article_content = "Article Content" 
+else:
+    author_name = "Author Name" 
+    article_content = "Article Content" 
 
 Articles=Tk()
 Articles.geometry("990x660+50+50")
 Articles.configure(bg="white")
 Articles.resizable(False, False)
 
-if len(sys.argv) > 1:
-    selected_article = sys.argv[1]
-
-author_name = "Author Name" 
-article_content = "Article Content" 
 
 # fnctions
 def go_back():
