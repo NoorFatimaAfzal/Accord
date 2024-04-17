@@ -21,7 +21,7 @@ article_content = "Article Content"
 # fnctions
 def go_back():
     Articles.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\readArticle.py"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\readArticle.py"')
     Articles.destroy()
 
 def open_help(page):

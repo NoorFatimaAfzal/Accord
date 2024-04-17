@@ -5,6 +5,11 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://localhost:27017/')
+db = client['Accord']
+articles = db['Articles']
 
 post_article_window=Tk()
 post_article_window.geometry("990x660+50+50")
@@ -26,6 +31,22 @@ def open_help(page):
     post_article_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
     post_article_window.destroy()
+
+def post_article():
+    post_by = post_by_name_entry.get()
+    post_title = post_title_entry.get()
+    post_article = post_article_text.get("1.0", END)
+
+    if post_by and post_title and post_article:
+        article_data = {
+            "post_by": post_by,
+            "post_title": post_title,
+            "post_article": post_article
+        }
+        articles.insert_one(article_data)
+        messagebox.showinfo("Success", "Article posted successfully")
+    else:
+        messagebox.showerror("Error", "Please fill all fields")
 
 # Frame for time
 time_frame = Frame(post_article_window, bg="sky blue")
@@ -89,11 +110,9 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text="Article", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
-
 # Frame for the like and dislike buttons
 like_dislike_frame = Frame(post_article_window)
 like_dislike_frame.pack(padx=10, pady=10)
-
 
 
 # Labels
@@ -129,7 +148,7 @@ time_frame.grid_columnconfigure(1, weight=1)
 time_frame.grid_columnconfigure(2, weight=1)
 
 
-post_article_button=Button(post_article_window,text="Post Article",font=("Arial", 15), bg="sky blue", fg="black")
+post_article_button=Button(post_article_window,text="Post Article",font=("Arial", 15), bg="sky blue", fg="black", command=post_article)
 post_article_button.place(x=780, y=570)
 
 post_article_window.mainloop()
