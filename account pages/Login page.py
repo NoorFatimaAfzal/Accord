@@ -68,7 +68,6 @@ def toggle_password():
 def login_with_google():
     pass
 
-
 # image
 current_dir = os.path.dirname(os.path.realpath(__file__))
 image_path = os.path.join(current_dir, "vector.png")

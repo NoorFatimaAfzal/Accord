@@ -49,24 +49,39 @@ def send_message():
         return
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5)
-    message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+    message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if sender_id == 'logged_in_user_id' else 'w')
+    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if sender_id == 'logged_in_user_id' else "white", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-    message_text.insert(END, message)
+    
+    current_time = time.time()
+    
+    message_text.insert(END, f"{message} ({time.ctime(current_time)})")
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
-    # Insert the message into the 'chats' collection
     chats.insert_one({
         'userID1': sender_id,
         'userID2': receiver_id,
         'message': message,
-        'timestamp': time.time()
+        'timestamp': current_time
     })
 
-# Function to display the messages
 def display_messages():
-    # Retrieve the messages from the 'chats' collection
+    messages = chats.find().sort('timestamp', pymongo.ASCENDING)
+
+    for message in messages:
+        message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
+        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID1'] == 'logged_in_user_id' else 'w')
+        message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID1'] == 'logged_in_user_id' else "white", fg="black", width=50, height=1)
+        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+        message_text.insert(END, f"{message['message']} ({time.ctime(message['timestamp'])})")
+        message_text.config(state=DISABLED)
+
+    # Update the messages frame's position in the Canvas
+    messages_canvas.update_idletasks()
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
+
+def display_messages():
     messages = chats.find().sort('timestamp', pymongo.ASCENDING)
 
     for message in messages:
@@ -77,6 +92,9 @@ def display_messages():
         message_text.insert(END, f"{message['message']} ({time.ctime(message['timestamp'])})")
         message_text.config(state=DISABLED)
 
+        # Update the messages frame's position in the Canvas
+    messages_canvas.update_idletasks()
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
 def go_back():
     DM_Pages.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\ScholarDM.py"')
@@ -140,7 +158,6 @@ def update():
 
     time_label.after(1000, update)
 
-# Call update function to start the clock and set the namaz times
 update()
 
 # Frame for the header
@@ -172,14 +189,14 @@ messages_scrollbar.place(x=829, y=200, height=375)
 messages_frame = Frame(messages_canvas)
 messages_frame_id = messages_canvas.create_window(0, 0, window=messages_frame, anchor='nw')
 
-display_messages()
-
 # Function to update the scroll region
 def update_scrollregion(event):
     messages_canvas.configure(scrollregion=messages_canvas.bbox('all'))
 
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
+
+display_messages()  # Call display_messages after messages_frame is finally initialized
 
 # back button
 back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)

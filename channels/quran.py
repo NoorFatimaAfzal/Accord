@@ -32,8 +32,8 @@ def send_message():
         sender_username = f.read().strip()
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5)
-    message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+    message_frame.pack(fill=X, padx=5, pady=5, anchor='e')
+    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
     
     # Include the username when inserting the text
@@ -50,19 +50,25 @@ def send_message():
     })
 
 def update_messages():
-    # Fetch the messages from the 'hajj messages' collection
     messages = quran_messages.find().sort([('timestamp', ASCENDING)])
 
-    # Display the messages in the messages frame
+    with open('logged_in_user.txt', 'r') as f:
+        logged_in_username = f.read().strip()
+
     for message in messages:
         message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-        message_frame.pack(fill=X, padx=5, pady=5)
-        message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
-        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['sender_username'] == logged_in_username else 'w')
+        
+        if message['sender_username'] == logged_in_username:
+            message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
+            message_text.pack(padx=5, pady=5, side=RIGHT, fill=BOTH, expand=True)
+        else:
+            message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+            message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+        
         message_text.insert(END, f"{message['sender_username']}: {message['message']}")
         message_text.config(state=DISABLED)
 
-    # Update the messages frame's position in the Canvas
     messages_canvas.update_idletasks()
     messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
 
