@@ -48,7 +48,6 @@ def send_message():
     chats.insert_one({
         'userID1': sender_id,
         'userID2': receiver_id,
-        'sender': sender_id,
         'message': message,
         'timestamp': time.time()
     })

@@ -49,6 +49,23 @@ def send_message():
         'timestamp': time.time()
     })
 
+def update_messages():
+    # Fetch the messages from the 'hajj messages' collection
+    messages = zakat_messages.find().sort([('timestamp', ASCENDING)])
+
+    # Display the messages in the messages frame
+    for message in messages:
+        message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
+        message_frame.pack(fill=X, padx=5, pady=5)
+        message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+        message_text.insert(END, f"{message['sender_username']}: {message['message']}")
+        message_text.config(state=DISABLED)
+
+    # Update the messages frame's position in the Canvas
+    messages_canvas.update_idletasks()
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
+
 def FAQ_clicked():
     zakatPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(Zakat).py"')
@@ -168,6 +185,8 @@ messages_scrollbar.place(x=829, y=200, height=375)
 # Frame for the messages
 messages_frame = Frame(messages_canvas)
 messages_frame_id = messages_canvas.create_window(0, 0, window=messages_frame, anchor='nw')
+
+update_messages()
 
 # Function to update the scroll region
 def update_scrollregion(event):
