@@ -1,12 +1,18 @@
 from tkinter import *
 from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
 import sys
 import time
+from pymongo import MongoClient
+from pymongo import ASCENDING
 
+client = MongoClient('localhost', 27017)
+
+db = client['Accord']
+
+hajj_messages = db['hajj messages']
 
 hajjPage=Tk()
 hajjPage.geometry("990x660+50+50")
@@ -19,13 +25,45 @@ style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 # functions 
 def send_message():
     message = msj_entry.get()
+
+    # Read the logged-in user's ID and name from the file
+    with open('logged_in_user.txt', 'r') as f:
+        sender_username = f.read().strip()
+
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
     message_frame.pack(fill=X, padx=5, pady=5)
     message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-    message_text.insert(END, message)
+    
+    # Include the username when inserting the text
+    message_text.insert(END, f"{sender_username}: {message}")
+    
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
+
+    # Insert the message into the 'hajj messages' collection
+    hajj_messages.insert_one({
+        'sender_username': sender_username,
+        'message': message,
+        'timestamp': time.time()
+    })
+
+def update_messages():
+    # Fetch the messages from the 'hajj messages' collection
+    messages = hajj_messages.find().sort([('timestamp', ASCENDING)])
+
+    # Display the messages in the messages frame
+    for message in messages:
+        message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
+        message_frame.pack(fill=X, padx=5, pady=5)
+        message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+        message_text.insert(END, f"{message['sender_username']}: {message['message']}")
+        message_text.config(state=DISABLED)
+
+    # Update the messages frame's position in the Canvas
+    messages_canvas.update_idletasks()
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
 
 def FAQ_clicked():
     hajjPage.withdraw()
@@ -51,7 +89,6 @@ time_frame.pack(side=TOP, fill=X)
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
 time_label.grid(row=0, column=1, padx=20, pady=5)
-
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(hajjPage, style="RoundedFrame.TFrame")
@@ -130,12 +167,6 @@ msj_entry.place(x=179, y=600)
 messages_frame = Frame(hajjPage)
 messages_frame.place(x=179, y=200, width=650, height=375)
 
-msj_button=Button(hajjPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
-msj_button.place(x=800, y=594)
-
-msj_entry=Entry(hajjPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
-msj_entry.place(x=179, y=600)
-
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(hajjPage)
 messages_canvas.place(x=179, y=200, width=650, height=375)
@@ -147,6 +178,9 @@ messages_scrollbar.place(x=829, y=200, height=375)
 # Frame for the messages
 messages_frame = Frame(messages_canvas)
 messages_frame_id = messages_canvas.create_window(0, 0, window=messages_frame, anchor='nw')
+
+# Call update_messages function to display the messages
+update_messages()
 
 # Function to update the scroll region
 def update_scrollregion(event):

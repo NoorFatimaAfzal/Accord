@@ -5,6 +5,14 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
+from pymongo import MongoClient
+from pymongo import ASCENDING
+
+client = MongoClient('localhost', 27017)
+
+db = client['Accord']
+
+fiqh_messages = db['fiqh messages']
 
 
 fiqhPage=Tk()
@@ -18,13 +26,28 @@ style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 # functions 
 def send_message():
     message = msj_entry.get()
+
+    # Read the logged-in user's ID and name from the file
+    with open('logged_in_user.txt', 'r') as f:
+        sender_username = f.read().strip()
+
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
     message_frame.pack(fill=X, padx=5, pady=5)
     message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-    message_text.insert(END, message)
+    
+    # Include the username when inserting the text
+    message_text.insert(END, f"{sender_username}: {message}")
+    
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
+
+    # Insert the message into the 'hajj messages' collection
+    fiqh_messages.insert_one({
+        'sender_username': sender_username,
+        'message': message,
+        'timestamp': time.time()
+    })
 
 def FAQ_clicked():
     fiqhPage.withdraw()

@@ -1,6 +1,4 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
@@ -144,7 +142,6 @@ msj_button.place(x=800, y=594)
 msj_entry=Entry(DM_Pages,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
 msj_entry.place(x=179, y=600)
 
-# ...
 
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(DM_Pages)
