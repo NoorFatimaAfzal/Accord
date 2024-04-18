@@ -4,11 +4,13 @@ import os
 from tkinter import messagebox
 import sys
 import time
+import pymongo
 from pymongo import MongoClient
+from pymongo import ASCENDING
 
 client = MongoClient('localhost', 27017)
 
-db = client['messages']
+db = client['Accord']
 
 # Connect to your 'chats' collection
 chats = db['DM from Scholar to Student']
@@ -23,6 +25,16 @@ DM_Pages.configure(bg="white")
 DM_Pages.resizable(False, False)
 
 # functions 
+def clear_chat():
+    chats.delete_many({})
+
+    for widget in messages_frame.winfo_children():
+        widget.destroy()
+
+# Clear chat button
+clear_chat_button = Button(DM_Pages, text="Clear", font=("Arial", 15), bg="sky blue", fg="black", command=clear_chat)
+clear_chat_button.place(x=120, y=594)
+
 def send_message():
     message = msj_entry.get()
 
@@ -51,6 +63,19 @@ def send_message():
         'message': message,
         'timestamp': time.time()
     })
+
+# Function to display the messages
+def display_messages():
+    # Retrieve the messages from the 'chats' collection
+    messages = chats.find().sort('timestamp', pymongo.ASCENDING)
+
+    for message in messages:
+        message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
+        message_frame.pack(fill=X, padx=5, pady=5)
+        message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+        message_text.insert(END, f"{message['message']} ({time.ctime(message['timestamp'])})")
+        message_text.config(state=DISABLED)
 
 def go_back():
     DM_Pages.withdraw()
@@ -125,22 +150,15 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text=f"Directly message to {selected_DM_Page}", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
-msj_button=Button(DM_Pages,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
-msj_button.place(x=800, y=594)
-
-msj_entry=Entry(DM_Pages,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
-msj_entry.place(x=179, y=600)
-
 # Frame for the messages
 messages_frame = Frame(DM_Pages)
 messages_frame.place(x=179, y=200, width=650, height=375)
 
 msj_button=Button(DM_Pages,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
-msj_button.place(x=800, y=594)
+msj_button.place(x=825, y=594)
 
 msj_entry=Entry(DM_Pages,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
-msj_entry.place(x=179, y=600)
-
+msj_entry.place(x=227, y=600)
 
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(DM_Pages)
@@ -153,6 +171,8 @@ messages_scrollbar.place(x=829, y=200, height=375)
 # Frame for the messages
 messages_frame = Frame(messages_canvas)
 messages_frame_id = messages_canvas.create_window(0, 0, window=messages_frame, anchor='nw')
+
+display_messages()
 
 # Function to update the scroll region
 def update_scrollregion(event):
