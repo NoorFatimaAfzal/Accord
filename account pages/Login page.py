@@ -19,6 +19,14 @@ Login_window.geometry("990x660+50+50")
 Login_window.configure(bg="white")
 Login_window.resizable(False, False)   
 
+from tkinter import filedialog
+
+# Function to open the file dialog and get the image file path
+def get_image():
+    image_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png")])
+    return image_path
+
+
 #functions
 def Login_click():
     entered_username = usernameEntry.get()
@@ -30,6 +38,9 @@ def Login_click():
     if user is None:
         messagebox.showerror("Invalid Login", "The entered username or password is incorrect")
     else:
+        # Call the function to get and store the image path
+        on_get_image_click()
+
         if scolar.get() == "Yes" and student_var.get() == "Yes":
             messagebox.showerror("Invalid Selection", "You can only be a scholar or a student at one time")
         elif scolar.get() == "No" and student_var.get() == "No":
@@ -51,7 +62,20 @@ def Login_click():
                 Student_Home_page()
 
     messagebox.showinfo("Login", "You have successfully logged in!")
-    
+
+# Call this function when the button is clicked
+def on_get_image_click():
+    image_path = get_image()
+    if image_path:
+        # Get the username
+        username = usernameEntry.get()
+
+        # Store the image path in the database
+        collection.update_one({"username": username}, {"$set": {"image_path": image_path}})
+
+        # Show a success message
+        messagebox.showinfo("Success", "Image uploaded successfully")
+
 def Scholar_Home_page():
     Login_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
@@ -137,27 +161,33 @@ def password_enter(event):
         passwordEntry.config(show="*")  # This line hides the password
 passwordEntry.bind("<FocusIn>", password_enter)
 
+def username_enter(event):
+    if usernameEntry.get() == "Username":
+        usernameEntry.delete(0, END)
+usernameEntry.bind("<FocusIn>", username_enter)
 
 # Scolar Checkbutton
 scolar = StringVar()
 scolar.set("No")
 scholar = Checkbutton(Login_window, text="Are you scolar ?", variable=scolar, onvalue="Yes", offvalue="No", bg="white", fg="black", font=("Arial", 12))  
-scholar.place(x=670, y=340, anchor="center")
+scholar.place(x=670, y=320, anchor="center")
 
 # Student Checkbutton
 student_var = StringVar()
 student_var.set("No")
 student_checkbutton = Checkbutton(Login_window, text="Are you student ?", variable=student_var, onvalue="Yes", offvalue="No", bg="white", fg="black", font=("Arial", 12))  
-student_checkbutton.place(x=670, y=380, anchor="center")
+student_checkbutton.place(x=670, y=360, anchor="center")
 
 Login_Button = Button(Login_window, text="Login", font=("Arial", 15, "bold"), bg="sky blue", fg="black", command=Login_click)
-Login_Button.place(x=650, y=429, anchor="center")
+Login_Button.place(x=650, y=449, anchor="center") 
 
-
+# Button to get the image
+get_image_button = Button(Login_window, text="Upload Image", command=on_get_image_click, bg="sky blue")
+get_image_button.place(x=650, y=400, anchor="center") 
 
 # Create a frame for the "Login with Google" label
 login_with_google_frame = Frame(Login_window, bd=2, relief=SUNKEN, bg="white")
-login_with_google_frame.place(x=650, y=500, anchor="center") 
+login_with_google_frame.place(x=650, y=510, anchor="center") 
 
 login_with_google_label = Label(login_with_google_frame, text="Login with Google", font=("Arial", 15, "bold"), bg="white", fg="black")
 login_with_google_label.pack(side="left", padx=(10, 0), pady=10) 

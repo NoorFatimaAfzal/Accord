@@ -1,6 +1,4 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
@@ -152,7 +150,7 @@ features_label.pack(padx=10, pady=10)
 
 #frame for the features
 features_frame = Frame(help, bd=2, relief=SUNKEN)
-features_frame.place(x=179, y=240, width=650, height=375)
+features_frame.place(x=179, y=240, width=650, height=275)
 
 # Create a canvas inside the frame  
 canvas = Canvas(features_frame)

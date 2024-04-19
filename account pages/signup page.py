@@ -12,7 +12,6 @@ SignUp_window.geometry("990x660+50+50")
 SignUp_window.configure(bg="white")
 SignUp_window.resizable(False, False)   
 
-
 # Create a MongoDB client
 client = MongoClient("mongodb://localhost:27017") 
 

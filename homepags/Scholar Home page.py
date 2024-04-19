@@ -31,7 +31,6 @@ scholar_homepage_window.resizable(False, False)
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 
-
 # Frame for the dashboard
 dashboard_frame = ttk.Frame(scholar_homepage_window, style="RoundedFrame.TFrame")
 dashboard_frame.pack(side=LEFT, padx=20, fill=Y)
@@ -39,8 +38,12 @@ dashboard_frame.pack(side=LEFT, padx=20, fill=Y)
 dashboard_label = Label(dashboard_frame, text="Dashboard", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 dashboard_label.pack(anchor=N, padx=10, pady=10)
 
-# Image for the dashboard
-img = Image.open("C:/Users/InfoBay/OneDrive/Desktop/Accord/homepags/A.jpg")
+current_dir = os.path.dirname(os.path.realpath(__file__))
+image_path = os.path.join(current_dir, "vector.png")
+
+# Replace 'default_image_path' with the path to an actual image file
+img_path = user_data.get('image_path', image_path)
+img = Image.open(img_path)
 img = img.resize((100, 107), Image.LANCZOS)
 mask = Image.new('L', (100, 107), 0)
 draw = ImageDraw.Draw(mask)
