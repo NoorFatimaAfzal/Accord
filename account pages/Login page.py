@@ -35,6 +35,9 @@ def Login_click():
         elif scolar.get() == "No" and student_var.get() == "No":
             messagebox.showerror("Invalid Selection", "You must be a scholar or a student")
         else:
+            with open('logged_in_user.txt', 'w') as f:
+                f.write(entered_username)
+
             # Update the user's status in the database
             if scolar.get()=="Yes" and student_var.get()=="No":
                 collection.update_one({"username": entered_username}, {"$set": {"status": "scholar"}})
@@ -45,8 +48,6 @@ def Login_click():
                 collection.update_one({"username": entered_username}, {"$set": {"status": "student"}})
                 with open('user_data.txt', 'w') as output:
                     output.write("student")
-                with open('logged_in_user.txt', 'w') as f:
-                    f.write(entered_username)
                 Student_Home_page()
 
 def Scholar_Home_page():

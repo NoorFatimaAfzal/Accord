@@ -32,7 +32,7 @@ def send_message():
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
     message_frame.pack(fill=X, padx=5, pady=5, anchor='e')
-    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
+    message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
     
     # Include the username when inserting the text
@@ -58,11 +58,11 @@ def update_messages():
         message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
         message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['sender_username'] == logged_in_username else 'w')
         
-        if message['sender_username'] == logged_in_username:
-            message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
+        if message['sender_username'] != logged_in_username:
+            message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
             message_text.pack(padx=5, pady=5, side=RIGHT, fill=BOTH, expand=True)
         else:
-            message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
+            message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
             message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
         
         message_text.insert(END, f"{message['sender_username']}: {message['message']}")
@@ -70,7 +70,6 @@ def update_messages():
 
     messages_canvas.update_idletasks()
     messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
-
 def FAQ_clicked():
     hajjPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(hajj).py"')

@@ -35,22 +35,23 @@ def clear_chat():
 clear_chat_button = Button(DM_Pages, text="Clear", font=("Arial", 15), bg="sky blue", fg="black", command=clear_chat)
 clear_chat_button.place(x=120, y=594)
 
+# functions
 def send_message():
     message = msj_entry.get()
 
     # Read the logged-in user's ID from the file
     with open('logged_in_user.txt', 'r') as f:
-        sender_id = f.read().strip()
+        logged_in_user_id = f.read().strip()
 
     receiver_id = selected_DM_Page 
 
-    if sender_id == receiver_id:
+    if logged_in_user_id == receiver_id:
         messagebox.showinfo("Info", "Message yourself")
         return
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if sender_id == 'logged_in_user_id' else 'w')
-    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if sender_id == 'logged_in_user_id' else "white", fg="black", width=50, height=1)
+    message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if logged_in_user_id == receiver_id else 'w')
+    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if logged_in_user_id == receiver_id else "white", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
     
     current_time = time.time()
@@ -60,19 +61,23 @@ def send_message():
     msj_entry.delete(0, END)
 
     chats.insert_one({
-        'userID1': sender_id,
+        'userID1': logged_in_user_id,
         'userID2': receiver_id,
         'message': message,
         'timestamp': current_time
     })
-
+    
 def display_messages():
     messages = chats.find().sort('timestamp', pymongo.ASCENDING)
 
+    # Read the logged-in user's ID from the file
+    with open('logged_in_user.txt', 'r') as f:
+        logged_in_user_id = f.read().strip()
+
     for message in messages:
         message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID1'] == 'logged_in_user_id' else 'w')
-        message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID1'] == 'logged_in_user_id' else "white", fg="black", width=50, height=1)
+        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID1'] == logged_in_user_id else 'w')
+        message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="black", width=50, height=1)
         message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
         message_text.insert(END, f"{message['message']} ({time.ctime(message['timestamp'])})")
         message_text.config(state=DISABLED)
@@ -81,20 +86,6 @@ def display_messages():
     messages_canvas.update_idletasks()
     messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
 
-def display_messages():
-    messages = chats.find().sort('timestamp', pymongo.ASCENDING)
-
-    for message in messages:
-        message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-        message_frame.pack(fill=X, padx=5, pady=5)
-        message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
-        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-        message_text.insert(END, f"{message['message']} ({time.ctime(message['timestamp'])})")
-        message_text.config(state=DISABLED)
-
-        # Update the messages frame's position in the Canvas
-    messages_canvas.update_idletasks()
-    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
 def go_back():
     DM_Pages.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\ScholarDM.py"')
