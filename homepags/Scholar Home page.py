@@ -7,6 +7,7 @@ from tkinter import messagebox
 import time
 from PIL import Image, ImageDraw
 from pymongo import MongoClient
+from tkcalendar import Calendar
 
 # Create a MongoDB client
 client = MongoClient("mongodb://localhost:27017") 
@@ -136,6 +137,15 @@ header.pack(padx=10, pady=10)
 # Frame for the channels
 channels_frame = ttk.Frame(scholar_homepage_window, style="RoundedFrame.TFrame")
 channels_frame.pack(side=RIGHT, padx=20, fill=Y)
+
+# Create a new frame for the calendar inside the dashboard frame
+calendar_frame = ttk.Frame(dashboard_frame, style="RoundedFrame.TFrame", width=200, height=200)
+calendar_frame.pack_propagate(0)  # Don't allow the widgets inside to determine the frame's width / height
+calendar_frame.pack(side=BOTTOM, padx=10, pady=2)
+
+# Create a calendar and add it to the frame
+cal = Calendar(calendar_frame)
+cal.pack(expand=True, fill='both')  
 
 # fnctions
 def go_back():

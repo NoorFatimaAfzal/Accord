@@ -7,6 +7,8 @@ from tkinter import messagebox
 import time
 from PIL import Image, ImageTk, ImageDraw
 from pymongo import MongoClient
+from tkcalendar import Calendar
+
 
 # Create a MongoDB client
 client = MongoClient("mongodb://localhost:27017") 
@@ -69,12 +71,6 @@ name_value_label.pack(padx=10, pady=10)
 
 status_label = Label(dashboard_frame, text="Status: Student",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
 status_label.pack(padx=10, pady=10)
-
-notifications_label = Label(dashboard_frame, text="Notifications:",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
-notifications_label.pack(padx=10, pady=10)
-
-notifications_value_label = Label(dashboard_frame, text="", font=("Arial", 17), bg="white",relief="raised", fg="black")
-notifications_value_label.pack(padx=10, pady=10)
 
 # Canvas for the vertical line
 canvas = Canvas(student_homepage_window, width=2, height=660, bg="black")
@@ -143,6 +139,15 @@ header.pack(padx=10, pady=10)
 # Frame for the channels
 channels_frame = ttk.Frame(student_homepage_window, style="RoundedFrame.TFrame")
 channels_frame.pack(side=RIGHT, padx=20, fill=Y)
+
+# Create a new frame for the calendar inside the dashboard frame
+calendar_frame = ttk.Frame(dashboard_frame, style="RoundedFrame.TFrame", width=200, height=200)
+calendar_frame.pack_propagate(0)  # Don't allow the widgets inside to determine the frame's width / height
+calendar_frame.pack(side=BOTTOM, padx=10, pady=2)
+
+# Create a calendar and add it to the frame
+cal = Calendar(calendar_frame)
+cal.pack(expand=True, fill='both')  
 
 # fnctions
 def go_back():
