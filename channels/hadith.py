@@ -78,16 +78,12 @@ def update_messages():
         message_text.config(state=DISABLED)
 
     messages_canvas.update_idletasks()
-    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
-
-    # Update the messages frame's position in the Canvas
-    messages_canvas.update_idletasks()
-    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
-
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))    
 def FAQ_clicked():
     hadithPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(hadith).py"')
     hadithPage.destroy()
+
 
 def go_back():
     with open('user_data.txt', 'r') as input:
@@ -107,21 +103,11 @@ time_frame.pack(side=TOP, fill=X)
 
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
-time_label.grid(row=0, column=1, padx=20, pady=5)
-
-
-# Frame for time
-time_frame = Frame(hadithPage, bg="sky blue")
-time_frame.pack(side=TOP, fill=X)
-
-# Create a label for the time
-time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
-time_label.grid(row=0, column=1, padx=20, pady=5)
-
+time_label.pack(padx=20, pady=5)
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(hadithPage, style="RoundedFrame.TFrame")
-namaz_frame.pack(side=TOP, padx=20)
+time_label.grid(row=0, column=1, padx=20, pady=5)
 
 current_namaz = ""
 upcoming_namaz = ""
@@ -186,6 +172,7 @@ ayat = Label(
         )
 ayat.pack(padx=10, pady=10)
 
+
 # Frame for the messages
 messages_frame = Frame(hadithPage)
 messages_frame.place(x=179, y=200, width=650, height=375)
@@ -217,12 +204,17 @@ def update_scrollregion(event):
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
-# FAQs button
-faqs_button=Button(hadithPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
-faqs_button.place(x=900, y=140)
-
 # back button
-back_button=Button(hadithPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
-back_button.place(x=20, y=140)
+back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
+
+# help button
+faqs_button=Button(time_frame,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
+faqs_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
+
+# Configure the columns to adjust their sizes
+time_frame.grid_columnconfigure(0, weight=1)
+time_frame.grid_columnconfigure(1, weight=1)
+time_frame.grid_columnconfigure(2, weight=1)
 
 hadithPage.mainloop()

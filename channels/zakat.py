@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
 from tkinter import messagebox
@@ -13,7 +12,6 @@ client = MongoClient('localhost', 27017)
 db = client['Accord']
 
 zakat_messages = db['zakat messages']
-
 
 zakatPage=Tk()
 zakatPage.geometry("990x660+50+50")
@@ -179,23 +177,14 @@ msj_button.place(x=825, y=594)
 msj_entry=Entry(zakatPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
 msj_entry.place(x=227, y=600)
 
-# Frame for the messages
-messages_frame = Frame(zakatPage)
-messages_frame.place(x=179, y=200, width=650, height=375)
-
-msj_button=Button(zakatPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
-msj_button.place(x=800, y=594)
-
-msj_entry=Entry(zakatPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
-msj_entry.place(x=179, y=600)
 
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(zakatPage)
-messages_canvas.place(x=179, y=200, width=650, height=375)
+messages_canvas.place(x=179, y=230, width=650, height=365)
 
 # Scrollbar for the messages frame
 messages_scrollbar = Scrollbar(zakatPage, command=messages_canvas.yview)
-messages_scrollbar.place(x=829, y=200, height=375)
+messages_scrollbar.place(x=829, y=230, height=365)
 
 # Frame for the messages
 messages_frame = Frame(messages_canvas)

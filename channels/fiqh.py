@@ -172,9 +172,6 @@ ayat = Label(
 ayat.pack(padx=10, pady=10)
 
 # Frame for the messages
-messages_frame = Frame(fiqhPage)
-messages_frame.place(x=179, y=200, width=650, height=375)
-
 msj_button=Button(fiqhPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
 msj_button.place(x=825, y=594)
 
@@ -183,11 +180,11 @@ msj_entry.place(x=227, y=600)
 
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(fiqhPage)
-messages_canvas.place(x=179, y=200, width=650, height=375)
+messages_canvas.place(x=179, y=230, width=650, height=360)
 
 # Scrollbar for the messages frame
 messages_scrollbar = Scrollbar(fiqhPage, command=messages_canvas.yview)
-messages_scrollbar.place(x=829, y=200, height=375)
+messages_scrollbar.place(x=829, y=230, height=360)
 
 # Frame for the messages
 messages_frame = Frame(messages_canvas)
@@ -202,12 +199,17 @@ def update_scrollregion(event):
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
-# FAQs button
-faqs_button=Button(fiqhPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
-faqs_button.place(x=900, y=140)
-
 # back button
-back_button=Button(fiqhPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
-back_button.place(x=20, y=140)
+back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
+
+# help button
+faqs_button=Button(time_frame,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
+faqs_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
+
+# Configure the columns to adjust their sizes
+time_frame.grid_columnconfigure(0, weight=1)
+time_frame.grid_columnconfigure(1, weight=1)
+time_frame.grid_columnconfigure(2, weight=1)
 
 fiqhPage.mainloop()

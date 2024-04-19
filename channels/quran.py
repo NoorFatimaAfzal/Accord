@@ -98,6 +98,15 @@ def go_back():
         os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
         quranPage.destroy()
 
+# Frame for time
+time_frame = Frame(quranPage, bg="sky blue")
+time_frame.pack(side=TOP, fill=X)
+
+# Create a label for the time
+time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
+time_label.grid(row=0, column=1, padx=20, pady=5)
+
+
 # Frame for the namaz times
 namaz_frame = ttk.Frame(quranPage, style="RoundedFrame.TFrame")
 namaz_frame.pack(side=TOP, padx=20)
@@ -165,10 +174,6 @@ ayat = Label(
         )
 ayat.pack(padx=10, pady=10)
 
-# Frame for the messages
-messages_frame = Frame(quranPage)
-messages_frame.place(x=179, y=200, width=650, height=375)
-
 msj_button=Button(quranPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
 msj_button.place(x=825, y=594)
 
@@ -177,11 +182,11 @@ msj_entry.place(x=227, y=600)
 
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(quranPage)
-messages_canvas.place(x=179, y=200, width=650, height=375)
+messages_canvas.place(x=179, y=230, width=650, height=360)
 
 # Scrollbar for the messages frame
 messages_scrollbar = Scrollbar(quranPage, command=messages_canvas.yview)
-messages_scrollbar.place(x=829, y=200, height=375)
+messages_scrollbar.place(x=829, y=230, height=360)
 
 # Frame for the messages
 messages_frame = Frame(messages_canvas)

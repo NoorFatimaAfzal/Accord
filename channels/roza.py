@@ -172,10 +172,6 @@ ayat = Label(
         )
 ayat.pack(padx=10, pady=10)
 
-# Frame for the messages
-messages_frame = Frame(rozaPage)
-messages_frame.place(x=179, y=200, width=650, height=375)
-
 msj_button=Button(rozaPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
 msj_button.place(x=825, y=594)
 
@@ -184,11 +180,11 @@ msj_entry.place(x=227, y=600)
 
 # Canvas for the messages frame and scrollbar
 messages_canvas = Canvas(rozaPage)
-messages_canvas.place(x=179, y=200, width=650, height=375)
+messages_canvas.place(x=179, y=230, width=650, height=365)
 
 # Scrollbar for the messages frame
 messages_scrollbar = Scrollbar(rozaPage, command=messages_canvas.yview)
-messages_scrollbar.place(x=829, y=200, height=375)
+messages_scrollbar.place(x=829, y=230, height=365)
 
 # Frame for the messages
 messages_frame = Frame(messages_canvas)
