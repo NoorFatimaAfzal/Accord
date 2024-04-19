@@ -52,10 +52,13 @@ def send_message():
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
     message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if logged_in_user_id == receiver_id else 'w')
     message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if logged_in_user_id == receiver_id else "white", fg="black", width=50, height=1)
-    message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+    message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
     
     current_time = time.time()
     
+    timestamp_label = Label(message_frame, text=time.ctime(current_time), font=("Arial", 8), bg="white", fg="grey") # Changed font size to 8
+    timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True) # Changed side to BOTTOM
+
     message_text.insert(END, f"{message} ({time.ctime(current_time)})")
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
@@ -66,7 +69,7 @@ def send_message():
         'message': message,
         'timestamp': current_time
     })
-    
+        
 def display_messages():
     messages = chats.find().sort('timestamp', pymongo.ASCENDING)
 
@@ -78,9 +81,12 @@ def display_messages():
         message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
         message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID1'] == logged_in_user_id else 'w')
         message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="black", width=50, height=1)
-        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-        message_text.insert(END, f"{message['message']} ({time.ctime(message['timestamp'])})")
+        message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
+        message_text.insert(END, f"{message['message']}")
         message_text.config(state=DISABLED)
+
+        timestamp_label = Label(message_frame, text=time.ctime(message['timestamp']), font=("Arial", 8), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="grey")
+        timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True)
 
     # Update the messages frame's position in the Canvas
     messages_canvas.update_idletasks()

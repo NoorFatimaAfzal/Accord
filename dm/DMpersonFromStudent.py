@@ -33,47 +33,62 @@ def clear_chat():
 # Clear chat button
 clear_chat_button = Button(DM_Pages, text="Clear", font=("Arial", 15), bg="sky blue", fg="black", command=clear_chat)
 clear_chat_button.place(x=120, y=594)
-
-
 def send_message():
     message = msj_entry.get()
 
     # Read the logged-in user's ID from the file
     with open('logged_in_user.txt', 'r') as f:
-        sender_id = f.read().strip()
+        logged_in_user_id = f.read().strip()
 
     receiver_id = selected_DM_Page 
 
-    if sender_id == receiver_id:
+    if logged_in_user_id == receiver_id:
         messagebox.showinfo("Info", "Message yourself")
         return
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5)
-    message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
-    message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-    message_text.insert(END, message)
+    message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if logged_in_user_id == receiver_id else 'w')
+    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if logged_in_user_id == receiver_id else "white", fg="black", width=50, height=1)
+    message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
+    
+    current_time = time.time()
+    
+    timestamp_label = Label(message_frame, text=time.ctime(current_time), font=("Arial", 8), bg="white", fg="grey") # Changed font size to 8
+    timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True) # Changed side to BOTTOM
+
+    message_text.insert(END, f"{message} ({time.ctime(current_time)})")
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
-    # Insert the message into the 'chats' collection
     chats.insert_one({
-        'userID1': sender_id,
+        'userID1': logged_in_user_id,
         'userID2': receiver_id,
         'message': message,
-        'timestamp': time.time()
+        'timestamp': current_time
     })
 
 def display_messages():
     messages = chats.find().sort('timestamp', pymongo.ASCENDING)
 
+    # Read the logged-in user's ID from the file
+    with open('logged_in_user.txt', 'r') as f:
+        logged_in_user_id = f.read().strip()
+
     for message in messages:
         message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-        message_frame.pack(fill=X, padx=5, pady=5)
-        message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
-        message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-        message_text.insert(END, f"{message['message']} ({time.ctime(message['timestamp'])})")
+        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID1'] == logged_in_user_id else 'w')
+        message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="black", width=50, height=1)
+        message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
+        message_text.insert(END, f"{message['message']}")
         message_text.config(state=DISABLED)
+
+        timestamp_label = Label(message_frame, text=time.ctime(message['timestamp']), font=("Arial", 8), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="grey")
+        timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True)
+
+    # Update the messages frame's position in the Canvas
+    messages_canvas.update_idletasks()
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
+
 
 def go_back():
     DM_Pages.withdraw()
@@ -164,6 +179,8 @@ msj_entry.place(x=227, y=600)
 messages_canvas = Canvas(DM_Pages)
 messages_canvas.place(x=179, y=200, width=650, height=375)
 
+display_messages()
+
 # Scrollbar for the messages frame
 messages_scrollbar = Scrollbar(DM_Pages, command=messages_canvas.yview)
 messages_scrollbar.place(x=829, y=200, height=375)
@@ -175,6 +192,8 @@ messages_frame_id = messages_canvas.create_window(0, 0, window=messages_frame, a
 # Function to update the scroll region
 def update_scrollregion(event):
     messages_canvas.configure(scrollregion=messages_canvas.bbox('all'))
+
+display_messages()
 
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)

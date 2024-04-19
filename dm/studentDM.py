@@ -93,6 +93,29 @@ def update():
 # Call update function to start the clock and set the namaz times
 update()
 
+# Create an Entry widget for the search bar
+search_bar = Entry(studentDM, width=50, font=("Arial", 15), bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
+search_bar.place(x=227, y=175)
+
+# Define the search function
+def search():
+    # Get the search text
+    search_text = search_bar.get()
+
+    # Clear the inner_frame
+    for widget in inner_frame.winfo_children():
+        widget.destroy()
+
+    # Loop through the users list and create a button for each user whose name contains the search text
+    for user in users:
+        if search_text.lower() in user.lower():
+            user_button = Button(inner_frame, text=user, font=("Arial", 15), bg="white", fg="black", width=55, command=lambda user=user: DMperson_button_clicked(user))
+            user_button.pack(fill=X, padx=5, pady=5)
+
+# Create a Button widget for the search button
+search_button = Button(studentDM, text="Search", font=("Arial", 15), bg="sky blue", fg="black", command=search)
+search_button.place(x=825, y=170)
+
 # Frame for the header
 header_frame = ttk.Frame(studentDM, style="RoundedFrame.TFrame")
 header_frame.pack(side=TOP, padx=20)
@@ -102,7 +125,7 @@ header.pack(padx=10, pady=10)
 
 # Frame for the users list
 users_frame = Frame(studentDM, bd=2, relief=SUNKEN)
-users_frame.place(x=179, y=200, width=650, height=375)
+users_frame.place(x=179, y=230, width=650, height=375)
 
 # Create a canvas inside the frame
 canvas = Canvas(users_frame)
