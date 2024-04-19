@@ -128,8 +128,8 @@ header = Label(header_frame, text="Article", font=("Arial", 20, "bold"), bg="sky
 header.pack(padx=10, pady=10)
 
 # Label for author name
-author_label = Label(Articles, text=f"Author: {author_name}", font=("Arial", 15), bg="white", fg="black")
-author_label.pack(padx=10, pady=10)
+author_label = Label(Articles, text=f"Author: {author_name}", font=("Arial", 20, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
+author_label.pack(padx=20, pady=20)
 
 # Frame for the like and dislike buttons
 like_dislike_frame = Frame(Articles)
