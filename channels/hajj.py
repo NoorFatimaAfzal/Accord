@@ -23,6 +23,15 @@ style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 
 # functions 
+def clear_chat():
+    hajj_messages.delete_many({})
+
+    for widget in messages_frame.winfo_children():
+        widget.destroy()
+
+clear_chat_button = Button(hajjPage, text="Clear", font=("Arial", 15), bg="sky blue", fg="black", command=clear_chat)
+clear_chat_button.place(x=120, y=594)
+
 def send_message():
     message = msj_entry.get()
 
@@ -163,10 +172,10 @@ ayat = Label(
 ayat.pack(padx=10, pady=10)
 
 msj_button=Button(hajjPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
-msj_button.place(x=800, y=594)
+msj_button.place(x=825, y=594)
 
 msj_entry=Entry(hajjPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
-msj_entry.place(x=179, y=600)
+msj_entry.place(x=227, y=600)
 
 # Frame for the messages
 messages_frame = Frame(hajjPage)
