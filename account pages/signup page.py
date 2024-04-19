@@ -5,6 +5,7 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 from pymongo import MongoClient
+import re
 
 SignUp_window=Tk()
 SignUp_window.geometry("990x660+50+50")
@@ -103,30 +104,25 @@ usernameEntry.bind("<FocusIn>", user_enter)
 # Password Frame
 passwordFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
 passwordFrame.place(x=650, y=270, anchor="center")
-passwordEntry = ttk.Entry(passwordFrame, width=30, font=("Arial", 15), show="*")
-passwordEntry.pack()
+passwordEntry = ttk.Entry(passwordFrame, width=26, font=("Arial", 15), show="")
+passwordEntry.pack(side="left")
 passwordEntry.insert(0, "Password")
 passwordEntry.bind("<FocusIn>", passward_enter)
+
+# Show/Hide Password Button
+show_password_button = ttk.Button(passwordFrame, image=eye_image, command=lambda: toggle_password_visibility(passwordEntry), style="Toolbutton")
+show_password_button.pack(side="right", padx=(0, 10)) 
 
 # confirm password 
 confirm_passwordFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
 confirm_passwordFrame.place(x=650, y=320, anchor="center")
-confirmPasswordEntry= ttk.Entry(confirm_passwordFrame, width=30, font=("Arial", 15), show="*")
-confirmPasswordEntry.pack()
+confirmPasswordEntry= ttk.Entry(confirm_passwordFrame, width=26, font=("Arial", 15), show="")
+confirmPasswordEntry.pack(side="left")
 confirmPasswordEntry.insert(0, "Confirm Password")
 confirmPasswordEntry.bind("<FocusIn>", confirm_passward_enter)
 
-
-# Show/Hide Password Button
-show_password_button = ttk.Button(passwordFrame, image=eye_image, command=lambda: toggle_password_visibility(passwordEntry), style="Toolbutton")
-passwordEntry.configure(show="*", width=30 - 4) 
-passwordEntry.pack(side="left")
-show_password_button.pack(side="right", padx=(0, 10)) 
-
 # Show/Hide Confirm Password Button
 show_confirm_password_button = ttk.Button(confirm_passwordFrame, image=eye_image, command=lambda: toggle_password_visibility(confirmPasswordEntry), style="Toolbutton")
-confirmPasswordEntry.configure(show="*", width=30 - 4) 
-confirmPasswordEntry.pack(side="left")
 show_confirm_password_button.pack(side="right", padx=(0, 10)) 
 
 # Privacy Policy Checkbutton
@@ -140,13 +136,22 @@ def signup_click():
     if privacyPolicyVar.get() != "Yes": 
         messagebox.showerror("Privacy Policy", "You must agree to the Privacy Policy to sign up")
     else:
-        user = {
-            "email": emailEntry.get(),
-            "username": usernameEntry.get(),
-            "password": passwordEntry.get(),
-        }
-        collection.insert_one(user)
-        login() 
+        existing_user = collection.find_one({"username": usernameEntry.get()})
+        if existing_user is not None:
+            messagebox.showerror("Username Already Exists", "The username you entered is already taken. Please choose a different username.")
+        else:
+            password = passwordEntry.get()
+            if len(password) < 5 or not re.search(r"\d", password) or not re.search(r"\W", password):
+                messagebox.showerror("Invalid Password", "Password must be at least 5 characters long and contain at least one digit and one special character.")
+            else:
+                user = {
+                    "email": emailEntry.get(),
+                    "username": usernameEntry.get(),
+                    "password": password,
+                }
+                collection.insert_one(user)
+                messagebox.showinfo("Sign Up Successful", "You have successfully signed up!")
+                login()    
 
 signupButton = Button(SignUp_window, text="Sign Up", font=("Arial", 15, "bold"), bg="sky blue", fg="black", command=signup_click)
 signupButton.place(x=650, y=429, anchor="center")

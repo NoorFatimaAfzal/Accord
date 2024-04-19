@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
 from PIL import Image, ImageTk
 from tkinter import ttk
 import os
@@ -53,21 +52,17 @@ label.image = photo
 label.pack()
 
 # Add the labels to the dashboard_frame
-name_label = Label(dashboard_frame, text="Student Name:",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
+name_label = Label(dashboard_frame, text="Student Name:",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
 name_label.pack(padx=10, pady=10)
 
-name_value_label = Label(dashboard_frame, text=user_data['username'], font=("Arial", 17, "bold italic"), bg="sky blue",relief="raised",  bd=2, fg="black", anchor="w")
+name_value_label = Label(dashboard_frame, text=user_data['username'], font=("Arial", 17, "bold italic"), bg="white",relief="raised",  bd=2, fg="black", anchor="w")
 name_value_label.pack(padx=10, pady=10)
 
-status_label = Label(dashboard_frame, text="Status: Student",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
+status_label = Label(dashboard_frame, text="Status: Student",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
 status_label.pack(padx=10, pady=10)
 
-notifications_label = Label(dashboard_frame, text="Notifications:",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
-notifications_label.pack(padx=10, pady=10)
-
-notifications_value_label = Label(dashboard_frame, text="", font=("Arial", 17), bg="white",relief="raised", fg="black")
-notifications_value_label.pack(padx=10, pady=10)
-
+welcome_label = Label(dashboard_frame, text="welcome \nto Accord:\n Ask about \nIslam",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
+welcome_label.pack(padx=10, pady=10)
 
 # Canvas for the vertical line
 canvas = Canvas(scholar_homepage_window, width=2, height=660, bg="black")
@@ -251,8 +246,11 @@ rozaChannelLink.bind("<Button-1>", lambda event: open_roza(event))
 description = Label(scholar_homepage_window, text="Join the conversation about Roza", bg="white", fg="black", font=("Arial", 17))
 description.place(x=599, y=450, anchor="center")
 
+# Determine the status of the person the user can message
+message_status = "Scholar" if user_data['status'] == "Student" else "Student"
+
 # direct message button
-DMbutton = Button(scholar_homepage_window, text="Direct Message", font=("Arial", 17), bg="sky blue", fg="black", command=DMButton_clicked)
+DMbutton = Button(scholar_homepage_window, text=f"Direct Message to {message_status}s", font=("Arial", 17), bg="sky blue", fg="black", command=DMButton_clicked)
 DMbutton.place(x=570, y=530, anchor="center")
 
 # post article button

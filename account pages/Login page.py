@@ -50,6 +50,8 @@ def Login_click():
                     output.write("student")
                 Student_Home_page()
 
+    messagebox.showinfo("Login", "You have successfully logged in!")
+    
 def Scholar_Home_page():
     Login_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
@@ -109,16 +111,14 @@ usernameEntry.insert(0, "Username")
 # Password Frame
 passwordFrame = Frame(Login_window, bd=2, relief=SUNKEN)
 passwordFrame.place(x=650, y=270, anchor="center")
-passwordEntry = ttk.Entry(passwordFrame, width=30, font=("Arial", 15), show="*")
+passwordEntry = ttk.Entry(passwordFrame, width=26, font=("Arial", 15))
 passwordEntry.pack()
 passwordEntry.insert(0, "Password")
 
 # Show/Hide Password Button
 show_password_button = ttk.Button(passwordFrame, image=eye_image, command=toggle_password, style="Toolbutton")
-passwordEntry.configure(show="*", width=30 - 4)  # Subtract the width of the button
 passwordEntry.pack(side="left")
 show_password_button.pack(side="right", padx=(0, 10)) 
-
 def email_enter(event):
     if emailEntry.get() == "Email":
         emailEntry.delete(0, END)
@@ -131,17 +131,11 @@ def email_leave(event):
         messagebox.showerror("Invalid Email", "Email must contain an @ symbol") 
 emailEntry.bind("<FocusOut>",email_leave)
 
-def passward_enter(event):
+def password_enter(event):
     if passwordEntry.get() == "Password":
         passwordEntry.delete(0, END)
-        passwordEntry.config(show="*")
-passwordEntry.bind("<FocusIn>",passward_enter)
-
-def username_enter(event):
-    if usernameEntry.get() == "Username":
-        usernameEntry.delete(0, END)
-usernameEntry.bind("<FocusIn>", username_enter)
-
+        passwordEntry.config(show="*")  # This line hides the password
+passwordEntry.bind("<FocusIn>", password_enter)
 
 
 # Scolar Checkbutton
