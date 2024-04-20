@@ -26,21 +26,23 @@ def get_image():
     image_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png")])
     return image_path
 
-
 #functions
 def Login_click():
     entered_username = usernameEntry.get()
     entered_password = passwordEntry.get()
+    entered_email = emailEntry.get()
+
+    # Check if either the username, password or email field is empty
+    if not entered_username or not entered_password or not entered_email:
+        messagebox.showerror("Invalid Input", "All fields are required")
+        return
 
     # Query the database
-    user = collection.find_one({"username": entered_username, "password": entered_password})
+    user = collection.find_one({"username": entered_username, "password": entered_password, "email": entered_email})
 
     if user is None:
-        messagebox.showerror("Invalid Login", "The entered username or password is incorrect")
+        messagebox.showerror("Invalid Login", "The entered username, password or email is incorrect")
     else:
-        # Call the function to get and store the image path
-        on_get_image_click()
-
         if scolar.get() == "Yes" and student_var.get() == "Yes":
             messagebox.showerror("Invalid Selection", "You can only be a scholar or a student at one time")
         elif scolar.get() == "No" and student_var.get() == "No":
@@ -48,6 +50,7 @@ def Login_click():
         else:
             with open('logged_in_user.txt', 'w') as f:
                 f.write(entered_username)
+            messagebox.showinfo("Login", "You have successfully logged in!") 
 
             # Update the user's status in the database
             if scolar.get()=="Yes" and student_var.get()=="No":
@@ -61,7 +64,6 @@ def Login_click():
                     output.write("student")
                 Student_Home_page()
 
-    messagebox.showinfo("Login", "You have successfully logged in!")
 
 # Call this function when the button is clicked
 def on_get_image_click():
@@ -75,6 +77,16 @@ def on_get_image_click():
 
         # Show a success message
         messagebox.showinfo("Success", "Image uploaded successfully")
+
+
+
+
+
+# Function to handle password recovery
+def forgot_password(event=None):
+    Login_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\Forgot Password.py"')
+    messagebox.showinfo("Forgot Password", "Password recovery process goes here")
 
 def Scholar_Home_page():
     Login_window.withdraw()
@@ -178,11 +190,11 @@ student_var.set("No")
 student_checkbutton = Checkbutton(Login_window, text="Are you student ?", variable=student_var, onvalue="Yes", offvalue="No", bg="white", fg="black", font=("Arial", 12))  
 student_checkbutton.place(x=670, y=360, anchor="center")
 
-Login_Button = Button(Login_window, text="Login", font=("Arial", 15, "bold"), bg="sky blue", fg="black", command=Login_click)
+Login_Button = Button(Login_window, text="Login To Your Account", font=("Arial", 15, "bold"), bg="sky blue", fg="black", command=Login_click)
 Login_Button.place(x=650, y=449, anchor="center") 
 
 # Button to get the image
-get_image_button = Button(Login_window, text="Upload Image", command=on_get_image_click, bg="sky blue")
+get_image_button = Button(Login_window, text="Upload Image", command=on_get_image_click, bg="sky blue", fg="black", font=("Arial", 15, "bold"))
 get_image_button.place(x=650, y=400, anchor="center") 
 
 # Create a frame for the "Login with Google" label
@@ -197,5 +209,9 @@ google_logo_label.image = google_logo
 google_logo_label.pack(side="right", padx=(0, 10)) 
 login_with_google_label.bind("<Button-1>", lambda e: login_with_google())
 
+# Create a "Forgot Password" link
+forgot_password_label = Label(Login_window, text="Forgot Password?", fg="grey", bg="white", font=("Arial", 10))
+forgot_password_label.place(x=650, y=300, anchor="center") 
+forgot_password_label.bind("<Button-1>", forgot_password)
 
 Login_window.mainloop()
