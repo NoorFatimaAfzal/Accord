@@ -11,7 +11,7 @@ from tkcalendar import Calendar
 
 
 # Create a MongoDB client
-client = MongoClient("mongodb://localhost:27017") 
+client = MongoClient("mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/") 
 
 # Connect to your database
 db = client["Accord"] 

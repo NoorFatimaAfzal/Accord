@@ -5,7 +5,7 @@ import smtplib
 import getpass
 
 # Create a MongoDB client
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient("mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/")
 
 # Connect to your database
 db = client["Accord"]
@@ -18,20 +18,11 @@ forget_password_window.geometry("990x660+50+50")
 forget_password_window.configure(bg="white")
 forget_password_window.resizable(False, False)
 
-# Create a MongoDB client
-client = MongoClient("mongodb://localhost:27017")
-
-# Connect to your database
-db = client["Accord"]
-
-# Connect to your collection
-collection = db["users"]
-
 def send_email():
-    Host = "smtp-mail.outlook.com"
+    Host = "smtp.gmail.com"
     Port=587
-    from_email = "noorfatimaafzalbutt@gmail.com"
-    Password = getpass.getpass("Enter password: ")
+    from_email = "Accordwithmongodb0987654321@gmail.com"
+    Password = "Accordwithmongodb#0987654321"
 
     # Retrieve the user's email from the entry field
     To_email = enter_your_email_entry.get()
