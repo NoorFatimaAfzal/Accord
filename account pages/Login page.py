@@ -78,15 +78,13 @@ def on_get_image_click():
         # Show a success message
         messagebox.showinfo("Success", "Image uploaded successfully")
 
-
-
-
-
 # Function to handle password recovery
 def forgot_password(event=None):
     Login_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\Forgot Password.py"')
-    messagebox.showinfo("Forgot Password", "Password recovery process goes here")
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    loginPage_path = os.path.join(current_dir, "FP.py")
+    os.system(f'python "{loginPage_path}"')
+    Login_window.destroy()
 
 def Scholar_Home_page():
     Login_window.withdraw()
