@@ -22,7 +22,7 @@ def send_email():
     Host = "smtp.gmail.com"
     Port=587
     from_email = "Accordwithmongodb0987654321@gmail.com"
-    Password = "Accordwithmongodb#0987654321"
+    Password = "hrlm vsme qpfz lxrt"
 
     # Retrieve the user's email from the entry field
     To_email = enter_your_email_entry.get()
@@ -52,11 +52,11 @@ def send_email():
     smtp.quit()
     
 enter_your_email_label=Label(forget_password_window, text="Enter your email:", font=("Arial", 15), bg="white", fg="black")
-enter_your_email_label.place(x=120, y=120)
+enter_your_email_label.place(x=420, y=120)
 enter_your_email_entry=Entry(forget_password_window, font=("Arial", 15), bg="white", fg="black")
-enter_your_email_entry.place(x=120, y=170)
+enter_your_email_entry.place(x=380, y=170)
 
 send_email_button=Button(forget_password_window, text="Send Email", font=("Arial", 15), bg="sky blue", fg="black", command=send_email)
-send_email_button.place(x=120, y=220)
+send_email_button.place(x=420, y=220)
 
 forget_password_window.mainloop()
