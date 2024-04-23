@@ -51,6 +51,7 @@ def email_leave(event):
     email = emailEntry.get()
     if "@" not in email:
         messagebox.showerror("Invalid Email", "Email must contain an @ symbol") 
+    emailEntry.bind("<FocusOut>", email_leave)
 
 def passward_enter(event):
     if passwordEntry.get() == "Password":
@@ -60,8 +61,8 @@ def passward_enter(event):
 def confirm_passward_enter(event):
     if confirmPasswordEntry.get() == "Confirm Password":
         confirmPasswordEntry.delete(0, END)
-        confirmPasswordEntry.config(show="*")
-    
+        confirmPasswordEntry.config(show="*")  
+
 # image
 current_dir = os.path.dirname(os.path.realpath(__file__))
 image_path = os.path.join(current_dir, "vector.png")
@@ -91,6 +92,7 @@ emailEntry=Entry(emailFrame,width=30, font=("Arial", 15),bd=0, bg="white", fg="b
 emailEntry.pack()
 emailEntry.insert(0, "Email")
 emailEntry.bind("<FocusIn>", email_enter)
+emailEntry.bind("<FocusOut>", email_leave)
 
 # Username Frame
 usernameFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
@@ -122,7 +124,7 @@ confirmPasswordEntry.bind("<FocusIn>", confirm_passward_enter)
 
 # Show/Hide Confirm Password Button
 show_confirm_password_button = ttk.Button(confirm_passwordFrame, image=eye_image, command=lambda: toggle_password_visibility(confirmPasswordEntry), style="Toolbutton")
-show_confirm_password_button.pack(side="right", padx=(0, 10)) 
+show_confirm_password_button.pack(side="right", padx=(0, 10))  
 
 # Privacy Policy Checkbutton
 privacyPolicyVar = StringVar()
@@ -134,6 +136,8 @@ privacyPolicyCheck.place(x=670, y=380, anchor="center")
 def signup_click():
     if privacyPolicyVar.get() != "Yes": 
         messagebox.showerror("Privacy Policy", "You must agree to the Privacy Policy to sign up")
+    elif not emailEntry.get() or not usernameEntry.get() or not passwordEntry.get() or not confirmPasswordEntry.get():
+        messagebox.showerror("Empty Field", "No field should be empty")
     else:
         existing_user = collection.find_one({"username": usernameEntry.get()})
         if existing_user is not None:

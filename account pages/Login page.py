@@ -115,13 +115,14 @@ bgLabel.place(x=0, y=0)
 eye_image_path = os.path.join(current_dir, "show_pas.png")
 eye_image = Image.open(eye_image_path)
 eye_image = eye_image.resize((20, 20),  Image.LANCZOS)
+
 # Convert the PIL image to a PhotoImage
 eye_image = ImageTk.PhotoImage(eye_image)
 
-google_logo_path = os.path.join(current_dir, "g.png")  # Replace with the path to your Google logo
+google_logo_path = os.path.join(current_dir, "g.png") 
 google_logo = Image.open(google_logo_path)
-google_logo = google_logo.resize((20, 20), Image.LANCZOS)  # Resize the logo
-google_logo = ImageTk.PhotoImage(google_logo)  # Convert the PIL image to a PhotoImage
+google_logo = google_logo.resize((20, 20), Image.LANCZOS) 
+google_logo = ImageTk.PhotoImage(google_logo) 
 
 # title
 title=Label(Login_window,text="Welcome Back!\n Login to your Account", font=("Arial", 20, "bold"), bg="sky blue", fg="black", relief=RAISED)
