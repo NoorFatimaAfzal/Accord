@@ -117,13 +117,13 @@ like_dislike_frame.pack(padx=10, pady=10)
 post_by_name_label=Label(post_article_window,text="Post By: ",font=("Arial", 17), bg="sky blue", fg="black")
 post_by_name_label.place(x=100, y=200)
 
-post_by_name_entry=Entry(post_article_window,width=25, font=("Arial", 15),bd=2, bg="white", fg="black", relief=SUNKEN, justify=CENTER)
+post_by_name_entry=Entry(post_article_window,width=25, font=("Arial", 15),bd=2, bg="white", fg="black", relief=SUNKEN, justify=LEFT)
 post_by_name_entry.place(x=250, y=200)
 
 post_title_label=Label(post_article_window,text="Post Title: ",font=("Arial", 17), bg="sky blue", fg="black")
 post_title_label.place(x=100, y=250)
 
-post_title_entry=Entry(post_article_window,width=25, font=("Arial", 15),bd=2, bg="white", fg="black", relief=SUNKEN, justify=CENTER)
+post_title_entry=Entry(post_article_window,width=25, font=("Arial", 15),bd=2, bg="white", fg="black", relief=SUNKEN, justify=LEFT)
 post_title_entry.place(x=250, y=250)
 
 post_article_label=Label(post_article_window,text="Post Article: ",font=("Arial", 17), bg="sky blue", fg="black")
