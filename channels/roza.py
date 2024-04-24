@@ -59,7 +59,7 @@ def send_message():
     # Update the messages frame's position in the Canvas
     messages_canvas.update_idletasks()
     messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
-    
+
 def display_messages():
     # Clear the messages frame
     for widget in messages_frame.winfo_children():
@@ -72,19 +72,20 @@ def display_messages():
         logged_in_user_id = f.read().strip()
 
     for message in messages:
-        message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID1'] == logged_in_user_id else 'w')
-        message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="black", width=50, height=1)
-        message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
-        message_text.insert(END, f"{message['message']}")
-        message_text.config(state=DISABLED)
+        if 'userID' in message:
+            message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
+            message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID'] == logged_in_user_id else 'w')
+            message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID'] == logged_in_user_id else "white", fg="black", width=50, height=1)
+            message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
+            message_text.insert(END, f"{message['message']}")
+            message_text.config(state=DISABLED)
 
-        timestamp_label = Label(message_frame, text=time.ctime(message['timestamp']), font=("Arial", 8), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="grey")
-        timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True)
+            timestamp_label = Label(message_frame, text=time.ctime(message['timestamp']), font=("Arial", 8), bg="sky blue" if message['userID'] == logged_in_user_id else "white", fg="grey")
+            timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True)
 
     # Update the messages frame's position in the Canvas
     messages_canvas.update_idletasks()
-    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))   
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))    
 
 def FAQ_clicked():
     rozaPage.withdraw()
