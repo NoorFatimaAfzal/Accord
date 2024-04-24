@@ -35,7 +35,6 @@ def clear_chat():
 clear_chat_button = Button(DM_Pages, text="Clear", font=("Arial", 15), bg="sky blue", fg="black", command=clear_chat)
 clear_chat_button.place(x=120, y=594)
 
-# functions
 def send_message():
     message = msj_entry.get()
 
@@ -49,19 +48,7 @@ def send_message():
         messagebox.showinfo("Info", "Message yourself")
         return
 
-    message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if logged_in_user_id == receiver_id else 'w')
-    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if logged_in_user_id == receiver_id else "white", fg="black", width=50, height=1)
-    message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
-    
     current_time = time.time()
-    
-    timestamp_label = Label(message_frame, text=time.ctime(current_time), font=("Arial", 8), bg="white", fg="grey") # Changed font size to 8
-    timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True) # Changed side to BOTTOM
-
-    message_text.insert(END, f"{message} ({time.ctime(current_time)})")
-    message_text.config(state=DISABLED)
-    msj_entry.delete(0, END)
 
     chats.insert_one({
         'userID1': logged_in_user_id,
@@ -69,8 +56,27 @@ def send_message():
         'message': message,
         'timestamp': current_time
     })
-        
+
+    message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
+    message_frame.pack(fill=X, padx=5, pady=5, anchor='e') 
+    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
+    message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
+    
+    timestamp_label = Label(message_frame, text=time.ctime(current_time), font=("Arial", 8), bg="sky blue", fg="grey") 
+    timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True)
+    message_text.insert(END, f"{message}") 
+    message_text.config(state=DISABLED)
+    msj_entry.delete(0, END)
+
+    # Update the messages frame's position in the Canvas
+    messages_canvas.update_idletasks()
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
+
 def display_messages():
+    # Clear the messages frame
+    for widget in messages_frame.winfo_children():
+        widget.destroy()
+
     messages = chats.find().sort('timestamp', pymongo.ASCENDING)
 
     # Read the logged-in user's ID from the file
@@ -164,10 +170,6 @@ header_frame.pack(side=TOP, padx=20)
 header = Label(header_frame, text=f"Directly message to {selected_DM_Page}", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 header.pack(padx=10, pady=10)
 
-# Frame for the messages
-messages_frame = Frame(DM_Pages)
-messages_frame.place(x=179, y=200, width=650, height=375)
-
 msj_button=Button(DM_Pages,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
 msj_button.place(x=825, y=594)
 
@@ -193,7 +195,6 @@ def update_scrollregion(event):
 messages_frame.bind('<Configure>', update_scrollregion)
 messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
-display_messages()  # Call display_messages after messages_frame is finally initialized
 
 # back button
 back_button=Button(time_frame,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
@@ -207,5 +208,7 @@ help_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 time_frame.grid_columnconfigure(0, weight=1)
 time_frame.grid_columnconfigure(1, weight=1)
 time_frame.grid_columnconfigure(2, weight=1)
+
+display_messages()
 
 DM_Pages.mainloop()

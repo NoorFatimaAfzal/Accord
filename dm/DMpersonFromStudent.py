@@ -33,6 +33,7 @@ def clear_chat():
 # Clear chat button
 clear_chat_button = Button(DM_Pages, text="Clear", font=("Arial", 15), bg="sky blue", fg="black", command=clear_chat)
 clear_chat_button.place(x=120, y=594)
+
 def send_message():
     message = msj_entry.get()
 
@@ -47,8 +48,8 @@ def send_message():
         return
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if logged_in_user_id == receiver_id else 'w')
-    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if logged_in_user_id == receiver_id else "white", fg="black", width=50, height=1)
+    message_frame.pack(fill=X, padx=5, pady=5, anchor='e')  # Set anchor to 'e' as the logged-in user is the sender
+    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
     
     current_time = time.time()
@@ -56,7 +57,7 @@ def send_message():
     timestamp_label = Label(message_frame, text=time.ctime(current_time), font=("Arial", 8), bg="white", fg="grey") # Changed font size to 8
     timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True) # Changed side to BOTTOM
 
-    message_text.insert(END, f"{message} ({time.ctime(current_time)})")
+    message_text.insert(END, f"{message}")  # Removed the timestamp from the message text
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
