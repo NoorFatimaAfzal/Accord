@@ -13,7 +13,6 @@ client = MongoClient("mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhk
 
 # Connect to your database
 db = client["Accord"] 
-
 # Connect to your collection
 collection = db["users"]
 
@@ -48,14 +47,25 @@ dashboard_frame.pack(side=LEFT, padx=20, fill=Y)
 dashboard_label = Label(dashboard_frame, text="Dashboard", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
 dashboard_label.pack(anchor=N, padx=10, pady=10)
 
-# Image for the dashboard
-img = Image.open("C:/Users/InfoBay/OneDrive/Desktop/Accord/homepags/A.jpg")
+# Get the path of the user's image
+image_path = user_data['image_path']
+
+# Open the image and resize it
+img = Image.open(image_path)
 img = img.resize((100, 107), Image.LANCZOS)
+
+# Create a mask for the image
 mask = Image.new('L', (100, 107), 0)
 draw = ImageDraw.Draw(mask)
 draw.ellipse((0, 0, 100, 107), fill=255)
+
+# Apply the mask to the image
 img = Image.composite(img, Image.new('RGB', img.size, (135, 206, 235)), mask)
+
+# Convert the image to a format that Tkinter can use
 photo = ImageTk.PhotoImage(img)
+
+# Create a label and add the image to it
 label = Label(dashboard_frame, image=photo, bd=0, bg='white')
 label.image = photo 
 label.pack()
