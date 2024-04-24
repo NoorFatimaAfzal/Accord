@@ -62,7 +62,7 @@ def send_message():
     # Update the messages frame's position in the Canvas
     messages_canvas.update_idletasks()
     messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
-    
+
 def display_messages():
     # Clear the messages frame
     for widget in messages_frame.winfo_children():
@@ -189,7 +189,7 @@ messages_frame.place(x=179, y=200, width=650, height=375)
 msj_button=Button(ethicsPage,text="Send",font=("Arial", 15), bg="sky blue", fg="black", command=send_message)
 msj_button.place(x=825, y=594)
 
-msj_entry=Entry(ethicsPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=CENTER)
+msj_entry=Entry(ethicsPage,width=50, font=("Arial", 15),bd=2, bg="sky blue", fg="black", relief=SUNKEN, justify=LEFT)
 msj_entry.place(x=227, y=600)
 
 # Canvas for the messages frame and scrollbar
