@@ -1,10 +1,8 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
 from tkinter import ttk
 import os
-from tkinter import messagebox
-import sys
 import time
+import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING
 
@@ -35,50 +33,59 @@ clear_chat_button.place(x=120, y=594)
 def send_message():
     message = msj_entry.get()
 
-    # Read the logged-in user's ID and name from the file
+    # Read the logged-in user's ID from the file
     with open('logged_in_user.txt', 'r') as f:
-        sender_username = f.read().strip()
+        logged_in_user_id = f.read().strip()
+
+    current_time = time.time()
+
+    hajj_messages.insert_one({
+        'userID': logged_in_user_id,
+        'message': message,
+        'timestamp': current_time
+    })
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5, anchor='e')
-    message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
-    message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
+    message_frame.pack(fill=X, padx=5, pady=5, anchor='e') 
+    message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
+    message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
     
-    # Include the username when inserting the text
-    message_text.insert(END, f"{sender_username}: {message}")
-    
+    timestamp_label = Label(message_frame, text=time.ctime(current_time), font=("Arial", 8), bg="sky blue", fg="grey") 
+    timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True)
+    message_text.insert(END, f"{message}") 
     message_text.config(state=DISABLED)
     msj_entry.delete(0, END)
 
-    # Insert the message into the 'hajj messages' collection
-    hajj_messages.insert_one({
-        'sender_username': sender_username,
-        'message': message,
-        'timestamp': time.time()
-    })
+    # Update the messages frame's position in the Canvas
+    messages_canvas.update_idletasks()
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
+    
+def display_messages():
+    # Clear the messages frame
+    for widget in messages_frame.winfo_children():
+        widget.destroy()
 
-def update_messages():
-    messages = hajj_messages.find().sort([('timestamp', ASCENDING)])
+    messages = hajj_messages.find().sort('timestamp', pymongo.ASCENDING)
 
+    # Read the logged-in user's ID from the file
     with open('logged_in_user.txt', 'r') as f:
-        logged_in_username = f.read().strip()
+        logged_in_user_id = f.read().strip()
 
     for message in messages:
         message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['sender_username'] == logged_in_username else 'w')
-        
-        if message['sender_username'] != logged_in_username:
-            message_text = Text(message_frame, font=("Arial", 15), bg="white", fg="black", width=50, height=1)
-            message_text.pack(padx=5, pady=5, side=RIGHT, fill=BOTH, expand=True)
-        else:
-            message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
-            message_text.pack(padx=5, pady=5, side=LEFT, fill=BOTH, expand=True)
-        
-        message_text.insert(END, f"{message['sender_username']}: {message['message']}")
+        message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID1'] == logged_in_user_id else 'w')
+        message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="black", width=50, height=1)
+        message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
+        message_text.insert(END, f"{message['message']}")
         message_text.config(state=DISABLED)
 
+        timestamp_label = Label(message_frame, text=time.ctime(message['timestamp']), font=("Arial", 8), bg="sky blue" if message['userID1'] == logged_in_user_id else "white", fg="grey")
+        timestamp_label.pack(padx=5, pady=5, side=BOTTOM, fill=BOTH, expand=True)
+
+    # Update the messages frame's position in the Canvas
     messages_canvas.update_idletasks()
-    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))
+    messages_canvas.config(scrollregion=messages_canvas.bbox('all'))   
+
 def FAQ_clicked():
     hajjPage.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\faqs\\FAQ(hajj).py"')
@@ -190,7 +197,7 @@ messages_frame = Frame(messages_canvas)
 messages_frame_id = messages_canvas.create_window(0, 0, window=messages_frame, anchor='nw')
 
 # Call update_messages function to display the messages
-update_messages()
+display_messages()
 
 # Function to update the scroll region
 def update_scrollregion(event):

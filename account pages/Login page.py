@@ -142,7 +142,6 @@ usernameEntry=Entry(usernameFrame,width=30, font=("Arial", 15),bd=0, bg="white",
 usernameEntry.pack()
 usernameEntry.insert(0, "Username")
 
-
 # Password Frame
 passwordFrame = Frame(Login_window, bd=2, relief=SUNKEN)
 passwordFrame.place(x=650, y=270, anchor="center")
