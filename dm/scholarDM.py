@@ -11,15 +11,16 @@ client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhk
 
 db = client['Accord']
 
-scholars = db.users.find({'status': 'scholar'})
-
 scholarDM=Tk()
 scholarDM.geometry("990x660+50+50")
 scholarDM.configure(bg="white")
 scholarDM.resizable(False, False)
 
+# Fetch students from the database
+students = db.users.find({'status': 'student'})
+
 # List of signed-in users
-users = [scholar['username'] for scholar in scholars]
+users = [student['username'] for student in students]
 
 # functions
 def backButton_clicked():
