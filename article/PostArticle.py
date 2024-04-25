@@ -112,7 +112,6 @@ header.pack(padx=10, pady=10)
 like_dislike_frame = Frame(post_article_window)
 like_dislike_frame.pack(padx=10, pady=10)
 
-
 # Labels
 post_by_name_label=Label(post_article_window,text="Post By: ",font=("Arial", 17), bg="sky blue", fg="black")
 post_by_name_label.place(x=100, y=200)
