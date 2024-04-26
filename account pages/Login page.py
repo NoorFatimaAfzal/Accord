@@ -4,6 +4,10 @@ import os
 from tkinter import messagebox
 from tkinter import ttk
 from pymongo import MongoClient
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+import pickle
+from googleapiclient.discovery import build
 
 # Create a MongoDB client
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/') 
@@ -93,7 +97,7 @@ def Scholar_Home_page():
 
 def Student_Home_page():
     Login_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
+    o')s.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"
     Login_window.destroy()
 
 def toggle_password():
@@ -102,9 +106,49 @@ def toggle_password():
     else:
         passwordEntry.config(show="*")
 
-def login_with_google():
-    pass
+def login_with_google(event=None):
+    # Get the directory of the current script
+    current_dir = os.path.dirname(os.path.realpath(__file__))
 
+    # Create the path to the client_secrets.json file
+    client_secrets_file = os.path.join(current_dir, 'client_secrets.json')
+
+    # Load client secrets
+    flow = InstalledAppFlow.from_client_secrets_file(
+    client_secrets_file, ['openid', 'https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'])
+
+    # Run the flow using the server strategy.
+    credentials = flow.run_local_server(port=0)
+
+    # Save the credentials for the next run
+    with open('token.pickle', 'wb') as token:
+        pickle.dump(credentials, token)
+
+    # Now you can use the credentials object to authenticate your users with Google APIs
+    service = build('oauth2', 'v2', credentials=credentials)
+    user_info = service.userinfo().get().execute()
+
+    # The user_info object contains the user's Google profile information
+    # You can use this information to authenticate the user in your application
+    # The user_info object contains the user's Google profile information
+    # You can use this information to authenticate the user in your application
+    if not user_info or 'error' in user_info:
+        messagebox.showerror("Invalid Login", "The entered username, password or email is incorrect")
+    else:
+        # Get the user's Google email
+        google_email = user_info.get('email')
+
+        # Query the database
+        user = collection.find_one({"email": google_email})
+
+        if user is None:
+            messagebox.showerror("Invalid Login", "The entered email is not registered")
+        else:
+            messagebox.showinfo("Login", "You have successfully logged in!")
+            Login_window.withdraw()
+            os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\role.py"')
+            Login_window.destroy()
+        
 # image
 current_dir = os.path.dirname(os.path.realpath(__file__))
 image_path = os.path.join(current_dir, "vector.png")

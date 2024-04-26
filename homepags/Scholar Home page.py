@@ -2,7 +2,6 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import ttk
 import os
-from tkinter import messagebox
 import time
 from PIL import Image, ImageDraw
 from pymongo import MongoClient
@@ -22,6 +21,7 @@ with open('logged_in_user.txt', 'r') as f:
 
 # Fetch the user data
 user_data = collection.find_one({"username": username})
+user_role = user_data['role']
 
 scholar_homepage_window=Tk()
 scholar_homepage_window.geometry("990x660+50+50")
@@ -61,7 +61,7 @@ name_label.pack(padx=10, pady=10)
 name_value_label = Label(dashboard_frame, text=user_data['username'], font=("Arial", 17, "bold italic"), bg="white",relief="raised",  bd=2, fg="black", anchor="w")
 name_value_label.pack(padx=10, pady=10)
 
-status_label = Label(dashboard_frame, text="Status: Student",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
+status_label = Label(dashboard_frame, text=f"Status: {user_role}",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
 status_label.pack(padx=10, pady=10)
 
 welcome_label = Label(dashboard_frame, text="welcome \nto Accord:\n Ask about \nIslam",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")

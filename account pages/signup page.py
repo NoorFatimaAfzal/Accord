@@ -1,11 +1,16 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
 from PIL import Image, ImageTk
 from tkinter import ttk
 import os
+from googleapiclient import discovery
 from tkinter import messagebox
 from pymongo import MongoClient
 import re
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+import json
+from googleapiclient.discovery import build
+from google.oauth2.credentials import Credentials
 
 
 SignUp_window=Tk()
@@ -35,7 +40,50 @@ def login():
     SignUp_window.destroy()
 
 def sign_up_with_google():
-    pass
+    SCOPES = ['openid', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
+ 
+    # Load client secrets file
+    creds = None
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    client_secrets_file = os.path.join(current_dir, 'client_secrets.json')
+
+    # Try to load existing token
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    
+    # If there are no (valid) credentials, let the user log in
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(client_secrets_file, SCOPES)
+            creds = flow.run_local_server(port=8080)
+        
+        # Save the credentials for the next run
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+
+    # Build the API service
+    service = build('oauth2', 'v2', credentials=creds)
+    
+    user_info = service.userinfo().get().execute()
+    
+    email = user_info['email']
+    username = user_info.get('name') 
+    
+    existing_user = collection.find_one({"email": email})
+    if existing_user:
+        messagebox.showinfo("Already Registered", "This email is already registered.")
+        return
+    
+    user = {
+        "email": email,
+        "username": username,
+        "password": "google_placeholder_password"
+    }
+    collection.insert_one(user)
+
+    messagebox.showinfo("Login Successful", f"You are logged in with Google as {email}")
 
 def toggle_password_visibility(entry_widget):
     if entry_widget.cget("show") == "*":
