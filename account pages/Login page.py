@@ -97,7 +97,7 @@ def Scholar_Home_page():
 
 def Student_Home_page():
     Login_window.withdraw()
-    o')s.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
     Login_window.destroy()
 
 def toggle_password():
