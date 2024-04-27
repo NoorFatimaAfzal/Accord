@@ -3,6 +3,7 @@ from tkinter import ttk
 import os
 from tkinter import messagebox
 import time
+import webbrowser
 
 help=Tk()
 help.geometry("990x660+50+50")
@@ -176,7 +177,13 @@ canvas.bind("<Configure>", update_scrollregion)
 
 # Add a button for each user
 for account in accounts:
-    user_button = Button(inner_frame, text=account, font=("Arial", 15), bg="white", fg="black",width=55)
+    if "http" in account:
+        # Extract the URL from the account string
+        url = account.split(": ")[1]
+        # Create a button that opens the URL in the default web browser when clicked
+        user_button = Button(inner_frame, text=account, font=("Arial", 15), bg="white", fg="black",width=55, command=lambda url=url: webbrowser.open(url))
+    else:
+        user_button = Button(inner_frame, text=account, font=("Arial", 15), bg="white", fg="black",width=55)
     user_button.pack(fill=X, padx=5, pady=5)
 
 # back button
