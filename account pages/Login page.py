@@ -61,11 +61,12 @@ def Login_click():
                 collection.update_one({"username": entered_username}, {"$set": {"status": "scholar"}})
                 with open('user_data.txt', 'w') as output:
                     output.write("scholar")
+                Scholar_Home_page()  # Open the Scholar home page
             elif student_var.get()=="Yes" and scolar.get()=="No":
                 collection.update_one({"username": entered_username}, {"$set": {"status": "student"}})
                 with open('user_data.txt', 'w') as output:
                     output.write("student")
-
+                Student_Home_page()  # Open the Student home page
 
 # Call this function when the button is clicked
 def on_get_image_click():

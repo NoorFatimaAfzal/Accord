@@ -21,7 +21,7 @@ with open('logged_in_user.txt', 'r') as f:
 
 # Fetch the user data
 user_data = collection.find_one({"username": username})
-user_role = user_data['role']
+user_role = user_data['status']
 
 scholar_homepage_window=Tk()
 scholar_homepage_window.geometry("990x660+50+50")

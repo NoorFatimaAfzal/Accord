@@ -162,7 +162,7 @@ question1 = "Why is Salah important in Islam?"
 question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947,width=83)
 question_label1.pack(padx=10, pady=10)
 
-answer1 = Label(frame1, text="Salah is a fundamental act of worship in Islam and serves as a direct means of communication between a believer and Allah.", font=("Arial", 15), bg="sky blue", fg="black")
+answer1 = Label(frame1, text="Salah serves as a direct means of communication between a believer and Allah.", font=("Arial", 15), bg="sky blue", fg="black")
 answer1.pack(padx=10, pady=10)
 
 # Buttons for question 1
@@ -185,7 +185,7 @@ question2 = "How many times a day do Muslims pray?"
 question_label2 = Label(frame2, text=question2, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
 question_label2.pack(padx=10, pady=10)
 
-answer2 = Label(frame2, text="Muslims are required to perform Salah five times a day at prescribed times: Fajr, Dhuhr, Asr, Maghrib, and Isha.", font=("Arial", 15), bg="sky blue", fg="black")
+answer2 = Label(frame2, text="Muslims are required to perform Salah five times a day.", font=("Arial", 15), bg="sky blue", fg="black")
 answer2.pack(padx=10, pady=10)
 
 # Buttons for question 2
@@ -208,7 +208,7 @@ question3 = "What is the significance of Friday Prayer (Jumu'ah)?"
 question_label3 = Label(frame3, text=question3, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
 question_label3.pack(padx=10, pady=10)
 
-answer3 = Label(frame3, text="Friday Prayer is a congregational prayer held every Friday, which serves as a weekly gathering for Muslims to worship collectively.", font=("Arial", 15), bg="sky blue", fg="black")
+answer3 = Label(frame3, text="Friday Prayer is a congregational prayer held every Friday.", font=("Arial", 15), bg="sky blue", fg="black")
 answer3.pack(padx=10, pady=10)
 
 # Buttons for question 3
@@ -231,7 +231,7 @@ question4 = "What is the role of the Adhan (call to prayer) in Salah?"
 question_label4 = Label(frame4, text=question4, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
 question_label4.pack(padx=10, pady=10)
 
-answer4 = Label(frame4, text="The Adhan serves as a call to remind Muslims of the time for Salah and invites them to the congregation. It is recited publicly by a muezzin (caller to prayer) from a mosque's minaret.", font=("Arial", 15), bg="sky blue", fg="black")
+answer4 = Label(frame4, text="The Adhan serves as a call to remind Muslims of the time for Salah.", font=("Arial", 15), bg="sky blue", fg="black")
 answer4.pack(padx=10, pady=10)
 
 # Buttons for question 4
