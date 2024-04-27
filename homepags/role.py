@@ -3,6 +3,8 @@ from tkinter import ttk
 import os
 import time
 from pymongo import MongoClient
+from tkinter import messagebox
+from tkinter import filedialog, Tk
 
 role_window=Tk()
 role_window.geometry("990x660+50+50")
@@ -24,15 +26,9 @@ with open('logged_in_user.txt', 'r') as f:
 
 # Function to handle button click
 def handle_click(role):
-    collection.update_one({"username": username}, {"$set": {"role": role}})
-    if role == "scholar":
-        role_window.withdraw()
-        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
-        role_window.destroy()
-    else:
-        role_window.withdraw()
-        os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
-        role_window.destroy()
+    collection.update_one({"username": username}, {"$set": {"status": role}})
+    get_image_button.place(x=490, y=500, anchor="center")
+    go_to_home_page_button.place(x=490, y=550, anchor="center")
 
 # Create the label
 role_label = Label(role_window, text="What is your status?", bg="sky blue", fg="black", font=("Arial", 20, "bold"))
@@ -59,6 +55,16 @@ def open_help(page):
         f.write(page)
     role_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    role_window.destroy()
+
+def Scholar_Home_page():
+    role_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    role_window.destroy()
+
+def Student_Home_page():
+    role_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Student Home page.py"')
     role_window.destroy()
 
 # Frame for time
@@ -123,6 +129,47 @@ back_button.pack(side=LEFT, padx=20, pady=5)
 help_button=Button(time_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("Scholar Home page"))
 help_button.pack(side=RIGHT, padx=20, pady=5)
 
+# Function to open the file dialog and get the image file path
+def get_image():
+    image_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png")])
+    return image_path
 
+# Call this function when the button is clicked
+def on_get_image_click():
+    image_path = get_image()
+    if image_path:
+        # Get the username
+        with open('logged_in_user.txt', 'r') as f:
+            username = f.read().strip()
+
+        # Store the image path in the database
+        collection.update_one({"username": username}, {"$set": {"image_path": image_path}})
+
+        # Show a success message
+        messagebox.showinfo("Success", "Image uploaded successfully")
+
+# Button to get the image
+get_image_button = Button(role_window, text="Upload Your Image ", command=on_get_image_click, bg="sky blue", fg="black", font=("Arial", 15, "bold"))
+get_image_button.place(x=490, y=500, anchor="center") 
+
+# Function to handle navigation to home page
+def go_to_home_page():
+    # Query the database
+    user = collection.find_one({"username": username})
+
+    if user is None:
+        messagebox.showerror("Invalid User", "The user does not exist")
+    else:
+        status = user.get("status")
+        if status == "scholar":
+            Scholar_Home_page()
+        elif status == "student":
+            Student_Home_page()
+        else:
+            messagebox.showerror("Invalid Status", "You must be a scholar or a student")
+
+# Button to go to home page
+go_to_home_page_button = Button(role_window, text="Go to Home page", command=go_to_home_page, bg="sky blue", fg="black", font=("Arial", 15, "bold"))
+go_to_home_page_button.place(x=490, y=550, anchor="center")
 
 role_window.mainloop()
