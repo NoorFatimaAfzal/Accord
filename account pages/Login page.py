@@ -61,12 +61,10 @@ def Login_click():
                 collection.update_one({"username": entered_username}, {"$set": {"status": "scholar"}})
                 with open('user_data.txt', 'w') as output:
                     output.write("scholar")
-                Scholar_Home_page()
             elif student_var.get()=="Yes" and scolar.get()=="No":
                 collection.update_one({"username": entered_username}, {"$set": {"status": "student"}})
                 with open('user_data.txt', 'w') as output:
                     output.write("student")
-                Student_Home_page()
 
 
 # Call this function when the button is clicked
@@ -145,10 +143,12 @@ def login_with_google(event=None):
             messagebox.showerror("Invalid Login", "The entered email is not registered")
         else:
             messagebox.showinfo("Login", "You have successfully logged in!")
+            with open('logged_in_user.txt', 'w') as f:
+                f.write(user['username'])
             Login_window.withdraw()
             os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\role.py"')
             Login_window.destroy()
-        
+                        
 # image
 current_dir = os.path.dirname(os.path.realpath(__file__))
 image_path = os.path.join(current_dir, "vector.png")
