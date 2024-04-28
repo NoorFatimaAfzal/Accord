@@ -198,11 +198,11 @@ passwordEntry.insert(0, "Password")
 show_password_button = ttk.Button(passwordFrame, image=eye_image, command=toggle_password, style="Toolbutton")
 passwordEntry.pack(side="left")
 show_password_button.pack(side="right", padx=(0, 10)) 
+
 def email_enter(event):
     if emailEntry.get() == "Email":
         emailEntry.delete(0, END)
 emailEntry.bind("<FocusIn>",email_enter)
-
 
 def email_leave(event):
     email = emailEntry.get()

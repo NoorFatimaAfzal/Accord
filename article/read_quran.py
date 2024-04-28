@@ -1,5 +1,9 @@
 import tkinter as tk
 import requests
+import pygame.mixer
+
+# Initialize the mixer module
+pygame.mixer.init()
 
 root = tk.Tk()
 root.title("Quran Surahs")
@@ -13,13 +17,7 @@ def fetch_data():
 # Fetch Surah data from API
 quran_data = fetch_data()
 
-# Frame for Ayah labels and Scrollbars
-ayah_frame = tk.Frame(root)
-ayah_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 
-# Vertical Scrollbar
-vscrollbar = tk.Scrollbar(ayah_frame)
-vscrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
 # Function to handle Surah selection
 def surah_selected(event):
@@ -40,6 +38,50 @@ def surah_selected(event):
         ayah_text.insert(tk.END, f" {ayah['text']}\n\n")
     # Disable the Text widget
     ayah_text.config(state=tk.DISABLED)
+    global audio_urls
+    audio_urls = [ayah['audio'] for ayah in audio_data['surahs'][selected_surah]['ayahs']]
+
+
+# Frame for Ayah labels and Scrollbars
+ayah_frame = tk.Frame(root)
+ayah_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
+
+
+import tempfile
+import shutil
+
+# Initialize the mixer module
+pygame.mixer.init()
+
+# Fetch the audio data from the API
+audio_response = requests.get('https://api.alquran.cloud/v1/quran/ar.alafasy')
+audio_data = audio_response.json()['data']
+
+
+# Function to play audio
+def play_audio():
+    if pygame.mixer.music.get_busy():
+        return
+    if audio_urls:
+        # Download the first audio file to a temporary file
+        audio_url = audio_urls.pop(0)
+        audio_response = requests.get(audio_url, stream=True)
+        if audio_response.status_code == 200:
+            with tempfile.NamedTemporaryFile(delete=False) as fp:
+                audio_path = fp.name
+                audio_response.raw.decode_content = True
+                shutil.copyfileobj(audio_response.raw, fp)
+            pygame.mixer.music.load(audio_path)
+            pygame.mixer.music.play()
+
+# Play Audio Button
+play_button = tk.Button(ayah_frame, text="Play Audio", command=play_audio)
+play_button.pack()
+
+
+# Vertical Scrollbar
+vscrollbar = tk.Scrollbar(ayah_frame)
+vscrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
 # Text widget for Ayahs
 ayah_text = tk.Text(ayah_frame, wrap=tk.WORD, yscrollcommand=vscrollbar.set, font=('Arial', 16))
@@ -62,5 +104,6 @@ surah_list.pack(side=tk.LEFT, fill=tk.Y, expand=False)
 
 # Bind Surah selection event
 surah_list.bind("<<ListboxSelect>>", surah_selected)
+
 
 root.mainloop()
