@@ -21,15 +21,10 @@ ayah_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 vscrollbar = tk.Scrollbar(ayah_frame)
 vscrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-# Text widget for Ayahs
-ayah_text = tk.Text(ayah_frame, wrap=tk.WORD, yscrollcommand=vscrollbar.set, font=('Arial', 16))
-ayah_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-# Configure Scrollbar to command Text widget view
-vscrollbar.config(command=ayah_text.yview)
-
 # Function to handle Surah selection
 def surah_selected(event):
+    # Enable the Text widget
+    ayah_text.config(state=tk.NORMAL)
     selected_surah = surah_list.curselection()[0]
     surah_id = quran_data[selected_surah]['number']
     response = requests.get(f'http://api.alquran.cloud/v1/surah/{surah_id}/en.asad')
@@ -38,12 +33,26 @@ def surah_selected(event):
     ayah_text.delete('1.0', tk.END)
     # Insert "Bismillah" before each Surah except Surah At-Tawbah
     if surah_id != 9:
-        ayah_text.insert(tk.END, "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ\n\n")
+        ayah_text.insert(tk.END, "بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ\n\n", 'center')
     # Insert each Ayah into the Text widget
     for ayah in surah_data['ayahs']:
-        ayah_text.insert(tk.END, f"Ayah {ayah['numberInSurah']}: {ayah['text']}\n\n")
+        ayah_text.insert(tk.END, f"Ayah {ayah['numberInSurah']}:", 'bold')
+        ayah_text.insert(tk.END, f" {ayah['text']}\n\n")
     # Disable the Text widget
     ayah_text.config(state=tk.DISABLED)
+
+# Text widget for Ayahs
+ayah_text = tk.Text(ayah_frame, wrap=tk.WORD, yscrollcommand=vscrollbar.set, font=('Arial', 16))
+ayah_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+# Configure Scrollbar to command Text widget view
+vscrollbar.config(command=ayah_text.yview)
+
+# Configure a tag for centered text
+ayah_text.tag_configure('center', justify='center')
+
+# Configure a tag for bold text
+ayah_text.tag_configure('bold', font=('Arial', 16, 'bold'))
 
 # Listbox for Surah names
 surah_list = tk.Listbox(root, selectmode=tk.SINGLE, width=20, font=('Arial', 16))
