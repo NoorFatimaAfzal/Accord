@@ -64,8 +64,15 @@ name_value_label.pack(padx=10, pady=10)
 status_label = Label(dashboard_frame, text=f"Status: {user_role}",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
 status_label.pack(padx=10, pady=10)
 
-welcome_label = Label(dashboard_frame, text="welcome \nto Accord:\n Ask about \nIslam",font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w")
-welcome_label.pack(padx=10, pady=10)
+# Add this function
+def open_quran_page():
+    scholar_homepage_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\read_quran.py"')
+    scholar_homepage_window.destroy()
+
+# Add this button
+read_quran_button = Button(dashboard_frame, text="Read Quran", font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w", command=open_quran_page)
+read_quran_button.pack(padx=10, pady=40)
 
 # Canvas for the vertical line
 canvas = Canvas(scholar_homepage_window, width=2, height=660, bg="black")

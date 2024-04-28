@@ -88,7 +88,7 @@ def open_quran_page():
 
 # Add this button
 read_quran_button = Button(dashboard_frame, text="Read Quran", font=("Arial", 17, "bold italic"), bg="white", fg="black", bd=2, relief="raised", anchor="w", command=open_quran_page)
-read_quran_button.pack(padx=10, pady=10)
+read_quran_button.pack(padx=10, pady=40)
 
 # Canvas for the vertical line
 canvas = Canvas(student_homepage_window, width=2, height=660, bg="black")
