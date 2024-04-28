@@ -57,11 +57,12 @@ pygame.mixer.init()
 audio_response = requests.get('https://api.alquran.cloud/v1/quran/ar.alafasy')
 audio_data = audio_response.json()['data']
 
+# Define a custom event type for when a music stream ends
+SONG_END = pygame.USEREVENT + 1
+pygame.mixer.music.set_endevent(SONG_END)
 
 # Function to play audio
 def play_audio():
-    if pygame.mixer.music.get_busy():
-        return
     if audio_urls:
         # Download the first audio file to a temporary file
         audio_url = audio_urls.pop(0)
@@ -73,6 +74,8 @@ def play_audio():
                 shutil.copyfileobj(audio_response.raw, fp)
             pygame.mixer.music.load(audio_path)
             pygame.mixer.music.play()
+
+
 
 # Play Audio Button
 play_button = tk.Button(ayah_frame, text="Play Audio", command=play_audio)
@@ -105,5 +108,14 @@ surah_list.pack(side=tk.LEFT, fill=tk.Y, expand=False)
 # Bind Surah selection event
 surah_list.bind("<<ListboxSelect>>", surah_selected)
 
+# Initialize the Pygame video system
+pygame.display.init()
+
+# Main loop
+while True:
+    for event in pygame.event.get():
+        if event.type == SONG_END:
+            play_audio()
+    root.update()
 
 root.mainloop()
