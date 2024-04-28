@@ -1,6 +1,7 @@
 import tkinter as tk
 import requests
 import pygame.mixer
+import os
 
 # Initialize the mixer module
 pygame.mixer.init()
@@ -75,20 +76,13 @@ def play_audio():
             pygame.mixer.music.load(audio_path)
             pygame.mixer.music.play()
 
-
-
-# Play Audio Button
-play_button = tk.Button(ayah_frame, text="Play Audio", command=play_audio)
-play_button.pack()
-
-
 # Vertical Scrollbar
 vscrollbar = tk.Scrollbar(ayah_frame)
-vscrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+vscrollbar.grid(row=1, column=3, sticky='ns')
 
 # Text widget for Ayahs
 ayah_text = tk.Text(ayah_frame, wrap=tk.WORD, yscrollcommand=vscrollbar.set, font=('Arial', 16))
-ayah_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+ayah_text.grid(row=1, column=0, columnspan=3, sticky='nsew')
 
 # Configure Scrollbar to command Text widget view
 vscrollbar.config(command=ayah_text.yview)
@@ -111,6 +105,39 @@ surah_list.bind("<<ListboxSelect>>", surah_selected)
 # Initialize the Pygame video system
 pygame.display.init()
 
+# Function to go back to the previous page
+def go_back():
+    # Read the previous page from the file
+    with open('previous_page.txt', 'r') as f:
+        previous_page = f.read().strip()
+    # Withdraw the current window
+    root.withdraw()
+    # Open the previous page
+    os.system(f'python "{previous_page}"')
+    # Destroy the current window
+    root.destroy()
+
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
+    root.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    root.destroy()
+
+
+# Play Audio Button
+play_button = tk.Button(ayah_frame, text="Play Audio", font=("Arial", 15), bg="sky blue", fg="black",  command=play_audio)
+play_button.grid(row=0, column=1, padx=20, pady=5)
+
+# back button
+back_button = tk.Button(ayah_frame, text="Back", font=("Arial", 15), bg="sky blue", fg="black", command=go_back)
+back_button.grid(row=0, column=0, padx=20, pady=5)
+
+# help button
+help_button=tk.Button(ayah_frame,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=lambda: open_help("PostArticle"))
+help_button.grid(row=0, column=2, padx=20, pady=5)
+
+
 # Main loop
 while True:
     for event in pygame.event.get():
@@ -118,4 +145,3 @@ while True:
             play_audio()
     root.update()
 
-root.mainloop()

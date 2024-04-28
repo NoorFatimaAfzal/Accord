@@ -19,6 +19,9 @@ collection = db["users"]
 with open('logged_in_user.txt', 'r') as f:
     username = f.read().strip()
 
+with open('previous_page.txt', 'w') as f:
+    f.write("C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py")
+
 # Fetch the user data
 user_data = collection.find_one({"username": username})
 
