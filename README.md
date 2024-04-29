@@ -67,10 +67,11 @@ Create a website similar to Discord but specifically tailored for Religious puro
 - Real-time messaging functionality for group discussions in channels.
 - Direct messaging for private one-on-one conversations.
 - Notifications for Queries will be sent to scholar.
+- Notification for Queries' answers will be sent to student.
 
 **Channel Management**
 
-- Creation, joining, and leaving of channels.
+- Creation of Channels on different topics.
 - Categorization of channels based on Religious topics or modules.
 - Ability to search relevant channels.
 
@@ -89,12 +90,11 @@ The structure of the app is divided into different pages but with content depend
 
 - The **Home** page consists of 2 sections <br> 1.channels <b> 2.Direct messages list.They will be loaded using File Handling depending on the user clicks<br>
 
-- The **header** is visible on all pages it consists of a search bar and a settings icon <br>
+- The **header** is visible on all pages it consists of a time label, back button and help button. <br>
 
+- The **Header Search bar** is used to find another user.<br>
 
-- The **Header Search bar** is used to find another user or find a specific channel the user is asked to type the @ symbol for users list or # for channels
-
-- **Messages** contains an inbox to do the direct private messages to scholars. <br>
+- **Messages** contains an inbox to do the direct private messages to scholars and Students. <br>
 
 ### Skeleton<hr>
 
@@ -103,12 +103,14 @@ The wireframes for mobile and desktop were created with [Balsamiq]() tool and ca
 
 <details>
   <summary>Wire Frames</summary>
-  <h4>Channels list</h4>
-  <!-- <img src="docs/read-me-images/wireframes/home-tab.png"><br> -->
-  <h4>Delete account modal</h4>
-  <!-- <img src="docs/read-me-images/wireframes/delete-account.png"><br> -->
+  <h4>Sign up page</h4>
+  <!-- <img src="docs/read-me-images/wireframes/register-page.png"><br> -->
   <h4>Login page</h4>
   <!-- <img src="docs/read-me-images/wireframes/login-page.png"><br> -->
+  <h4>Channels list</h4>
+  <img src="readmePics/listOfChannels.jpg"><br>
+  <h4>Help Page</h4>
+  <img src="docs/read-me-images/wireframes/delete-account.png"><br>
   <h4>Logout page</h4>
   <!-- <img src="docs/read-me-images/wireframes/logout.png"><br> -->
   <h4>Messages</h4>
@@ -117,8 +119,6 @@ The wireframes for mobile and desktop were created with [Balsamiq]() tool and ca
   <!-- <img src="docs/read-me-images/wireframes/messages-tab.png"><br> -->
   <h4>View profile</h4>
   <!-- <img src="docs/read-me-images/wireframes/profile-tab.png"><br> -->
-  <h4>Sign up page</h4>
-  <!-- <img src="docs/read-me-images/wireframes/register-page.png"><br> -->
   <h4>Header menu drop-down</h4>
   <!-- <img src="docs/read-me-images/wireframes/settings-drop-down.png"><br> -->
 </details>
