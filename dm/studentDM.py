@@ -1,11 +1,11 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
-from tkinter import messagebox
 import time
 from pymongo import MongoClient
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/') 
 
@@ -21,8 +21,33 @@ studentDM.resizable(False, False)
 # List of signed-in users
 users = [scholar['username'] for scholar in scholars]
 
-# functions
+
 def DMperson_button_clicked(DMperson):
+    # Fetch the email of the selected user from the database
+    scholar_data = db.users.find_one({'username': DMperson})
+    scholar_email = scholar_data['email']
+
+    # Set up the SMTP server
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+
+    # Login to the email account
+    server.login('Accordwithmongodb0987654321@gmail.com', 'hrlm vsme qpfz lxrt')
+
+    # Create the email
+    msg = MIMEMultipart()
+    msg['From'] = 'Accordwithmongodb0987654321@gmail.com'
+    msg['To'] = scholar_email
+    msg['Subject'] = 'Notification'
+    body = 'You are about to receive message from a scholar. Go to Accord to check the answer of your query. You can access the app <a href="https://github.com/NoorFatimaAfzal/Acoord_exe/blob/main/Accord.cmd">here</a>.'
+    msg.attach(MIMEText(body, 'html'))
+
+    # Send the email
+    server.send_message(msg)
+
+    # Logout from the email account
+    server.quit()
+
     studentDM.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DmpersonFromStudent.py" {DMperson}')
     studentDM.destroy()

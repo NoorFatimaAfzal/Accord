@@ -1,11 +1,11 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
-from tkinter import messagebox
 import time
 from pymongo import MongoClient
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/') 
 
@@ -29,6 +29,31 @@ def backButton_clicked():
     scholarDM.destroy()
 
 def DMperson_button_clicked(DMperson):
+    # Fetch the email of the selected user from the database
+    user_data = db.users.find_one({'username': DMperson})
+    user_email = user_data['email']
+
+    # Set up the SMTP server
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+
+    # Login to the email account
+    server.login('Accordwithmongodb0987654321@gmail.com', 'hrlm vsme qpfz lxrt')
+
+    # Create the email
+    msg = MIMEMultipart()
+    msg['From'] = 'Accordwithmongodb0987654321@gmail.com'
+    msg['To'] = user_email
+    msg['Subject'] = 'Notification'
+    body = 'You are about to receive message from a student. Go to Accord to assist your students.'
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Send the email
+    server.send_message(msg)
+
+    # Logout from the email account
+    server.quit()
+
     scholarDM.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\DmpersonFromScholar.py"')
     scholarDM.destroy()

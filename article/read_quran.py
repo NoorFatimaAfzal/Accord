@@ -5,7 +5,7 @@ import os
 import tempfile
 import shutil
 
-
+# audio ko play karny k liye 
 pygame.mixer.init()
 
 root = tk.Tk()
@@ -119,4 +119,3 @@ while True:
         if event.type == SONG_END:
             play_audio()
     root.update()
-
