@@ -99,20 +99,20 @@ The structure of the app is divided into different pages but with content depend
 ### Skeleton<hr>
 
 **Wireframes**<br>
-The wireframes for mobile and desktop were created with [Balsamiq]() tool and can be viewed [here]()<br>
+The wireframes for desktop were created with [Balsamiq]() tool and can be viewed [here]()<br>
 
 <details>
   <summary>Wire Frames</summary>
+  <h4>Loading page</h4>
+  <img src="readmePics/loading.jpg"><br>
   <h4>Sign up page</h4>
-  <!-- <img src="docs/read-me-images/wireframes/register-page.png"><br> -->
+  <img src="readmePics/signup.jpg"><br>
   <h4>Login page</h4>
-  <!-- <img src="docs/read-me-images/wireframes/login-page.png"><br> -->
+  <img src="readmePics/Login.jpg"><br>
   <h4>Channels list</h4>
   <img src="readmePics/listOfChannels.jpg"><br>
   <h4>Help Page</h4>
-  <img src="docs/read-me-images/wireframes/delete-account.png"><br>
-  <h4>Logout page</h4>
-  <!-- <img src="docs/read-me-images/wireframes/logout.png"><br> -->
+  <img src="readmePics/help.jpg"><br>
   <h4>Messages</h4>
   <!-- <img src="docs/read-me-images/wireframes/messages-page.png"><br> -->
   <h4>Inbox</h4>
