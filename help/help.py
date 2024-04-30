@@ -9,6 +9,10 @@ help=Tk()
 help.geometry("990x660+50+50")
 help.configure(bg="white")
 help.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+help.iconbitmap(logo_path)
+help.title("Help Desk")
 
 # List of conatcts
 accounts = ["Cell no. 0327-8734825","Email: noorfatimaafzalbutt@gmail.com", "LinkedIn: https://www.linkedin.com/in/noor-fatima-afzal", "GitHub: https://github.com/NoorFatimaAfzal","HackerRank: https://www.hackerrank.com/profile/noorfatimaafzal1"]

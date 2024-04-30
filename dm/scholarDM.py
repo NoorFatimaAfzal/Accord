@@ -15,6 +15,10 @@ scholarDM=Tk()
 scholarDM.geometry("990x660+50+50")
 scholarDM.configure(bg="white")
 scholarDM.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+scholarDM.iconbitmap(logo_path)
+scholarDM.title("Scholar DM")
 
 # Fetch students from the database
 students = db.users.find({'status': 'student'})

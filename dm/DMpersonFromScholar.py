@@ -23,6 +23,10 @@ DM_Pages=Tk()
 DM_Pages.geometry("990x660+50+50")
 DM_Pages.configure(bg="white")
 DM_Pages.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+DM_Pages.iconbitmap(logo_path)
+DM_Pages.title("Direct Message")
 
 # functions 
 def clear_chat():
