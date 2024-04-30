@@ -6,14 +6,20 @@ from tkinter import ttk
 
 # Root window
 root = Tk()
-current_dir = os.path.dirname(os.path.realpath(__file__))
-image_path = os.path.join(current_dir, "vector.png")
-image = PhotoImage(file=image_path)
-
 width = 530
 height = 430
 root.wm_attributes('-fullscreen', True)
 root.configure(bg="#2f6c60")
+root.title("Accord")
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+root.iconbitmap(logo_path)
+
+current_dir = os.path.dirname(os.path.realpath(__file__))
+image_path = os.path.join(current_dir, "vector.png")
+image = PhotoImage(file=image_path)
+
+
 
 # Exit button
 top_frame = Frame(root, bg="#2f6c60")

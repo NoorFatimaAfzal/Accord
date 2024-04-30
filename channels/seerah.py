@@ -6,17 +6,20 @@ import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING
 
+seerahPage=Tk()
+seerahPage.geometry("990x660+50+50")
+seerahPage.configure(bg="white")
+seerahPage.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+seerahPage.iconbitmap(logo_path)
+seerahPage.title("Ask about Seerah")
+
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 
 db = client['Accord']
 
 seerah_messages = db['seerah messages']
-
-
-seerahPage=Tk()
-seerahPage.geometry("990x660+50+50")
-seerahPage.configure(bg="white")
-seerahPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")

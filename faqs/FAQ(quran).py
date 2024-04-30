@@ -4,6 +4,15 @@ import os
 import time
 from pymongo import MongoClient
 
+quranPage=Tk()
+quranPage.geometry("990x660+50+50")
+quranPage.configure(bg="white")
+quranPage.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+quranPage.iconbitmap(logo_path)
+quranPage.title("FAQs about Quran")
+
 # Connect to MongoDB
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 db = client['Accord']
@@ -24,11 +33,6 @@ if dislikes is None:
 else:
     dislikes = dislikes['count']
 
-
-quranPage=Tk()
-quranPage.geometry("990x660+50+50")
-quranPage.configure(bg="white")
-quranPage.resizable(False, False)
 
 # fnctions
 def go_back():

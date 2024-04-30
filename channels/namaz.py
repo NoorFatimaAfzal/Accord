@@ -6,16 +6,20 @@ import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING
 
+namazPage=Tk()
+namazPage.geometry("990x660+50+50")
+namazPage.configure(bg="white")
+namazPage.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+namazPage.iconbitmap(logo_path)
+namazPage.title("Ask about Namaz")
+
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 
 db = client['Accord']
 
 namaz_messages = db['namaz messages']
-
-namazPage=Tk()
-namazPage.geometry("990x660+50+50")
-namazPage.configure(bg="white")
-namazPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")

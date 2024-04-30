@@ -17,6 +17,10 @@ SignUp_window=Tk()
 SignUp_window.geometry("990x660+50+50")
 SignUp_window.configure(bg="white")
 SignUp_window.resizable(False, False)   
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+SignUp_window.iconbitmap(logo_path)
+SignUp_window.title("Sign Up")
 
 # Create a MongoDB client
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')

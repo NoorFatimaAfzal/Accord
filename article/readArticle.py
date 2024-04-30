@@ -4,6 +4,15 @@ import os
 import time
 from pymongo import MongoClient
 
+readArticle=Tk()
+readArticle.geometry("990x660+50+50")
+readArticle.configure(bg="white")
+readArticle.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+readArticle.iconbitmap(logo_path)
+readArticle.title("Read Article")
+
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 db = client['Accord']
 articles_collection = db['Articles']
@@ -11,11 +20,6 @@ articles_collection = db['Articles']
 articles = list(articles_collection.find({}, {"_id": 0, "post_by": 1, "post_title": 1, "post_article": 1}))
 
 articles = list(articles_collection.find({}, {"_id": 0, "post_by": 1, "post_title": 1, "post_article": 1}))
-
-readArticle=Tk()
-readArticle.geometry("990x660+50+50")
-readArticle.configure(bg="white")
-readArticle.resizable(False, False)
 
 # fnctions
 def go_back():

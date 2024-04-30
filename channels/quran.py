@@ -6,16 +6,20 @@ import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING
 
+quranPage=Tk()
+quranPage.geometry("990x660+50+50")
+quranPage.configure(bg="white")
+quranPage.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+quranPage.iconbitmap(logo_path)
+quranPage.title("Ask about Quran")
+
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 
 db = client['Accord']
 
 quran_messages = db['quran messages']
-
-quranPage=Tk()
-quranPage.geometry("990x660+50+50")
-quranPage.configure(bg="white")
-quranPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")

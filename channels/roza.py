@@ -6,16 +6,20 @@ import pymongo
 from pymongo import MongoClient
 from pymongo import ASCENDING
 
+rozaPage=Tk()
+rozaPage.geometry("990x660+50+50")
+rozaPage.configure(bg="white")
+rozaPage.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+rozaPage.iconbitmap(logo_path)
+rozaPage.title("Ask about Roza")
+
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 
 db = client['Accord']
 
 roza_messages = db['roza messages']
-
-rozaPage=Tk()
-rozaPage.geometry("990x660+50+50")
-rozaPage.configure(bg="white")
-rozaPage.resizable(False, False)
 
 style = ttk.Style()
 style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")

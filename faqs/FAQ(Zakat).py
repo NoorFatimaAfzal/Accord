@@ -4,6 +4,15 @@ import os
 import time
 from pymongo import MongoClient
 
+zakatPage=Tk()
+zakatPage.geometry("990x660+50+50")
+zakatPage.configure(bg="white")
+zakatPage.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+zakatPage.iconbitmap(logo_path)
+zakatPage.title("FAQs about Zakat")
+
 # Connect to MongoDB
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 db = client['Accord']
@@ -23,12 +32,6 @@ if dislikes is None:
     dislikes = 0
 else:
     dislikes = dislikes['count']
-
-
-zakatPage=Tk()
-zakatPage.geometry("990x660+50+50")
-zakatPage.configure(bg="white")
-zakatPage.resizable(False, False)
 
 # fnctions
 def go_back():

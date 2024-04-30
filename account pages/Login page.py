@@ -3,28 +3,28 @@ from PIL import Image, ImageTk
 import os
 from tkinter import messagebox
 from tkinter import ttk
+from tkinter import filedialog
 from pymongo import MongoClient
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import pickle
 from googleapiclient.discovery import build
 
-# Create a MongoDB client
-client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/') 
-
-# Connect to your database
-db = client["Accord"] 
-
-# Connect to your collection
-collection = db["users"]
-
 Login_window=Tk()
 Login_window.geometry("990x660+50+50")
 Login_window.configure(bg="white")
-Login_window.resizable(False, False)   
+Login_window.resizable(False, False)  
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+Login_window.iconbitmap(logo_path)
+Login_window.title("Login Page")
 
-from tkinter import filedialog
+client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/') 
 
+db = client["Accord"] 
+
+collection = db["users"]
+ 
 # Function to open the file dialog and get the image file path
 def get_image():
     image_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg *.png")])

@@ -1,12 +1,18 @@
 from tkinter import *
-from tkinter.ttk import Progressbar
-from PIL import Image, ImageTk
 from tkinter import ttk
 import os
-from tkinter import messagebox
 import sys
 import time
 from pymongo import MongoClient
+
+Articles=Tk()
+Articles.geometry("990x660+50+50")
+Articles.configure(bg="white")
+Articles.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+Articles.iconbitmap(logo_path)
+Articles.title("Article")
 
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 db = client['Accord']
@@ -31,13 +37,6 @@ else:
     article_content = "Article Content" 
     likes = 0
     dislikes = 0 
-
-    
-Articles=Tk()
-Articles.geometry("990x660+50+50")
-Articles.configure(bg="white")
-Articles.resizable(False, False)
-
 
 # fnctions
 def go_back():

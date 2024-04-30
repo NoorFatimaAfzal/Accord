@@ -4,6 +4,15 @@ import os
 import time
 from pymongo import MongoClient
 
+hadithPage=Tk()
+hadithPage.geometry("990x660+50+50")
+hadithPage.configure(bg="white")
+hadithPage.resizable(False, False)
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "logo.ico")
+hadithPage.iconbitmap(logo_path)
+hadithPage.title("FAQs about Hadith")
+
 # Connect to MongoDB
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 db = client['Accord']
@@ -23,12 +32,6 @@ if dislikes is None:
     dislikes = 0
 else:
     dislikes = dislikes['count']
-
-
-hadithPage=Tk()
-hadithPage.geometry("990x660+50+50")
-hadithPage.configure(bg="white")
-hadithPage.resizable(False, False)
 
 # fnctions
 def go_back():
