@@ -162,7 +162,7 @@ question1 = "What is the Quran?"
 question_label1 = Label(frame1, text=question1, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947,width=83)
 question_label1.pack(padx=10, pady=10)
 
-answer1 = Label(frame1, text="The Quran is the holy book of Islam revealed to the Prophet Muhammad over a period of approximately 23 years.", font=("Arial", 15), bg="sky blue", fg="black")
+answer1 = Label(frame1, text="The Quran is the holy book of Islam.", font=("Arial", 15), bg="sky blue", fg="black")
 answer1.pack(padx=10, pady=10)
 
 # Buttons for question 1
@@ -209,7 +209,7 @@ question3 = "How is the Quran structured?"
 question_label3 = Label(frame3, text=question3, font=("Arial", 15), bg="sky blue", fg="black", wraplength=947, width=83)
 question_label3.pack(padx=10, pady=10)
 
-answer3 = Label(frame3, text="The Quran is divided into 114 chapters called Surahs, which vary in length. Each Surah is further divided into verses called Ayahs. ", font=("Arial", 15), bg="sky blue", fg="black")
+answer3 = Label(frame3, text="The Quran is divided into 114 chapters called Surahs. Each Surah is further divided into verses called Ayahs. ", font=("Arial", 15), bg="sky blue", fg="black")
 answer3.pack(padx=10, pady=10)
 
 # Buttons for question 3

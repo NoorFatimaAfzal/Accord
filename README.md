@@ -98,8 +98,8 @@ The structure of the app is divided into different pages but with content depend
 
 ### Skeleton<hr>
 
-**Wireframes**<br>
-The wireframes for desktop were created with [Balsamiq]() tool and can be viewed [here]()<br>
+**Structures**<br>
+The structures for desktop  can be viewed here<br>
 
 <details>
   <summary>Wire Frames</summary>
@@ -113,14 +113,14 @@ The wireframes for desktop were created with [Balsamiq]() tool and can be viewed
   <img src="readmePics/listOfChannels.jpg"><br>
   <h4>Help Page</h4>
   <img src="readmePics/help.jpg"><br>
-  <h4>Messages</h4>
-  <!-- <img src="docs/read-me-images/wireframes/messages-page.png"><br> -->
-  <h4>Inbox</h4>
-  <!-- <img src="docs/read-me-images/wireframes/messages-tab.png"><br> -->
-  <h4>View profile</h4>
-  <!-- <img src="docs/read-me-images/wireframes/profile-tab.png"><br> -->
-  <h4>Header menu drop-down</h4>
-  <!-- <img src="docs/read-me-images/wireframes/settings-drop-down.png"><br> -->
+  <h4>Post Articles</h4>
+  <img src="readmePics/PArticles.jpg"><br>
+  <h4>Read Articles</h4>
+  <img src="readmePics/RArticles.jpg"><br>
+  <h4>FAQs</h4>
+  <img src="readmePics/FAQs.jpg"><br>
+  <h4>Quran</h4>
+  <img src="readmePics/Q.jpg"><br>
 </details>
 </details><br>
 
