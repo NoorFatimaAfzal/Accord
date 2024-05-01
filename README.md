@@ -9,6 +9,7 @@
 - [Accord - Ask about Islam](#code-innovate-chat-hub---group-chat-app)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
+  - [Requiremnts](#requiremnts)
   - [UX](#ux)
     - [Strategy](#strategy)
     - [Scope](#scope)
@@ -36,6 +37,16 @@
 <br><br>
 The full project can be accessed here [Accord](https://github.com/NoorFatimaAfzal/Accord/tree/main).
 <br><br>
+
+## Requiremnts
+
+requiremts.txt file contains all the dependencies required for the project to run. To install the dependencies, run the following command in the terminal:<br>
+```bash
+pip install -r requirements.txt
+```
+<br><br>
+
+
 
 ## UX
 
