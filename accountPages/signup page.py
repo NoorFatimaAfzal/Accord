@@ -133,24 +133,26 @@ google_logo = google_logo.resize((20, 20), Image.LANCZOS)
 google_logo = ImageTk.PhotoImage(google_logo) 
 
 # title
-title=Label(SignUp_window,text="Sign Up", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
+title=Label(SignUp_window,text="Sign Up", font=("Helvetica", 20, "bold"), bg="lightgrey", fg="black")
 title.place(x=650, y=120, anchor="center")
 
 
 # Email Frame
-emailFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
+emailFrame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="lightblue")
 emailFrame.place(x=650, y=170, anchor="center") 
-emailEntry=Entry(emailFrame,width=30, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
+emailEntry=Entry(emailFrame,width=30, font=("Helvetica", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
 emailEntry.pack()
+
 emailEntry.insert(0, "Email")
 emailEntry.bind("<FocusIn>", email_enter)
 emailEntry.bind("<FocusOut>", email_leave)
 
 # Username Frame
-usernameFrame = Frame(SignUp_window, bd=2, relief=SUNKEN)
+usernameFrame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="lightblue")
 usernameFrame.place(x=650, y=220, anchor="center") 
-usernameEntry=Entry(usernameFrame,width=30, font=("Arial", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
+usernameEntry=Entry(usernameFrame,width=30, font=("Helvetica", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
 usernameEntry.pack()
+
 usernameEntry.insert(0, "Username")
 usernameEntry.bind("<FocusIn>", user_enter)
 
@@ -208,16 +210,17 @@ def signup_click():
                 messagebox.showinfo("Sign Up Successful", "You have successfully signed up!")
                 login()    
 
-signupButton = Button(SignUp_window, text="Sign Up", font=("Arial", 15, "bold"), bg="sky blue", fg="black", command=signup_click)
+# Sign Up Button
+signupButton = Button(SignUp_window, text="Sign Up", font=("Helvetica", 15, "bold"), bg="lightgreen", fg="black", command=signup_click)
 signupButton.place(x=650, y=429, anchor="center")
 
 # Already a member? Login
 def open_login(event):
     login()
 
-loginLink = Label(SignUp_window, text="Already a member? Login", bg="white", fg="black", cursor="hand2", font=("Arial", 15)) 
+# Already a member? Login
+loginLink = Label(SignUp_window, text="Already a member? Login", bg="white", fg="black", cursor="hand2", font=("Helvetica", 15)) 
 loginLink.place(x=650, y=470, anchor="center")
-loginLink.bind("<Button-1>", open_login)
 
 
 # Create a frame for the "sign_up with Google" label
