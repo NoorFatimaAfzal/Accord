@@ -162,7 +162,7 @@ cal.pack(expand=True, fill='both')
 # fnctions
 def go_back():
     scholar_homepage_window.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\account pages\\login page.py"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\accountPages\\login_page.py"')
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:

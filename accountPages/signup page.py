@@ -39,7 +39,7 @@ def user_enter(event):
 def login():
     SignUp_window.withdraw()
     current_dir = os.path.dirname(os.path.realpath(__file__))
-    loginPage_path = os.path.join(current_dir, "Login page.py")
+    loginPage_path = os.path.join(current_dir, "Login_page.py")
     os.system(f'python "{loginPage_path}"')
     SignUp_window.destroy()
 
