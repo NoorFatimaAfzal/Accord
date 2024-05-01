@@ -40,13 +40,11 @@ The full project can be accessed here [Accord](https://github.com/NoorFatimaAfza
 
 ## Requiremnts
 
-requiremts.txt file contains all the dependencies required for the project to run. To install the dependencies, run the following command in the terminal:<br>
+Requiremts.txt file contains all the dependencies required for the project to run. To install the dependencies, run the following command in the terminal:<br>
 ```bash
 pip install -r requirements.txt
 ```
-<br><br>
-
-
+<br>
 
 ## UX
 
@@ -54,7 +52,8 @@ This App is created respecting the Five Plans Of Website Design:<br>
 
 ### Strategy<hr>
 
-**Project Goal:**<br>
+**Project Goal:**
+<br>
 Create a website similar to Discord but specifically tailored for Religious puroposes.
 
 **Project Objectives:**<br>
@@ -92,14 +91,27 @@ Create a website similar to Discord but specifically tailored for Religious puro
 - Responsive design.
 - Personalization options for user profiles.<br><br>
 
+**Read and Listen Quran**
+
+- Read the Quran with translation.
+- Listen to the Quran with translation.
+
+**Prayer Timings**
+
+- Display prayer timings.
+- Send Namaz reminders through Email.
+
+**Calendar**
+
+- Display current date.
 
 ### Structure<hr>
 
 The structure of the app is divided into different pages but with content depending on authentication and scholar/student status <br>
 
-- **Register/Login/logout/email settings/password change** for this the File handling was used, the pages give the user the possibility to create an account, login or log out.<br>
+- **Register/Login/** for this the File handling was used, the pages give the user the possibility to create an account, login or log out.<br>
 
-- The **Home** page consists of 2 sections <br> 1.channels <b> 2.Direct messages list.They will be loaded using File Handling depending on the user clicks<br>
+- The **Home** page consists of 2 sections <br> 1.channels <br> 2.Direct messages list.They will be loaded using File Handling depending on the user clicks<br>
 
 - The **header** is visible on all pages it consists of a time label, back button and help button. <br>
 
@@ -107,13 +119,22 @@ The structure of the app is divided into different pages but with content depend
 
 - **Messages** contains an inbox to do the direct private messages to scholars and Students. <br>
 
+- **FAQs** contains the frequently asked questions and their answers.<br>
+
+- **Help** contains the help page for the user.<br>
+
+- **Post Articles** contains the page where the user can post articles.<br>
+
+- **Read Articles** contains the page where the user can read articles.<br>
+
+- **Quran** contains the page where the user can read and listen to the Quran.<br>
+
 ### Skeleton<hr>
 
 **Structures**<br>
-The structures for desktop  can be viewed here<br>
+The structures for desktop can be viewed here<br>
 
 <details>
-  <summary>Wire Frames</summary>
   <h4>Loading page</h4>
   <img src="readmePics/loading.jpg"><br>
   <h4>Sign up page</h4>
@@ -132,14 +153,12 @@ The structures for desktop  can be viewed here<br>
   <img src="readmePics/FAQs.jpg"><br>
   <h4>Quran</h4>
   <img src="readmePics/Q.jpg"><br>
-</details>
 </details><br>
 
 **FLOWCHARTS**<br>
 The Flowchart for my program was created using <b>[draw.io](https://app.diagrams.net/)</b> and it visually represents how the system works.<br>
 <img src="flowchart/flow.png"><br>
 <br><br>
-
 
 ### Surface<hr>
 
@@ -162,25 +181,14 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
 #### Fonts
 
 - The fonts I used for this site were imported from [Google Fonts](https://fonts.google.com/):<br>
-  <!-- **H tags:** _EB Garamond, serif_<br>
-  **body:** _Roboto, serif_<br> -->
+  - **Roboto** - for the body text<br>
+  - **Lato** - for the headings<br>
+  - **Open Sans** - for the buttons<br>
 
 #### Visual Effects
 
 - **Box shadows** <br>
   Multiple box shadows were used for the cover, buttons and images. <br>
-
-<details>
-  <summary>Displaying notifications</summary>
-<!-- <img src="docs/read-me-images/animations/notification1.png">
-<img src="docs/read-me-images/animations/notification.png"><br> -->
-</details>
-<details>
-  <summary>Search bar</summary>
-<!-- <img src="docs/read-me-images/animations/search-bar.png">
-<img src="docs/read-me-images/animations/search-bar1.png"><br> -->
-</details>
-
 
 ## Features
 
@@ -191,12 +199,11 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
    - Implement secure user signup and signin modules.
    - Allow users to create and manage their profiles.
    - Differentiate between regular users and scholars/experts.
-
-
-- Sign in page<br><br>
-  <!-- <img src="docs/read-me-images/sign-in.png" width="60%"><br><br> -->
+   - Provide user authentication and authorization features.
 - Sign up page<br><br>
-  <!-- <img src="docs/read-me-images/sign-up.png" width="60%"><br><br> -->
+  <img src="readmePics/signup.jpg" width="60%"><br><br>
+- Sign in page<br><br>
+  <img src="readmePics/Login.jpg" width="60%"><br><br>
 
 #### Group chat/Homepage
 
@@ -205,9 +212,9 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
   1. The channels list <br><br>
      - The channels will be of different religious topics.
      - The scholars and users will be able to do group chat. <br><br>
-       <!-- <img src="docs/read-me-images/channels-new-messages-list.png" width="60%"><br><br> -->
+       <img src="readmePics/listOfChannels.jpg" width="60%"><br><br>
   2. The chat in a particular channel on which user has clicked.<br><br>
-     <!-- <img src="docs/read-me-images/posts-list.png" width="60%"><br><br> -->
+     <img src="docs/read-me-images/posts-list.png" width="60%"><br><br>
 
 #### Messaging
 
