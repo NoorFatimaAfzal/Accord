@@ -24,7 +24,6 @@
       - [Account pages](#account-pages)
       - [Group chat/Homepage](#group-chathomepage)
       - [Messaging](#messaging)
-      - [Profile Page](#profile-page)
       - [Header Navigation section](#header-navigation-section)
     - [Future Feature Considerations](#future-feature-considerations)
   - [Tools Used](#tools-used)
@@ -214,46 +213,24 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
      - The scholars and users will be able to do group chat. <br><br>
        <img src="readmePics/listOfChannels.jpg" width="60%"><br><br>
   2. The chat in a particular channel on which user has clicked.<br><br>
-     <img src="docs/read-me-images/posts-list.png" width="60%"><br><br>
+     <img src="readmePics/Cinside.jpg" width="60%"><br><br>
 
 #### Messaging
 
 - On the _Messages_ page, users can do private message to scholars in order to get their queries answered.
   <br><br>
-  <!-- <img src="docs/read-me-images/messaging.png" width="70%"><br><br> -->
-
-#### Profile Page
-
-The Profile page (dashboard) is divided into three sections:
-<br><br>
-<!-- <img src="docs/read-me-images/profile-tab-full.png" width="70%"><br><br> -->
-
-1.  _Profile view_ section
-
-- The Profile view section represents how other users perceive one's profile. The menu is only visible to the current user and can be accessed by clicking their profile picture.<br>
-  <br>
-- This is the profile view the user can see if they click the profile tab<br><br>
-  <!-- <img src="docs/read-me-images/view-profile-from-tab.png" width="70%"><br><br> -->
-- This is the view when a user clicks another user's profile picture<br><br>
-  <!-- <img src="docs/read-me-images/view-profile-modal-different-user.png" width="70%"><br><br> -->
+  <img src="readmePics/Cinside.jpg" width="70%"><br><br>
 
 #### Header Navigation section
 
-The Header section contains the settings icon, App name and the search bar<br>
+The Header section contains the back button, help button and current time.<br>
 <br>
-<!-- <img src="docs/read-me-images/header-nav.png" width="100%"><br><br> -->
+<img src="docs/read-me-images/header-nav.png" width="100%"><br><br>
 <br>
-
-- Settings menu<br><br>
-  <!-- <img src="docs/read-me-images/header-menu.png" width="40%"><br><br> -->
-- Search bar list<br><br>
-  <!-- <img src="docs/read-me-images/search-box.png" width="40%"><br><br> -->
-
 
 ### Future Feature Considerations<hr>
 
 - Another feature would be voice and video calls
-
 
 ## Tools Used
 
