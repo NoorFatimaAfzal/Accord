@@ -133,12 +133,11 @@ google_logo = google_logo.resize((20, 20), Image.LANCZOS)
 google_logo = ImageTk.PhotoImage(google_logo) 
 
 # title
-title=Label(SignUp_window,text="Sign Up", font=("Helvetica", 20, "bold"), bg="lightgrey", fg="black")
+title=Label(SignUp_window,text="Sign Up", font=("Helvetica", 20, "bold"), bg="white", fg="black")
 title.place(x=650, y=120, anchor="center")
 
-
 # Email Frame
-emailFrame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="lightblue")
+emailFrame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="skyblue")
 emailFrame.place(x=650, y=170, anchor="center") 
 emailEntry=Entry(emailFrame,width=30, font=("Helvetica", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
 emailEntry.pack()
@@ -148,7 +147,7 @@ emailEntry.bind("<FocusIn>", email_enter)
 emailEntry.bind("<FocusOut>", email_leave)
 
 # Username Frame
-usernameFrame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="lightblue")
+usernameFrame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="skyblue")
 usernameFrame.place(x=650, y=220, anchor="center") 
 usernameEntry=Entry(usernameFrame,width=30, font=("Helvetica", 15),bd=0, bg="white", fg="black", relief=FLAT, justify=LEFT)
 usernameEntry.pack()
@@ -211,7 +210,7 @@ def signup_click():
                 login()    
 
 # Sign Up Button
-signupButton = Button(SignUp_window, text="Sign Up", font=("Helvetica", 15, "bold"), bg="lightgreen", fg="black", command=signup_click)
+signupButton = Button(SignUp_window, text="Sign Up", font=("Helvetica", 15, "bold"), bg="skyblue", fg="black", command=signup_click)
 signupButton.place(x=650, y=429, anchor="center")
 
 # Already a member? Login

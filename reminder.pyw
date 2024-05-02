@@ -3,6 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
 from pymongo import MongoClient
+import os
 
 # Configuration settings
 EMAIL_SENDER = "Accordwithmongodb0987654321@gmail.com"
@@ -66,6 +67,8 @@ def check_prayer_time():
         
         # Sleep for 30 seconds before checking the time again
         time.sleep(30)
+
+os.system('pythonw C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\reminder.pyw')
 
 if __name__ == "__main__":
     check_prayer_time()
