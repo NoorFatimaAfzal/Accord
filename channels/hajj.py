@@ -134,7 +134,7 @@ time_frame.pack(side=TOP, fill=X)
 
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
-time_label.grid(row=0, column=1, padx=20, pady=5)
+time_label.pack(anchor='center')
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(hajjPage, style="RoundedFrame.TFrame")
@@ -233,10 +233,10 @@ messages_canvas.configure(yscrollcommand=messages_scrollbar.set)
 
 # FAQs button
 faqs_button=Button(hajjPage,text="FAQs",font=("Arial", 15), bg="sky blue", fg="black",command=FAQ_clicked)
-faqs_button.place(x=900, y=140)
+faqs_button.place(x=900, y=0)
 
 # back button
 back_button=Button(hajjPage,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
-back_button.place(x=20, y=140)
+back_button.place(x=20, y=0)
 
 hajjPage.mainloop()

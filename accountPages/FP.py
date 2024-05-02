@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from pymongo import MongoClient
 import smtplib
-import getpass
+import os
 
 # Create a MongoDB client
 client = MongoClient("mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/")
@@ -58,5 +58,26 @@ enter_your_email_entry.place(x=380, y=170)
 
 send_email_button=Button(forget_password_window, text="Send Email", font=("Arial", 15), bg="sky blue", fg="black", command=send_email)
 send_email_button.place(x=420, y=220)
+
+def open_help(page):
+    with open('previous_page.txt', 'w') as f:
+        f.write(page)
+    forget_password_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
+    forget_password_window.destroy()
+
+# help button
+help_button=Button(forget_password_window,text="Help",font=("Arial", 15), bg="sky blue", fg="black",command=open_help)
+help_button.place(x=5, y=0)
+
+# fnctions
+def go_back():
+    forget_password_window.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\accountPages\\Login_page.py"')
+    forget_password_window.destroy()
+
+# back button
+back_button=Button(forget_password_window,text="Back",font=("Arial", 15), bg="sky blue", fg="black",command=go_back)
+back_button.place(x=920, y=0)
 
 forget_password_window.mainloop()
