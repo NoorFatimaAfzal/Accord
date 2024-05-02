@@ -45,6 +45,14 @@ def get_all_users():
     users = collection.find({})
     return [user['email'] for user in users]
 
+def get_logged_in_user_email():
+    """Fetch the email of the logged-in user from the database."""
+    with open('loggedin_user.txt', 'r') as file:
+        username = file.read().strip()
+
+    user = collection.find_one({'username': username})
+    return user['email'] if user else None
+
 def check_prayer_time():
     """Check current time and notify if it's time for prayer."""
     while True:
@@ -57,9 +65,9 @@ def check_prayer_time():
                 subject = f"Time for {prayer} prayer"
                 body = f"It's time for the {prayer} prayer. Please prepare to pray."
                 
-                users = get_all_users()
-                for user in users:
-                    send_email(subject, body, user)
+                logged_in_user_email = get_logged_in_user_email()
+                if logged_in_user_email:
+                    send_email(subject, body, logged_in_user_email)
                 
                 # Sleep for one minute to avoid multiple notifications
                 time.sleep(60)
