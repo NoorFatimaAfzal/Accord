@@ -30,7 +30,7 @@ student_homepage_window.geometry("990x660+50+50")
 student_homepage_window.configure(bg="white")
 student_homepage_window.resizable(False, False)
 current_dir = os.path.dirname(os.path.realpath(__file__))
-logo_path = os.path.join(current_dir, "logo.ico")
+logo_path = os.path.join(current_dir, "favicon.ico")
 student_homepage_window.iconbitmap(logo_path)
 student_homepage_window.title("Student Home Page")
 

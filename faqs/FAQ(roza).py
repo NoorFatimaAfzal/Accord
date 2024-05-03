@@ -9,7 +9,7 @@ rozaPage.geometry("990x660+50+50")
 rozaPage.configure(bg="white")
 rozaPage.resizable(False, False)
 current_dir = os.path.dirname(os.path.realpath(__file__))
-logo_path = os.path.join(current_dir, "logo.ico")
+logo_path = os.path.join(current_dir, "favicon.ico")
 rozaPage.iconbitmap(logo_path)
 rozaPage.title("FAQs about Roza")
 

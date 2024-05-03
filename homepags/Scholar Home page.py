@@ -32,7 +32,7 @@ scholar_homepage_window.configure(bg="white")
 scholar_homepage_window.resizable(False, False)
 scholar_homepage_window.title("Scholar Home Page")
 current_dir = os.path.dirname(os.path.realpath(__file__))
-logo_path = os.path.join(current_dir, "logo.ico")
+logo_path = os.path.join(current_dir, "favicon.ico")
 scholar_homepage_window.iconbitmap(logo_path)
 
 style = ttk.Style()

@@ -18,7 +18,7 @@ studentDM.geometry("990x660+50+50")
 studentDM.configure(bg="white")
 studentDM.resizable(False, False)
 current_dir = os.path.dirname(os.path.realpath(__file__))
-logo_path = os.path.join(current_dir, "logo.ico")
+logo_path = os.path.join(current_dir, "favicon.ico")
 studentDM.iconbitmap(logo_path)
 studentDM.title("Student DM")
 

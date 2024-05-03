@@ -11,7 +11,7 @@ seerahPage.geometry("990x660+50+50")
 seerahPage.configure(bg="white")
 seerahPage.resizable(False, False)
 current_dir = os.path.dirname(os.path.realpath(__file__))
-logo_path = os.path.join(current_dir, "logo.ico")
+logo_path = os.path.join(current_dir, "favicon.ico")
 seerahPage.iconbitmap(logo_path)
 seerahPage.title("Ask about Seerah")
 
