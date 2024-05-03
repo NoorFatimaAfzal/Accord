@@ -34,10 +34,19 @@ def open_help(page):
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
     post_article_window.destroy()
 
+users = db['users']
+
 def post_article():
     post_by = post_by_name_entry.get()
     post_title = post_title_entry.get()
     post_article = post_article_text.get("1.0", END)
+
+    # Check if the author exists in the 'Users' collection
+    author_exists = users.find_one({'username': post_by})
+
+    if not author_exists:
+        messagebox.showerror("Error", "Author must exist in the Users collection")
+        return
 
     if post_by and post_title and post_article:
         article_data = {

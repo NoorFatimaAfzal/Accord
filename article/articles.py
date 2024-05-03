@@ -51,18 +51,51 @@ def open_help(page):
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
     Articles.destroy()
 
+users_collection = db['users']
+
+def get_user_email(username):
+    """Fetch the email of a user from the database."""
+    user = users_collection.find_one({'username': username})
+    return user['email'] if user else None
+
+import smtplib
+
+def send_email(subject, body, to_email):
+    host = "smtp.gmail.com"
+    port = 587
+    from_email = "Accordwithmongodb0987654321@gmail.com"
+    password = "hrlm vsme qpfz lxrt"
+
+    # Create the message
+    message = f"Subject: {subject} \n\n{body}"
+
+    # Connect to the server and send the email
+    smtp = smtplib.SMTP(host, port)
+    smtp.ehlo()
+    smtp.starttls()
+    smtp.login(from_email, password)
+    smtp.sendmail(from_email, to_email, message)
+    smtp.quit()
+
 def like_article():
     global likes
     likes += 1
     articles_collection.update_one({"post_title": selected_article}, {"$set": {"likes": likes}})
     like_button.config(text=f"👍 Like {likes}")
 
+    # Send email to the author
+    author_email = get_user_email(author_name)
+    print(author_email)
+    if author_email:
+        subject = f"Your article was liked"
+        body = f"Your article '{selected_article}' was liked."
+        send_email(subject, body, author_email)
+
 def dislike_article():
     global dislikes
     dislikes += 1
     articles_collection.update_one({"post_title": selected_article}, {"$set": {"dislikes": dislikes}})
     dislike_button.config(text=f"👎 Dislike {dislikes}")
-
 
 # Frame for time
 time_frame = Frame(Articles, bg="sky blue")
