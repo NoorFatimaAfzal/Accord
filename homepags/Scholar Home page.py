@@ -287,4 +287,47 @@ time_frame.grid_columnconfigure(0, weight=1)
 time_frame.grid_columnconfigure(1, weight=1)
 time_frame.grid_columnconfigure(2, weight=1)
 
+collection = db['Articles']
+
+with open('logged_in_user.txt', 'r') as file:
+    username = file.read().strip() 
+
+# Fetch the documents where the 'post_by' field matches the username
+documents = collection.find({'post_by': username})
+
+from PIL import Image, ImageDraw
+
+# For each document
+for doc in documents:
+    if doc['likes'] > 5: 
+        badge = Image.open(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\homepags\b.jpg')
+
+        # Define the size for the badge
+        badge_size = (35, 35)
+
+        # Resize the badge to the defined size
+        badge = badge.resize(badge_size)
+
+        # Create a new image for the mask
+        mask = Image.new('L', badge_size, 0)
+
+        # Create a draw object
+        draw = ImageDraw.Draw(mask)
+
+        # Draw an ellipse inside the mask
+        draw.ellipse((0, 0) + badge_size, fill=255)
+
+        # Apply the mask to the badge
+        badge = Image.composite(badge, Image.new('RGB', badge_size), mask)
+
+        # Convert the PIL image to a Tkinter-compatible photo image
+        photo = ImageTk.PhotoImage(badge)
+
+        # Create a new label for the badge
+        badge_label = Label(scholar_homepage_window, image=photo)
+        badge_label.image = photo
+
+        # Place the badge label at the desired coordinates
+        badge_label.place(x=155, y=125)
+
 scholar_homepage_window.mainloop()
