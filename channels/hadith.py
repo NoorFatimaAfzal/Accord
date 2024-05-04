@@ -64,7 +64,7 @@ def send_message():
     })
 
     message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-    message_frame.pack(fill=X, padx=5, pady=5, anchor='e') 
+    message_frame.pack(fill='x', padx=5, pady=5, anchor='e') 
     message_text = Text(message_frame, font=("Arial", 15), bg="sky blue", fg="black", width=50, height=1)
     message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
     message_text.insert(END, f"{sender_username}: {message}") 
@@ -308,8 +308,10 @@ user_counts = {}
 
 # Process each message
 for message in all_messages:
-    username = message['userID']  # Assuming 'userID' is the field for the username
-    message_text = preprocess_text(message['message'])
+    # Check if 'userID' key exists in the message
+    if 'userID' in message:
+        username = message['userID']  # Assuming 'userID' is the field for the username
+        message_text = preprocess_text(message['message'])
 
     # Print the message text for debugging
     print(f"Processing message from user {username}: '{message_text}'")
@@ -335,7 +337,9 @@ for message in all_messages:
 
         # Print the non-Islamic count for debugging
         print(f"Incrementing non-Islamic count for user {username}. Current count: {user_counts[username]}")
-
+    else:
+        # Print a message indicating that the message is Islamic
+        print("The message is Islamic.")
 
 # Define function to send email
 def send_email(user_email, subject, body):

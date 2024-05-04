@@ -98,7 +98,7 @@ def display_messages():
             sender_username = get_username(message['userID'])
 
             message_frame = Frame(messages_frame, bd=2, relief=SUNKEN)
-            message_frame.pack(fill=X, padx=5, pady=5, anchor='e' if message['userID'] == logged_in_user_id else 'w')
+            message_frame.pack(fill='x', padx=5, pady=5, anchor='e' if message['userID'] == logged_in_user_id else 'w')
             message_text = Text(message_frame, font=("Arial", 15), bg="sky blue" if message['userID'] == logged_in_user_id else "white", fg="black", width=50, height=1)
             message_text.pack(padx=5, pady=5, side=TOP, fill=BOTH, expand=True)
             message_text.insert(END, f"{sender_username}: {message['message']}")
