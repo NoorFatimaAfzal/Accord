@@ -3,6 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 from datetime import datetime
 from pymongo import MongoClient
+import datetime as dt
 
 # Configuration settings
 EMAIL_SENDER = "Accordwithmongodb0987654321@gmail.com"
@@ -60,7 +61,12 @@ def check_prayer_time():
         current_time = now.strftime("%H:%M")
         
         for prayer, prayer_time in prayer_times.items():
-            if current_time == prayer_time:
+            prayer_hour, prayer_minute = map(int, prayer_time.split(':'))
+            prayer_datetime = now.replace(hour=prayer_hour, minute=prayer_minute, second=0)
+            prayer_window_start = prayer_datetime - dt.timedelta(minutes=1)
+            prayer_window_end = prayer_datetime + dt.timedelta(minutes=1)
+            
+            if prayer_window_start <= now <= prayer_window_end:
                 # Send email notification
                 subject = f"Time for {prayer} prayer"
                 body = f"It's time for the {prayer} prayer. Please prepare to pray."
@@ -68,13 +74,9 @@ def check_prayer_time():
                 all_users_emails = get_all_users()
                 for user_email in all_users_emails:
                     send_email(subject, body, user_email)
-                
-                # Sleep for one minute to avoid multiple notifications
-                time.sleep(60)
+                break
         
         # Sleep for 30 seconds before checking the time again
         time.sleep(60)
-
-check_prayer_time()
 
 check_prayer_time()
