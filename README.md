@@ -221,12 +221,6 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
   <br><br>
   <img src="readmePics/Cinside.jpg" width="70%"><br><br>
 
-#### Header Navigation section
-
-The Header section contains the back button, help button and current time.<br>
-<br>
-<img src="docs/read-me-images/header-nav.png" width="100%"><br><br>
-<br>
 
 ### Future Feature Considerations<hr>
 
