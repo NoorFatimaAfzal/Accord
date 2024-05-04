@@ -65,14 +65,16 @@ def check_prayer_time():
                 subject = f"Time for {prayer} prayer"
                 body = f"It's time for the {prayer} prayer. Please prepare to pray."
                 
-                logged_in_user_email = get_logged_in_user_email()
-                if logged_in_user_email:
-                    send_email(subject, body, logged_in_user_email)
+                all_users_emails = get_all_users()
+                for user_email in all_users_emails:
+                    send_email(subject, body, user_email)
                 
                 # Sleep for one minute to avoid multiple notifications
                 time.sleep(60)
         
         # Sleep for 30 seconds before checking the time again
-        time.sleep(30)
+        time.sleep(60)
+
+check_prayer_time()
 
 check_prayer_time()
