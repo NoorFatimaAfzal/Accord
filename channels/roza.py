@@ -242,4 +242,138 @@ time_frame.grid_columnconfigure(0, weight=1)
 time_frame.grid_columnconfigure(1, weight=1)
 time_frame.grid_columnconfigure(2, weight=1)
 
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import LabelEncoder
+from sklearn.naive_bayes import MultinomialNB
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+import string
+import nltk
+from pymongo import MongoClient
+import smtplib
+from email.mime.text import MIMEText
+
+# NLTK setup
+nltk.download('punkt', download_dir='C:/nltk_data')
+
+# Load your data from a CSV file
+data = pd.read_csv(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\channels\data.csv')
+df = pd.DataFrame(data)
+
+# Preprocess text data
+stop_words = set(stopwords.words('english'))
+ps = PorterStemmer()
+
+def preprocess_text(text):
+    text = text.lower()
+    text = "".join([char for char in text if char not in string.punctuation])
+    words = word_tokenize(text)
+    words = [ps.stem(word) for word in words if word not in stop_words]
+    return " ".join(words)
+
+df['Message'] = df['Message'].apply(preprocess_text)
+
+# Convert text data to numerical form
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(df['Message'])
+
+# Encode labels
+le = LabelEncoder()
+y = le.fit_transform(df['Label'])
+
+# Train model
+model = MultinomialNB()
+model.fit(X, y)
+
+# Connect to MongoDB database
+client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/') 
+db = client['Accord']
+roza_collection = db['roza messages']
+users_collection = db['users']
+
+# Fetch messages from the 'roza messages' collection
+all_messages = roza_collection.find({})
+
+# Create a dictionary to store counts of non-Islamic messages for each user
+user_counts = {}
+
+# Process each message
+for message in all_messages:
+    username = message['userID']  # Assuming 'userID' is the field for the username
+    message_text = preprocess_text(message['message'])
+
+    # Print the message text for debugging
+    print(f"Processing message from user {username}: '{message_text}'")
+
+    # Vectorize the message text
+    vectorized_message = vectorizer.transform([message_text])
+
+    # Predict the label of the message
+    prediction = model.predict(vectorized_message)
+
+    # Convert the predicted label back to the original label name
+    predicted_label_name = le.inverse_transform(prediction)[0]
+
+    # Print the prediction for debugging
+    print(f"Predicted label for the message: {predicted_label_name}")
+
+    # Check if the predicted label is non-Islamic
+    if predicted_label_name == "Non-Islamic":
+        # Increment non-Islamic count for the user
+        if username not in user_counts:
+            user_counts[username] = 0
+        user_counts[username] += 1
+
+        # Print the non-Islamic count for debugging
+        print(f"Incrementing non-Islamic count for user {username}. Current count: {user_counts[username]}")
+
+
+# Define function to send email
+def send_email(user_email, subject, body):
+    sender_email = "Accordwithmongodb0987654321@gmail.com"  
+    sender_password = "hrlm vsme qpfz lxrt" 
+
+    # Create email message
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = sender_email
+    msg['To'] = user_email
+
+    try:
+        # Send the email
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()
+            print("Starting TLS...")
+            server.login(sender_email, sender_password)
+            print("Logged in...")
+            server.sendmail(sender_email, [user_email], msg.as_string())
+        print(f"Email sent successfully to {user_email}")
+    except Exception as e:
+        print(f"Failed to send email to {user_email}. Error: {e}")
+
+# Check each user's non-Islamic count and send email
+for username, count in user_counts.items():
+    # Fetch user data from the 'users' collection
+    user_doc = users_collection.find_one({'username': username})
+    print(user_doc)
+    
+    # Check if the user's data exists in the 'users' collection
+    if user_doc:
+        user_email = user_doc.get('email')
+        print(user_email)
+        
+        # Check if email exists and is not None
+        if user_email:
+            if count > 20:
+                send_email(user_email, "Your Messages Classification", "Your messages contain more than 20 non-Islamic messages. Please review your messages.")
+            else:
+                send_email(user_email, "Your Messages Classification", "Your messages are in compliance. Keep up the good work.")
+        else:
+            print(f"Email not found for user {username}.")
+    else:
+        print(f"User data not found for user {username}.")
+
+
 rozaPage.mainloop()
