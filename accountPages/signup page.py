@@ -8,7 +8,6 @@ from pymongo import MongoClient
 import re
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-import json
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 
@@ -17,9 +16,9 @@ SignUp_window=Tk()
 SignUp_window.geometry("990x660+50+50")
 SignUp_window.configure(bg="white")
 SignUp_window.resizable(False, False)   
-current_dir = os.path.dirname(os.path.realpath(__file__))
-logo_path = os.path.join(current_dir, "favicon.ico")
-SignUp_window.iconbitmap(logo_path)
+# current_dir = os.path.dirname(os.path.realpath(__file__))
+# logo_path = os.path.join(current_dir, "favicon.ico")
+SignUp_window.iconbitmap(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\favicon.ico')
 SignUp_window.title("Sign Up")
 
 # Create a MongoDB client
@@ -116,19 +115,19 @@ def confirm_passward_enter(event):
         confirmPasswordEntry.config(show="*")  
 
 # image
-current_dir = os.path.dirname(os.path.realpath(__file__))
-image_path = os.path.join(current_dir, "vector.png")
-bgImage=ImageTk.PhotoImage(file=image_path)
+# current_dir = os.path.dirname(os.path.realpath(__file__))
+# image_path = os.path.join(current_dir, "vector.png")
+bgImage=ImageTk.PhotoImage(file=r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\vector.png')
 bgLabel=Label(SignUp_window,image=bgImage,background="white")
 bgLabel.place(x=0, y=0)
 
-eye_image_path = os.path.join(current_dir, "show_pas.png") 
-eye_image = Image.open(eye_image_path)
+# eye_image_path = os.path.join(current_dir, "show_pas.png") 
+eye_image = Image.open(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\show_pas.png')
 eye_image = eye_image.resize((20, 20), Image.LANCZOS) 
 eye_image = ImageTk.PhotoImage(eye_image)
 
-google_logo_path = os.path.join(current_dir, "g.png")
-google_logo = Image.open(google_logo_path)
+# google_logo_path = os.path.join(current_dir, "g.png")
+google_logo = Image.open(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\g.png')
 google_logo = google_logo.resize((20, 20), Image.LANCZOS) 
 google_logo = ImageTk.PhotoImage(google_logo) 
 
@@ -218,9 +217,9 @@ def open_login(event):
     login()
 
 # Already a member? Login
-loginLink = Label(SignUp_window, text="Already a member? Login", bg="white", fg="black", cursor="hand2", font=("Helvetica", 15)) 
+loginLink = Label(SignUp_window, text="Already a member? Login", bg="white", fg="black", cursor="hand2", font=("Helvetica", 15))
 loginLink.place(x=650, y=470, anchor="center")
-
+loginLink.bind("<Button-1>", open_login)
 
 # Create a frame for the "sign_up with Google" label
 sign_up_with_google_frame = Frame(SignUp_window, bd=2, relief=SUNKEN, bg="white")
