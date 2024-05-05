@@ -329,5 +329,7 @@ for doc in documents:
 
         # Place the badge label at the desired coordinates
         badge_label.place(x=155, y=125)
+    else:
+        pass
 
 scholar_homepage_window.mainloop()

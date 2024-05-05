@@ -69,18 +69,13 @@ progress.pack(side=BOTTOM, pady=10)
 def Exit_window():
     sys.exit(root.destroy())
 
-
 def top():
     root.withdraw()
     current_dir = os.path.dirname(os.path.realpath(__file__))
     loadingpage_path = os.path.join(current_dir, "signup page.py")
     os.system(f'python "{loadingpage_path}"')
     root.destroy()
-
-
 i = 0
-
-
 def load():
     global i
     if i < 10:
@@ -92,9 +87,6 @@ def load():
     else:
         top()
 
-
 load()
-
-os.system(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\reminder.pyw')
 
 root.mainloop()

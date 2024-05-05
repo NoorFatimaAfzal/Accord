@@ -233,6 +233,4 @@ google_logo_label.image = google_logo
 google_logo_label.pack(side="right", padx=(0, 10)) 
 sign_up_with_google_label.bind("<Button-1>", lambda e: sign_up_with_google())
 
-
-
 SignUp_window.mainloop()
