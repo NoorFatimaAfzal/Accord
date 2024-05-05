@@ -78,9 +78,9 @@ def send_email(subject, body, to_email):
     smtp.quit()
 
 def like_article():
-    global likes
-    likes += 1
-    articles_collection.update_one({"post_title": selected_article}, {"$set": {"likes": likes}})
+    articles_collection.update_one({"post_title": selected_article}, {"$inc": {"likes": 1}})
+    updated_article = articles_collection.find_one({"post_title": selected_article})
+    likes = updated_article.get('likes', 0)
     like_button.config(text=f"👍 Like {likes}")
 
     # Send email to the author

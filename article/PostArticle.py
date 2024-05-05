@@ -112,7 +112,8 @@ def post_article():
         article_data = {
             "post_by": post_by,
             "post_title": post_title,
-            "post_article": post_article
+            "post_article": post_article,
+            "likes": 0
         }
         articles.insert_one(article_data)
         messagebox.showinfo("Success", "Article posted successfully")
