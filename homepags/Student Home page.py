@@ -7,7 +7,6 @@ from PIL import Image, ImageTk, ImageDraw
 from pymongo import MongoClient
 from tkcalendar import Calendar
 
-
 # Create a MongoDB client
 client = MongoClient("mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/") 
 
