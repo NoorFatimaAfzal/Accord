@@ -4,6 +4,17 @@ import os
 from tkinter import messagebox
 import time
 from pymongo import MongoClient
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import LabelEncoder
+from sklearn.naive_bayes import MultinomialNB 
+from nltk.corpus import stopwords # remove is are am etc
+from nltk.stem import PorterStemmer # root words
+from nltk.tokenize import word_tokenize # sentence to words
+import string
+import nltk
+from pymongo import MongoClient
+
 
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/')
 db = client['Accord']
@@ -36,6 +47,38 @@ def open_help(page):
 
 users = db['users']
 
+# NLTK setup
+nltk.download('punkt', download_dir='C:/nltk_data')
+
+# Load your data from a CSV file
+data = pd.read_csv(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\channels\data.csv')
+df = pd.DataFrame(data)
+
+# Preprocess text data
+stop_words = set(stopwords.words('english'))
+ps = PorterStemmer()
+
+def preprocess_text(text):
+    text = text.lower()
+    text = "".join([char for char in text if char not in string.punctuation])
+    words = word_tokenize(text)
+    words = [ps.stem(word) for word in words if word not in stop_words]
+    return " ".join(words)
+
+df['Message'] = df['Message'].apply(preprocess_text)
+
+# Convert text data to numerical form
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(df['Message'])
+
+# Encode labels
+le = LabelEncoder()
+y = le.fit_transform(df['Label'])
+
+# Train model
+model = MultinomialNB()
+model.fit(X, y)
+
 def post_article():
     post_by = post_by_name_entry.get()
     post_title = post_title_entry.get()
@@ -49,6 +92,23 @@ def post_article():
         return
 
     if post_by and post_title and post_article:
+        # Preprocess the article text
+        preprocessed_article = preprocess_text(post_article)
+
+        # Vectorize the article text
+        vectorized_article = vectorizer.transform([preprocessed_article])
+
+        # Predict the label of the article
+        prediction = model.predict(vectorized_article)
+
+        # Convert the predicted label back to the original label name
+        predicted_label_name = le.inverse_transform(prediction)[0]
+
+        # Check if the predicted label is non-Islamic
+        if predicted_label_name == "Non-Islamic":
+            messagebox.showerror("Error", "The article is non-Islamic and cannot be posted")
+            return
+
         article_data = {
             "post_by": post_by,
             "post_title": post_title,
@@ -61,7 +121,7 @@ def post_article():
 
 # Frame for time
 time_frame = Frame(post_article_window, bg="sky blue")
-time_frame.pack(side=TOP, fill=X)
+time_frame.pack(side=TOP, fill='x')
 
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
