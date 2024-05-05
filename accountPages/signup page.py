@@ -16,9 +16,9 @@ SignUp_window=Tk()
 SignUp_window.geometry("990x660+50+50")
 SignUp_window.configure(bg="white")
 SignUp_window.resizable(False, False)   
-# current_dir = os.path.dirname(os.path.realpath(__file__))
-# logo_path = os.path.join(current_dir, "favicon.ico")
-SignUp_window.iconbitmap(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\favicon.ico')
+current_dir = os.path.dirname(os.path.realpath(__file__))
+logo_path = os.path.join(current_dir, "favicon.ico")
+SignUp_window.iconbitmap(logo_path)
 SignUp_window.title("Sign Up")
 
 # Create a MongoDB client
@@ -115,19 +115,19 @@ def confirm_passward_enter(event):
         confirmPasswordEntry.config(show="*")  
 
 # image
-# current_dir = os.path.dirname(os.path.realpath(__file__))
-# image_path = os.path.join(current_dir, "vector.png")
-bgImage=ImageTk.PhotoImage(file=r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\vector.png')
+current_dir = os.path.dirname(os.path.realpath(__file__))
+image_path = os.path.join(current_dir, "vector.png")
+bgImage=ImageTk.PhotoImage(file=image_path)
 bgLabel=Label(SignUp_window,image=bgImage,background="white")
 bgLabel.place(x=0, y=0)
 
-# eye_image_path = os.path.join(current_dir, "show_pas.png") 
-eye_image = Image.open(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\show_pas.png')
+eye_image_path = os.path.join(current_dir, "show_pas.png") 
+eye_image = Image.open(eye_image_path)
 eye_image = eye_image.resize((20, 20), Image.LANCZOS) 
 eye_image = ImageTk.PhotoImage(eye_image)
 
-# google_logo_path = os.path.join(current_dir, "g.png")
-google_logo = Image.open(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\accountPages\g.png')
+google_logo_path = os.path.join(current_dir, "g.png")
+google_logo = Image.open(google_logo_path)
 google_logo = google_logo.resize((20, 20), Image.LANCZOS) 
 google_logo = ImageTk.PhotoImage(google_logo) 
 
