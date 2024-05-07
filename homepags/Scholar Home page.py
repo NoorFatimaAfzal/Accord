@@ -299,7 +299,7 @@ from PIL import Image, ImageDraw
 
 # For each document
 for doc in documents:
-    if doc['likes'] > 5: 
+    if doc.get('likes', 0) > 5:
         badge = Image.open(r'C:\Users\InfoBay\OneDrive\Desktop\Accord\homepags\b.jpg')
 
         # Define the size for the badge
