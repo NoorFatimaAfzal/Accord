@@ -240,7 +240,7 @@ for user_doc in all_users:
         
         # Check if email exists and is not None
         if user_email:
-            send_email(user_email, "Notification Regarding Your Recent Messages", "We hope this email finds you well. We would like to inform you that, after a review by our machine learning model, it appears that some of your recent messages contain content that aligns with Islamic themes.\n While we appreciate your engagement on our platform, we want to remind you to continue to use respectful and appropriate language that aligns with our community guidelines. \nIt's important to keep our space welcoming and inclusive for all.If you have any questions or concerns, please do not hesitate to reach out to our support team.\n\nThank you for your attention to this matter.\n\nThank you for your attention to this matter.\n\nBest regards,\n[Noor Fatima]\n[University of Engineering and Technology, Lahore]")
+            send_email(user_email, "Notification Regarding Your Recent Messages", "We hope this email finds you well. We would like to inform you that, after a review by our machine learning model, it appears that some of your recent messages contain content that aligns with Islamic themes.\n While we appreciate your engagement on our platform, we want to remind you to continue to use respectful and appropriate language that aligns with our community guidelines. \nIt's important to keep our space welcoming and inclusive for all.If you have any questions or concerns, please do not hesitate to reach out to our support team.\n\nThank you for your attention to this matter.\n\nBest regards,\n[Noor Fatima]\n[University of Engineering and Technology, Lahore]")
         else:
             print(f"Email not found for user {username}.")
     else:
