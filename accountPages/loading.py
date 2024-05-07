@@ -8,24 +8,24 @@ root = Tk()
 width = 530
 height = 430
 root.wm_attributes('-fullscreen', True)
-root.configure(bg="#2f6c60")
+root.configure(bg="white")
 root.title("Accord")
 current_dir = os.path.dirname(os.path.realpath(__file__))
 logo_path = os.path.join(current_dir, "favicon.ico")
 root.iconbitmap(logo_path)
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-image_path = os.path.join(current_dir, "vector.png")
+image_path = os.path.join(current_dir, "m.png")
 image = PhotoImage(file=image_path)
 
 # Exit button
-top_frame = Frame(root, bg="#2f6c60")
+top_frame = Frame(root, bg="white")
 top_frame.pack(fill=X)
 exit_button = Button(
     top_frame,
     text="X",
-    bg="#2f6c60",
-    fg="white",
+    bg="white",
+    fg="green",
     command=lambda: Exit_window(),
     bd=0,
 )
@@ -35,8 +35,8 @@ exit_button.pack(side=RIGHT, padx=10, pady=10)
 welcome_label = Label(
     root,
     text="Welcome to My App\n Accord - \"Ask about Islam\"",
-    bg="#2f6c60",
-    fg="white",
+    bg="white",
+    fg="green",
     font=("Arial", 20)
 )
 welcome_label.pack(fill=X, pady=20)
@@ -46,13 +46,13 @@ image_label = Label(root, image=image)
 image_label.pack(pady=20)
 
 # progress bar
-bottom_frame = Frame(root, bg="#2f6c60")
+bottom_frame = Frame(root, bg="white")
 bottom_frame.pack(fill=X, expand=True)
 progressLabel = Label(
     bottom_frame,
     text="Loading...",
-    bg="#2f6c60",
-    fg="white",
+    bg="white",
+    fg="green",
     font=("Arial", 10)
 )
 progressLabel.pack(side=BOTTOM, pady=10)
