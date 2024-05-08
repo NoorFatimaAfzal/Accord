@@ -154,12 +154,81 @@ def update():
 
 update()
 
+
+def open_channel(channel_name):
+    """Opens the corresponding channel script based on the channel name."""
+    channel_scripts = {
+        "Namaz": "namaz.py",
+        "Quran": "quran.py",
+        "Hadith": "hadith.py",
+        "Fiqh": "fiqh.py",
+        "Seerah": "seerah.py",
+        "Ethics": "ethics.py",
+        "Zakat": "zakat.py",
+        "Hajj": "hajj.py",
+        "Roza": "roza.py",
+    }
+    
+    # Get the script file path for the given channel name
+    script_file = channel_scripts.get(channel_name)
+    
+    # Check if the script file exists in the mapping
+    if script_file:
+        print(f"Opening script for channel: {channel_name}")
+        student_homepage_window.withdraw()
+        os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\{script_file}"')
+        student_homepage_window.destroy()
+
+def search_channels():
+    """Searches for channels based on the search query and opens the corresponding channel script if found."""
+    query = search_entry.get().lower() 
+
+    # List of all channels (you can replace this with a dynamic list)
+    channels = [
+        {"name": "Namaz"},
+        {"name": "Quran"},
+        {"name": "Hadith"},
+        {"name": "Fiqh"},
+        {"name": "Seerah"},
+        {"name": "Ethics"},
+        {"name": "Zakat"},
+        {"name": "Hajj"},
+        {"name": "Roza"},
+    ]
+
+    # Iterate through the channels and check for a match with the query
+    for channel in channels:
+        if query in channel["name"].lower():
+            # If a match is found, open the corresponding channel
+            open_channel(channel["name"])
+            return  # Stop the function once the channel is opened
+
+    # If no match is found, you might want to provide some feedback to the user
+    # You could display a message or take another action as needed
+
+# Create the search bar frame
+search_frame = Frame(student_homepage_window, bg="sky blue")
+search_frame.pack(side=TOP, pady=10)
+
+# Create the search entry (input box)
+search_entry = Entry(search_frame, font=("Arial", 15), width=30)
+search_entry.pack(side=LEFT, padx=10)
+
+# Create the search button
+search_button = Button(search_frame, text="Search", font=("Arial", 15), bg="white", fg="black", command=search_channels)
+search_button.pack(side=LEFT, padx=10)
+
+# Bind the Enter key to the search function
+search_entry.bind("<Return>", lambda event: search_channels())
+
+
+
 # Frame for the header
 header_frame = ttk.Frame(student_homepage_window, style="RoundedFrame.TFrame")
 header_frame.pack(side=TOP, padx=20)
 
-header = Label(header_frame, text="student Home Page", font=("Arial", 20, "bold"), bg="sky blue", fg="black")
-header.pack(padx=10, pady=10)
+header = Label(header_frame, text="student Home Page", font=("Arial", 14, "bold"), bg="sky blue", fg="black")
+header.pack(padx=5, pady=5)
 
 # Frame for the channels
 channels_frame = ttk.Frame(student_homepage_window, style="RoundedFrame.TFrame")
