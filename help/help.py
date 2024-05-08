@@ -197,6 +197,12 @@ back_button.grid(row=0, column=0, padx=20, pady=5, sticky='w')
 exit_button=Button(time_frame,text="exit",font=("Arial", 15), bg="sky blue", fg="black",command=exit)
 exit_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
+def open_feedback():
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\feedback.py"')
+
+feedback_button = Button(help, text="Feedback", font=("Arial", 15), bg="sky blue", fg="black", command=open_feedback)
+feedback_button.pack(pady=10, padx=10, side=BOTTOM)
+
 # Configure the columns to adjust their sizes
 time_frame.grid_columnconfigure(0, weight=1)
 time_frame.grid_columnconfigure(1, weight=1)
