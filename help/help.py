@@ -83,7 +83,6 @@ def exit():
     help.withdraw()
     help.destroy()
 
-
 # Frame for time
 time_frame = Frame(help, bg="sky blue")
 time_frame.pack(side=TOP, fill=X)
@@ -91,7 +90,6 @@ time_frame.pack(side=TOP, fill=X)
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
 time_label.grid(row=0, column=1, padx=20, pady=5)
-
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(help, style="RoundedFrame.TFrame")
@@ -198,7 +196,9 @@ exit_button=Button(time_frame,text="exit",font=("Arial", 15), bg="sky blue", fg=
 exit_button.grid(row=0, column=2, padx=20, pady=5, sticky='e')
 
 def open_feedback():
+    help.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\feedback.py"')
+    help.destroy()
 
 feedback_button = Button(help, text="Feedback", font=("Arial", 15), bg="sky blue", fg="black", command=open_feedback)
 feedback_button.pack(pady=10, padx=10, side=BOTTOM)

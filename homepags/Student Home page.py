@@ -40,11 +40,12 @@ style.configure("RoundedFrame.TFrame", background="sky blue", relief="raised")
 def readArticleButton_clicked():
     student_homepage_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\readArticle.py"')
-    
+    student_homepage_window.destroy()
 
 def DMButton_clicked():
     student_homepage_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\dm\\studentDM.py"')
+    student_homepage_window.destroy()
     
 # Frame for the dashboard
 dashboard_frame = ttk.Frame(student_homepage_window, style="RoundedFrame.TFrame")
@@ -189,38 +190,47 @@ def open_help(page):
 def open_namaz(event):
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py')
+    student_homepage_window.destroy()
     
 def open_quran(event):
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py')
+    student_homepage_window.destroy()
     
 def open_hadith(event):
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
+    student_homepage_window.destroy()
     
 def open_fiqh(event):
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
+    student_homepage_window.destroy()
     
 def open_seerah(event):   
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
+    student_homepage_window.destroy()
     
 def open_ethics(event):  
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py')
+    student_homepage_window.destroy()
     
 def open_zakat(event):
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
+    student_homepage_window.destroy()
     
 def open_hajj(event):    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
+    student_homepage_window.destroy()
     
 def open_roza(event):    
     student_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
+    student_homepage_window.destroy()
     
 
 namazChannelLink = Label(student_homepage_window, text="Namaz", bg="sky blue", fg="black", cursor="hand2", font=("Arial", 17),relief=SUNKEN,width=10, height=1) 

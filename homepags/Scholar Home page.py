@@ -163,6 +163,7 @@ cal.pack(expand=True, fill='both')
 def go_back():
     scholar_homepage_window.withdraw()
     os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\accountPages\\login_page.py"')
+    scholar_homepage_window.destroy()
 
 def open_help(page):
     with open('previous_page.txt', 'w') as f:
@@ -184,30 +185,39 @@ def DMButton_clicked():
 def open_namaz(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\namaz.py"')
+    scholar_homepage_window.destroy()
 def open_quran(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\quran.py"')
+    scholar_homepage_window.destroy()
 def open_hadith(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hadith.py')
+    scholar_homepage_window.destroy()
 def open_fiqh(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\fiqh.py')
+    scholar_homepage_window.destroy()
 def open_seerah(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\seerah.py')
+    scholar_homepage_window.destroy()
 def open_ethics(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\ethics.py "')
+    scholar_homepage_window.destroy()
 def open_zakat(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\zakat.py')
+    scholar_homepage_window.destroy()
 def open_hajj(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\hajj.py')
+    scholar_homepage_window.destroy()
 def open_roza(event):
     scholar_homepage_window.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\channels\\roza.py')
+    scholar_homepage_window.destroy()
 
 namazChannelLink = Label(scholar_homepage_window, text="Namaz", bg="sky blue", fg="black", cursor="hand2", font=("Arial", 17),relief=SUNKEN,width=10, height=1) 
 namazChannelLink.place(x=341, y=210, anchor="center")

@@ -37,6 +37,7 @@ def open_help(page):
 def article_button_clicked(article_title):
     readArticle.withdraw()
     os.system(f'python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\article\\articles.py" "{article_title}"')
+    readArticle.destroy()
 
 # Frame for time
 time_frame = Frame(readArticle, bg="sky blue")
@@ -45,7 +46,6 @@ time_frame.pack(side=TOP, fill=X)
 # Create a label for the time
 time_label = Label(time_frame, font=("Arial", 10, "bold"), bg="white", fg="black", bd=10, relief=SUNKEN)
 time_label.grid(row=0, column=1, padx=20, pady=5)
-
 
 # Frame for the namaz times
 namaz_frame = ttk.Frame(readArticle, style="RoundedFrame.TFrame")
