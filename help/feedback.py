@@ -17,7 +17,7 @@ root.title("Feedback")
 # fnctions
 def go_back():
     root.withdraw()
-    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\homepags\\Scholar Home page.py"')
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\help.py"')
     root.destroy()
 
 def open_help(page):

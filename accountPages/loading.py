@@ -137,7 +137,7 @@ model.fit(X, y)
 # Connect to MongoDB database
 client = MongoClient('mongodb+srv://noorfatimaafzalbutt:0987654321@cluster0.qbhkxkc.mongodb.net/') 
 db = client['Accord']
-c=["hadith messages","fiqh messages","ethics messages","quran messages","seerah messages"]
+c=["ethics messsages","fiqh messages","hadith messages","quran messages","hajj messages","namaz messages","seerah messages", "roza messages","zakat messages"]
 for message_type in c:
     messages_collection = db[message_type]
 
