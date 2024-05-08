@@ -203,6 +203,15 @@ def open_feedback():
 feedback_button = Button(help, text="Feedback", font=("Arial", 15), bg="sky blue", fg="black", command=open_feedback)
 feedback_button.pack(pady=10, padx=10, side=BOTTOM)
 
+# go to settings button
+def open_settings():
+    help.withdraw()
+    os.system('python "C:\\Users\\InfoBay\\OneDrive\\Desktop\\Accord\\help\\settings.py"')
+    help.destroy()
+
+settings_button=Button(help,text="Go To Settings",font=("Arial", 15), bg="sky blue", fg="black",command=open_settings)
+settings_button.pack(pady=10, padx=10, side=BOTTOM)
+
 # Configure the columns to adjust their sizes
 time_frame.grid_columnconfigure(0, weight=1)
 time_frame.grid_columnconfigure(1, weight=1)

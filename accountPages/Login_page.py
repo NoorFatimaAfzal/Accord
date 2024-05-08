@@ -257,4 +257,27 @@ forgot_password_label = Label(Login_window, text="Forgot Password?", fg="grey", 
 forgot_password_label.place(x=650, y=300, anchor="center") 
 forgot_password_label.bind("<Button-1>", forgot_password)
 
+# Function to handle account deletion
+def delete_account():
+    entered_username = usernameEntry.get()
+
+    # Check if the username field is empty
+    if not entered_username:
+        messagebox.showerror("Invalid Input", "Username field is required")
+        return
+
+    # Query the database
+    user = collection.find_one({"username": entered_username})
+
+    if user is None:
+        messagebox.showerror("Invalid Username", "The entered username is not found")
+    else:
+        # Delete the user from the database
+        collection.delete_one({"username": entered_username})
+        messagebox.showinfo("Account Deleted", "Your account has been successfully deleted!")
+
+# Delete Account Button
+delete_account_button = Button(Login_window, text="Delete Account", command=delete_account, bg="sky blue", fg="black", font=("Arial", 15, "bold"))
+delete_account_button.place(x=650, y=570, anchor="center")
+
 Login_window.mainloop()

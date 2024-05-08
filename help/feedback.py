@@ -31,7 +31,14 @@ def send_feedback():
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
     server.login("Accordwithmongodb0987654321@gmail.com", "hrlm vsme qpfz lxrt")
-    msg = feedback_entry.get("1.0", 'end-1c')
+    
+    # Read the username from the file
+    with open('logged_in_user.txt', 'r') as f:
+        username = f.read().strip()
+    
+    subject = f"Feedback from {username}"
+    body = feedback_entry.get("1.0", 'end-1c')
+    msg = f"Subject: {subject}\n\n{body}"
     server.sendmail("Accordwithmongodb0987654321@gmail.com", "noorfatimaafzalbutt@gmail.com", msg)
     server.quit()
     messagebox.showinfo("Feedback", "Feedback sent successfully!")
