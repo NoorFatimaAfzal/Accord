@@ -11,7 +11,6 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 
-
 SignUp_window=Tk()
 SignUp_window.geometry("990x660+50+50")
 SignUp_window.configure(bg="white")
