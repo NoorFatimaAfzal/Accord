@@ -43,15 +43,6 @@ def delete_account():
     else:
         messagebox.showerror('Error', 'Name field must be filled out')
 
-def edit_account():
-    old_user = {'name': name_entry.get()}
-    new_user = {'$set': {'name': new_name_entry.get(), 'email': new_email_entry.get()}}
-    if old_user['name'] and new_user['$set']['name'] and new_user['$set']['email']:  # Ensure fields are not empty
-        users.update_one(old_user, new_user)
-        messagebox.showinfo('Settings', 'Account updated successfully')
-    else:
-        messagebox.showerror('Error', 'All fields must be filled out')
-
 # Entry fields for creating and deleting accounts
 Label(frame, text='Name', bg='sky blue', font=large_font).grid(row=0, column=0, sticky='we')
 name_entry = Entry(frame, font=large_font)
@@ -61,18 +52,8 @@ Label(frame, text='Email', bg='sky blue', font=large_font).grid(row=1, column=0,
 email_entry = Entry(frame, font=large_font)
 email_entry.grid(row=1, column=1)
 
-# Entry fields for editing accounts
-Label(frame, text='New Name', bg='sky blue', font=large_font).grid(row=2, column=0, sticky='we')
-new_name_entry = Entry(frame, font=large_font)
-new_name_entry.grid(row=2, column=1)
-
-Label(frame, text='New Email', bg='sky blue', font=large_font).grid(row=3, column=0, sticky='we')
-new_email_entry = Entry(frame, font=large_font)
-new_email_entry.grid(row=3, column=1)
-
 # Buttons for creating, deleting, and editing accounts
 Button(frame, text='Create Account', command=create_account, bg='sky blue', font=large_font).grid(row=4, column=1)
 Button(frame, text='Delete Account', command=delete_account, bg='sky blue', font=large_font).grid(row=5, column=1)
-Button(frame, text='Edit Account', command=edit_account, bg='sky blue', font=large_font).grid(row=6, column=1)
 
 root.mainloop()
