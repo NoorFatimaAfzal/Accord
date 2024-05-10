@@ -38,7 +38,9 @@ def surah_selected(event):
     audio_urls = [ayah['audio'] for ayah in audio_data['surahs'][selected_surah]['ayahs']]
 
 def play_audio():
-    if audio_urls:
+    if pygame.mixer.music.get_busy():  # Check if the audio is playing
+        pygame.mixer.music.stop()  # If it is, stop the audio
+    elif audio_urls:  # If the audio is not playing, check if there are audio URLs
         audio_url = audio_urls.pop(0)
         audio_response = requests.get(audio_url, stream=True)
         if audio_response.status_code == 200:

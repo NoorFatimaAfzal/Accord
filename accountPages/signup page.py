@@ -2,7 +2,6 @@ from tkinter import *
 from PIL import Image, ImageTk
 from tkinter import ttk
 import os
-from googleapiclient import discovery
 from tkinter import messagebox
 from pymongo import MongoClient
 import re

@@ -90,6 +90,7 @@ def load():
 load()
 
 import pandas as pd
+# Term Frequency - Inverse Document Frequency
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.naive_bayes import MultinomialNB
@@ -100,6 +101,7 @@ import string
 import nltk
 from pymongo import MongoClient
 import smtplib
+# Multipurpose Internet Mail Extensions
 from email.mime.text import MIMEText
 
 # NLTK setup

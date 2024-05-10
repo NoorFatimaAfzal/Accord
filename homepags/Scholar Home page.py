@@ -62,7 +62,7 @@ label.image = photo
 label.pack()
 
 # Add the labels to the dashboard_frame
-name_label = Label(dashboard_frame, text="Student Name:",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
+name_label = Label(dashboard_frame, text="Scholar Name:",font=("Arial", 17, "bold italic"), bg="sky blue", fg="black", bd=2, relief="raised", anchor="w")
 name_label.pack(padx=10, pady=10)
 
 name_value_label = Label(dashboard_frame, text=user_data['username'], font=("Arial", 17, "bold italic"), bg="white",relief="raised",  bd=2, fg="black", anchor="w")
